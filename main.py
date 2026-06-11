@@ -195,27 +195,23 @@ def process_repo(repo_path: str) -> list[dict]:
 # ── 6. Main ──────────────────────────────────────────────────────────────────
 
 def main():
+    import sys
+    repo_path = sys.argv[1] if len(sys.argv) > 1 else "."
 
-    result = extract_chunks(source_code, "demo.py")
-    print(json.dumps(result[0], indent=2, ensure_ascii=False))
-    print(len(result))
-    # import sys
-    # repo_path = sys.argv[1] if len(sys.argv) > 1 else "."
+    print(f"Processing repo: {repo_path}")
+    chunks = process_repo(repo_path)
+    print(f"Extracted {len(chunks)} chunks")
 
-    # print(f"Processing repo: {repo_path}")
-    # chunks = process_repo(repo_path)
-    # print(f"Extracted {len(chunks)} chunks")
+    out_path = "chunks.json"
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(chunks, f, indent=2, ensure_ascii=False)
 
-    # out_path = "chunks.json"
-    # with open(out_path, "w", encoding="utf-8") as f:
-    #     json.dump(chunks, f, indent=2, ensure_ascii=False)
+    print(f"Saved to {out_path}")
 
-    # print(f"Saved to {out_path}")
-
-    # # quick preview
-    # if chunks:
-    #     print("\n── Sample chunk (embed_text field) ──")
-    #     print(chunks[0]["embed_text"][:600])
+    # quick preview
+    if chunks:
+        print("\n── Sample chunk (embed_text field) ──")
+        print(chunks[0]["embed_text"][:600])
 
 
 if __name__ == "__main__":

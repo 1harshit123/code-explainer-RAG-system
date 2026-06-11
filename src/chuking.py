@@ -1,19 +1,3 @@
-import requests
-import base64
-from git import Repo
-
-with open("..", "r", encoding="utf-8") as f:
-    config = f.read()
-
-
-
-def cloning_repo(repo_url, dest_dir):
-    """
-    Clone a GitHub repo to a local directory
-    """
-    Repo.clone_from(repo_url, dest_dir)
-
-
 """
 repo_chunker.py
 ---------------
@@ -210,7 +194,7 @@ def process_repo(repo_path: str) -> list[dict]:
 
 # ── 6. Main ──────────────────────────────────────────────────────────────────
 
-def main():
+def chuking():
     import sys
     repo_path = sys.argv[1] if len(sys.argv) > 1 else "."
 
@@ -229,6 +213,4 @@ def main():
         print("\n── Sample chunk (embed_text field) ──")
         print(chunks[0]["embed_text"][:600])
 
-
-if __name__ == "__main__":
-    main()
+# Exporting chuking function
