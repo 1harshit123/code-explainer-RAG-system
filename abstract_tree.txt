@@ -1,0 +1,1713 @@
+module [Point(row=0, column=0) -> Point(row=243, column=19)] : """Generate a class that represents a nested funct...
+    expression_statement [Point(row=0, column=0) -> Point(row=4, column=3)] : """Generate a class that represents a nested funct...
+        string [Point(row=0, column=0) -> Point(row=4, column=3)] : """Generate a class that represents a nested funct...
+            string_start [Point(row=0, column=0) -> Point(row=0, column=3)] : """
+            string_content [Point(row=0, column=3) -> Point(row=4, column=0)] : Generate a class that represents a nested function...
+            string_end [Point(row=4, column=0) -> Point(row=4, column=3)] : """
+    future_import_statement [Point(row=6, column=0) -> Point(row=6, column=34)] : from __future__ import annotations
+        from [Point(row=6, column=0) -> Point(row=6, column=4)] : from
+        __future__ [Point(row=6, column=5) -> Point(row=6, column=15)] : __future__
+        import [Point(row=6, column=16) -> Point(row=6, column=22)] : import
+        dotted_name [Point(row=6, column=23) -> Point(row=6, column=34)] : annotations
+            identifier [Point(row=6, column=23) -> Point(row=6, column=34)] : annotations
+    import_from_statement [Point(row=8, column=0) -> Point(row=8, column=83)] : from mypyc.common import CPYFUNCTION_NAME, ENV_ATT...
+        from [Point(row=8, column=0) -> Point(row=8, column=4)] : from
+        dotted_name [Point(row=8, column=5) -> Point(row=8, column=17)] : mypyc.common
+            identifier [Point(row=8, column=5) -> Point(row=8, column=10)] : mypyc
+            . [Point(row=8, column=10) -> Point(row=8, column=11)] : .
+            identifier [Point(row=8, column=11) -> Point(row=8, column=17)] : common
+        import [Point(row=8, column=18) -> Point(row=8, column=24)] : import
+        dotted_name [Point(row=8, column=25) -> Point(row=8, column=41)] : CPYFUNCTION_NAME
+            identifier [Point(row=8, column=25) -> Point(row=8, column=41)] : CPYFUNCTION_NAME
+        , [Point(row=8, column=41) -> Point(row=8, column=42)] : ,
+        dotted_name [Point(row=8, column=43) -> Point(row=8, column=56)] : ENV_ATTR_NAME
+            identifier [Point(row=8, column=43) -> Point(row=8, column=56)] : ENV_ATTR_NAME
+        , [Point(row=8, column=56) -> Point(row=8, column=57)] : ,
+        dotted_name [Point(row=8, column=58) -> Point(row=8, column=72)] : PROPSET_PREFIX
+            identifier [Point(row=8, column=58) -> Point(row=8, column=72)] : PROPSET_PREFIX
+        , [Point(row=8, column=72) -> Point(row=8, column=73)] : ,
+        dotted_name [Point(row=8, column=74) -> Point(row=8, column=83)] : SELF_NAME
+            identifier [Point(row=8, column=74) -> Point(row=8, column=83)] : SELF_NAME
+    import_from_statement [Point(row=9, column=0) -> Point(row=9, column=37)] : from mypyc.ir.class_ir import ClassIR
+        from [Point(row=9, column=0) -> Point(row=9, column=4)] : from
+        dotted_name [Point(row=9, column=5) -> Point(row=9, column=22)] : mypyc.ir.class_ir
+            identifier [Point(row=9, column=5) -> Point(row=9, column=10)] : mypyc
+            . [Point(row=9, column=10) -> Point(row=9, column=11)] : .
+            identifier [Point(row=9, column=11) -> Point(row=9, column=13)] : ir
+            . [Point(row=9, column=13) -> Point(row=9, column=14)] : .
+            identifier [Point(row=9, column=14) -> Point(row=9, column=22)] : class_ir
+        import [Point(row=9, column=23) -> Point(row=9, column=29)] : import
+        dotted_name [Point(row=9, column=30) -> Point(row=9, column=37)] : ClassIR
+            identifier [Point(row=9, column=30) -> Point(row=9, column=37)] : ClassIR
+    import_from_statement [Point(row=10, column=0) -> Point(row=10, column=72)] : from mypyc.ir.func_ir import FuncDecl, FuncIR, Fun...
+        from [Point(row=10, column=0) -> Point(row=10, column=4)] : from
+        dotted_name [Point(row=10, column=5) -> Point(row=10, column=21)] : mypyc.ir.func_ir
+            identifier [Point(row=10, column=5) -> Point(row=10, column=10)] : mypyc
+            . [Point(row=10, column=10) -> Point(row=10, column=11)] : .
+            identifier [Point(row=10, column=11) -> Point(row=10, column=13)] : ir
+            . [Point(row=10, column=13) -> Point(row=10, column=14)] : .
+            identifier [Point(row=10, column=14) -> Point(row=10, column=21)] : func_ir
+        import [Point(row=10, column=22) -> Point(row=10, column=28)] : import
+        dotted_name [Point(row=10, column=29) -> Point(row=10, column=37)] : FuncDecl
+            identifier [Point(row=10, column=29) -> Point(row=10, column=37)] : FuncDecl
+        , [Point(row=10, column=37) -> Point(row=10, column=38)] : ,
+        dotted_name [Point(row=10, column=39) -> Point(row=10, column=45)] : FuncIR
+            identifier [Point(row=10, column=39) -> Point(row=10, column=45)] : FuncIR
+        , [Point(row=10, column=45) -> Point(row=10, column=46)] : ,
+        dotted_name [Point(row=10, column=47) -> Point(row=10, column=60)] : FuncSignature
+            identifier [Point(row=10, column=47) -> Point(row=10, column=60)] : FuncSignature
+        , [Point(row=10, column=60) -> Point(row=10, column=61)] : ,
+        dotted_name [Point(row=10, column=62) -> Point(row=10, column=72)] : RuntimeArg
+            identifier [Point(row=10, column=62) -> Point(row=10, column=72)] : RuntimeArg
+    import_from_statement [Point(row=11, column=0) -> Point(row=11, column=93)] : from mypyc.ir.ops import BasicBlock, Call, GetAttr...
+        from [Point(row=11, column=0) -> Point(row=11, column=4)] : from
+        dotted_name [Point(row=11, column=5) -> Point(row=11, column=17)] : mypyc.ir.ops
+            identifier [Point(row=11, column=5) -> Point(row=11, column=10)] : mypyc
+            . [Point(row=11, column=10) -> Point(row=11, column=11)] : .
+            identifier [Point(row=11, column=11) -> Point(row=11, column=13)] : ir
+            . [Point(row=11, column=13) -> Point(row=11, column=14)] : .
+            identifier [Point(row=11, column=14) -> Point(row=11, column=17)] : ops
+        import [Point(row=11, column=18) -> Point(row=11, column=24)] : import
+        dotted_name [Point(row=11, column=25) -> Point(row=11, column=35)] : BasicBlock
+            identifier [Point(row=11, column=25) -> Point(row=11, column=35)] : BasicBlock
+        , [Point(row=11, column=35) -> Point(row=11, column=36)] : ,
+        dotted_name [Point(row=11, column=37) -> Point(row=11, column=41)] : Call
+            identifier [Point(row=11, column=37) -> Point(row=11, column=41)] : Call
+        , [Point(row=11, column=41) -> Point(row=11, column=42)] : ,
+        dotted_name [Point(row=11, column=43) -> Point(row=11, column=50)] : GetAttr
+            identifier [Point(row=11, column=43) -> Point(row=11, column=50)] : GetAttr
+        , [Point(row=11, column=50) -> Point(row=11, column=51)] : ,
+        dotted_name [Point(row=11, column=52) -> Point(row=11, column=59)] : Integer
+            identifier [Point(row=11, column=52) -> Point(row=11, column=59)] : Integer
+        , [Point(row=11, column=59) -> Point(row=11, column=60)] : ,
+        dotted_name [Point(row=11, column=61) -> Point(row=11, column=69)] : Register
+            identifier [Point(row=11, column=61) -> Point(row=11, column=69)] : Register
+        , [Point(row=11, column=69) -> Point(row=11, column=70)] : ,
+        dotted_name [Point(row=11, column=71) -> Point(row=11, column=77)] : Return
+            identifier [Point(row=11, column=71) -> Point(row=11, column=77)] : Return
+        , [Point(row=11, column=77) -> Point(row=11, column=78)] : ,
+        dotted_name [Point(row=11, column=79) -> Point(row=11, column=86)] : SetAttr
+            identifier [Point(row=11, column=79) -> Point(row=11, column=86)] : SetAttr
+        , [Point(row=11, column=86) -> Point(row=11, column=87)] : ,
+        dotted_name [Point(row=11, column=88) -> Point(row=11, column=93)] : Value
+            identifier [Point(row=11, column=88) -> Point(row=11, column=93)] : Value
+    import_from_statement [Point(row=12, column=0) -> Point(row=12, column=94)] : from mypyc.ir.rtypes import RInstance, c_pointer_r...
+        from [Point(row=12, column=0) -> Point(row=12, column=4)] : from
+        dotted_name [Point(row=12, column=5) -> Point(row=12, column=20)] : mypyc.ir.rtypes
+            identifier [Point(row=12, column=5) -> Point(row=12, column=10)] : mypyc
+            . [Point(row=12, column=10) -> Point(row=12, column=11)] : .
+            identifier [Point(row=12, column=11) -> Point(row=12, column=13)] : ir
+            . [Point(row=12, column=13) -> Point(row=12, column=14)] : .
+            identifier [Point(row=12, column=14) -> Point(row=12, column=20)] : rtypes
+        import [Point(row=12, column=21) -> Point(row=12, column=27)] : import
+        dotted_name [Point(row=12, column=28) -> Point(row=12, column=37)] : RInstance
+            identifier [Point(row=12, column=28) -> Point(row=12, column=37)] : RInstance
+        , [Point(row=12, column=37) -> Point(row=12, column=38)] : ,
+        dotted_name [Point(row=12, column=39) -> Point(row=12, column=59)] : c_pointer_rprimitive
+            identifier [Point(row=12, column=39) -> Point(row=12, column=59)] : c_pointer_rprimitive
+        , [Point(row=12, column=59) -> Point(row=12, column=60)] : ,
+        dotted_name [Point(row=12, column=61) -> Point(row=12, column=75)] : int_rprimitive
+            identifier [Point(row=12, column=61) -> Point(row=12, column=75)] : int_rprimitive
+        , [Point(row=12, column=75) -> Point(row=12, column=76)] : ,
+        dotted_name [Point(row=12, column=77) -> Point(row=12, column=94)] : object_rprimitive
+            identifier [Point(row=12, column=77) -> Point(row=12, column=94)] : object_rprimitive
+    import_from_statement [Point(row=13, column=0) -> Point(row=13, column=43)] : from mypyc.irbuild.builder import IRBuilder
+        from [Point(row=13, column=0) -> Point(row=13, column=4)] : from
+        dotted_name [Point(row=13, column=5) -> Point(row=13, column=26)] : mypyc.irbuild.builder
+            identifier [Point(row=13, column=5) -> Point(row=13, column=10)] : mypyc
+            . [Point(row=13, column=10) -> Point(row=13, column=11)] : .
+            identifier [Point(row=13, column=11) -> Point(row=13, column=18)] : irbuild
+            . [Point(row=13, column=18) -> Point(row=13, column=19)] : .
+            identifier [Point(row=13, column=19) -> Point(row=13, column=26)] : builder
+        import [Point(row=13, column=27) -> Point(row=13, column=33)] : import
+        dotted_name [Point(row=13, column=34) -> Point(row=13, column=43)] : IRBuilder
+            identifier [Point(row=13, column=34) -> Point(row=13, column=43)] : IRBuilder
+    import_from_statement [Point(row=14, column=0) -> Point(row=14, column=57)] : from mypyc.irbuild.context import FuncInfo, Implic...
+        from [Point(row=14, column=0) -> Point(row=14, column=4)] : from
+        dotted_name [Point(row=14, column=5) -> Point(row=14, column=26)] : mypyc.irbuild.context
+            identifier [Point(row=14, column=5) -> Point(row=14, column=10)] : mypyc
+            . [Point(row=14, column=10) -> Point(row=14, column=11)] : .
+            identifier [Point(row=14, column=11) -> Point(row=14, column=18)] : irbuild
+            . [Point(row=14, column=18) -> Point(row=14, column=19)] : .
+            identifier [Point(row=14, column=19) -> Point(row=14, column=26)] : context
+        import [Point(row=14, column=27) -> Point(row=14, column=33)] : import
+        dotted_name [Point(row=14, column=34) -> Point(row=14, column=42)] : FuncInfo
+            identifier [Point(row=14, column=34) -> Point(row=14, column=42)] : FuncInfo
+        , [Point(row=14, column=42) -> Point(row=14, column=43)] : ,
+        dotted_name [Point(row=14, column=44) -> Point(row=14, column=57)] : ImplicitClass
+            identifier [Point(row=14, column=44) -> Point(row=14, column=57)] : ImplicitClass
+    import_from_statement [Point(row=15, column=0) -> Point(row=24, column=1)] : from mypyc.primitives.misc_ops import (\n    cpyfu...
+        from [Point(row=15, column=0) -> Point(row=15, column=4)] : from
+        dotted_name [Point(row=15, column=5) -> Point(row=15, column=30)] : mypyc.primitives.misc_ops
+            identifier [Point(row=15, column=5) -> Point(row=15, column=10)] : mypyc
+            . [Point(row=15, column=10) -> Point(row=15, column=11)] : .
+            identifier [Point(row=15, column=11) -> Point(row=15, column=21)] : primitives
+            . [Point(row=15, column=21) -> Point(row=15, column=22)] : .
+            identifier [Point(row=15, column=22) -> Point(row=15, column=30)] : misc_ops
+        import [Point(row=15, column=31) -> Point(row=15, column=37)] : import
+        ( [Point(row=15, column=38) -> Point(row=15, column=39)] : (
+        dotted_name [Point(row=16, column=4) -> Point(row=16, column=31)] : cpyfunction_get_annotations
+            identifier [Point(row=16, column=4) -> Point(row=16, column=31)] : cpyfunction_get_annotations
+        , [Point(row=16, column=31) -> Point(row=16, column=32)] : ,
+        dotted_name [Point(row=17, column=4) -> Point(row=17, column=24)] : cpyfunction_get_code
+            identifier [Point(row=17, column=4) -> Point(row=17, column=24)] : cpyfunction_get_code
+        , [Point(row=17, column=24) -> Point(row=17, column=25)] : ,
+        dotted_name [Point(row=18, column=4) -> Point(row=18, column=28)] : cpyfunction_get_defaults
+            identifier [Point(row=18, column=4) -> Point(row=18, column=28)] : cpyfunction_get_defaults
+        , [Point(row=18, column=28) -> Point(row=18, column=29)] : ,
+        dotted_name [Point(row=19, column=4) -> Point(row=19, column=30)] : cpyfunction_get_kwdefaults
+            identifier [Point(row=19, column=4) -> Point(row=19, column=30)] : cpyfunction_get_kwdefaults
+        , [Point(row=19, column=30) -> Point(row=19, column=31)] : ,
+        dotted_name [Point(row=20, column=4) -> Point(row=20, column=24)] : cpyfunction_get_name
+            identifier [Point(row=20, column=4) -> Point(row=20, column=24)] : cpyfunction_get_name
+        , [Point(row=20, column=24) -> Point(row=20, column=25)] : ,
+        dotted_name [Point(row=21, column=4) -> Point(row=21, column=31)] : cpyfunction_set_annotations
+            identifier [Point(row=21, column=4) -> Point(row=21, column=31)] : cpyfunction_set_annotations
+        , [Point(row=21, column=31) -> Point(row=21, column=32)] : ,
+        dotted_name [Point(row=22, column=4) -> Point(row=22, column=24)] : cpyfunction_set_name
+            identifier [Point(row=22, column=4) -> Point(row=22, column=24)] : cpyfunction_set_name
+        , [Point(row=22, column=24) -> Point(row=22, column=25)] : ,
+        dotted_name [Point(row=23, column=4) -> Point(row=23, column=17)] : method_new_op
+            identifier [Point(row=23, column=4) -> Point(row=23, column=17)] : method_new_op
+        , [Point(row=23, column=17) -> Point(row=23, column=18)] : ,
+        ) [Point(row=24, column=0) -> Point(row=24, column=1)] : )
+    function_definition [Point(row=27, column=0) -> Point(row=90, column=82)] : def setup_callable_class(builder: IRBuilder) -> No...
+        def [Point(row=27, column=0) -> Point(row=27, column=3)] : def
+        identifier [Point(row=27, column=4) -> Point(row=27, column=24)] : setup_callable_class
+        parameters [Point(row=27, column=24) -> Point(row=27, column=44)] : (builder: IRBuilder)
+            ( [Point(row=27, column=24) -> Point(row=27, column=25)] : (
+            typed_parameter [Point(row=27, column=25) -> Point(row=27, column=43)] : builder: IRBuilder
+                identifier [Point(row=27, column=25) -> Point(row=27, column=32)] : builder
+                : [Point(row=27, column=32) -> Point(row=27, column=33)] : :
+                type [Point(row=27, column=34) -> Point(row=27, column=43)] : IRBuilder
+                    identifier [Point(row=27, column=34) -> Point(row=27, column=43)] : IRBuilder
+            ) [Point(row=27, column=43) -> Point(row=27, column=44)] : )
+        -> [Point(row=27, column=45) -> Point(row=27, column=47)] : ->
+        type [Point(row=27, column=48) -> Point(row=27, column=52)] : None
+            none [Point(row=27, column=48) -> Point(row=27, column=52)] : None
+        : [Point(row=27, column=52) -> Point(row=27, column=53)] : :
+        block [Point(row=28, column=4) -> Point(row=90, column=82)] : """Generate an (incomplete) callable class represe...
+            expression_statement [Point(row=28, column=4) -> Point(row=45, column=7)] : """Generate an (incomplete) callable class represe...
+                string [Point(row=28, column=4) -> Point(row=45, column=7)] : """Generate an (incomplete) callable class represe...
+                    string_start [Point(row=28, column=4) -> Point(row=28, column=7)] : """
+                    string_content [Point(row=28, column=7) -> Point(row=45, column=4)] : Generate an (incomplete) callable class representi...
+                    string_end [Point(row=45, column=4) -> Point(row=45, column=7)] : """
+            comment [Point(row=46, column=4) -> Point(row=46, column=67)] : # Check to see that the name has not already been ...
+            comment [Point(row=47, column=4) -> Point(row=47, column=67)] : # rename the class. We allow multiple uses of the ...
+            comment [Point(row=48, column=4) -> Point(row=48, column=60)] : # name because this is valid in if-else blocks. Ex...
+            comment [Point(row=49, column=4) -> Point(row=49, column=5)] : #
+            comment [Point(row=50, column=4) -> Point(row=50, column=18)] : #     if True:
+            comment [Point(row=51, column=4) -> Point(row=51, column=52)] : #         def foo():          ---->    foo_obj()
+            comment [Point(row=52, column=4) -> Point(row=52, column=29)] : #             return True
+            comment [Point(row=53, column=4) -> Point(row=53, column=15)] : #     else:
+            comment [Point(row=54, column=4) -> Point(row=54, column=54)] : #         def foo():          ---->    foo_obj_0()
+            comment [Point(row=55, column=4) -> Point(row=55, column=30)] : #             return False
+            expression_statement [Point(row=56, column=4) -> Point(row=56, column=65)] : name = base_name = f"{builder.fn_info.namespaced_n...
+                assignment [Point(row=56, column=4) -> Point(row=56, column=65)] : name = base_name = f"{builder.fn_info.namespaced_n...
+                    identifier [Point(row=56, column=4) -> Point(row=56, column=8)] : name
+                    = [Point(row=56, column=9) -> Point(row=56, column=10)] : =
+                    assignment [Point(row=56, column=11) -> Point(row=56, column=65)] : base_name = f"{builder.fn_info.namespaced_name()}_...
+                        identifier [Point(row=56, column=11) -> Point(row=56, column=20)] : base_name
+                        = [Point(row=56, column=21) -> Point(row=56, column=22)] : =
+                        string [Point(row=56, column=23) -> Point(row=56, column=65)] : f"{builder.fn_info.namespaced_name()}_obj"
+                            string_start [Point(row=56, column=23) -> Point(row=56, column=25)] : f"
+                            interpolation [Point(row=56, column=25) -> Point(row=56, column=60)] : {builder.fn_info.namespaced_name()}
+                                { [Point(row=56, column=25) -> Point(row=56, column=26)] : {
+                                call [Point(row=56, column=26) -> Point(row=56, column=59)] : builder.fn_info.namespaced_name()
+                                    attribute [Point(row=56, column=26) -> Point(row=56, column=57)] : builder.fn_info.namespaced_name
+                                        attribute [Point(row=56, column=26) -> Point(row=56, column=41)] : builder.fn_info
+                                            identifier [Point(row=56, column=26) -> Point(row=56, column=33)] : builder
+                                            . [Point(row=56, column=33) -> Point(row=56, column=34)] : .
+                                            identifier [Point(row=56, column=34) -> Point(row=56, column=41)] : fn_info
+                                        . [Point(row=56, column=41) -> Point(row=56, column=42)] : .
+                                        identifier [Point(row=56, column=42) -> Point(row=56, column=57)] : namespaced_name
+                                    argument_list [Point(row=56, column=57) -> Point(row=56, column=59)] : ()
+                                        ( [Point(row=56, column=57) -> Point(row=56, column=58)] : (
+                                        ) [Point(row=56, column=58) -> Point(row=56, column=59)] : )
+                                } [Point(row=56, column=59) -> Point(row=56, column=60)] : }
+                            string_content [Point(row=56, column=60) -> Point(row=56, column=64)] : _obj
+                            string_end [Point(row=56, column=64) -> Point(row=56, column=65)] : "
+            expression_statement [Point(row=57, column=4) -> Point(row=57, column=13)] : count = 0
+                assignment [Point(row=57, column=4) -> Point(row=57, column=13)] : count = 0
+                    identifier [Point(row=57, column=4) -> Point(row=57, column=9)] : count
+                    = [Point(row=57, column=10) -> Point(row=57, column=11)] : =
+                    integer [Point(row=57, column=12) -> Point(row=57, column=13)] : 0
+            while_statement [Point(row=58, column=4) -> Point(row=60, column=18)] : while name in builder.callable_class_names:\n     ...
+                while [Point(row=58, column=4) -> Point(row=58, column=9)] : while
+                comparison_operator [Point(row=58, column=10) -> Point(row=58, column=46)] : name in builder.callable_class_names
+                    identifier [Point(row=58, column=10) -> Point(row=58, column=14)] : name
+                    in [Point(row=58, column=15) -> Point(row=58, column=17)] : in
+                    attribute [Point(row=58, column=18) -> Point(row=58, column=46)] : builder.callable_class_names
+                        identifier [Point(row=58, column=18) -> Point(row=58, column=25)] : builder
+                        . [Point(row=58, column=25) -> Point(row=58, column=26)] : .
+                        identifier [Point(row=58, column=26) -> Point(row=58, column=46)] : callable_class_names
+                : [Point(row=58, column=46) -> Point(row=58, column=47)] : :
+                block [Point(row=59, column=8) -> Point(row=60, column=18)] : name = base_name + "_" + str(count)\n        count...
+                    expression_statement [Point(row=59, column=8) -> Point(row=59, column=43)] : name = base_name + "_" + str(count)
+                        assignment [Point(row=59, column=8) -> Point(row=59, column=43)] : name = base_name + "_" + str(count)
+                            identifier [Point(row=59, column=8) -> Point(row=59, column=12)] : name
+                            = [Point(row=59, column=13) -> Point(row=59, column=14)] : =
+                            binary_operator [Point(row=59, column=15) -> Point(row=59, column=43)] : base_name + "_" + str(count)
+                                binary_operator [Point(row=59, column=15) -> Point(row=59, column=30)] : base_name + "_"
+                                    identifier [Point(row=59, column=15) -> Point(row=59, column=24)] : base_name
+                                    + [Point(row=59, column=25) -> Point(row=59, column=26)] : +
+                                    string [Point(row=59, column=27) -> Point(row=59, column=30)] : "_"
+                                        string_start [Point(row=59, column=27) -> Point(row=59, column=28)] : "
+                                        string_content [Point(row=59, column=28) -> Point(row=59, column=29)] : _
+                                        string_end [Point(row=59, column=29) -> Point(row=59, column=30)] : "
+                                + [Point(row=59, column=31) -> Point(row=59, column=32)] : +
+                                call [Point(row=59, column=33) -> Point(row=59, column=43)] : str(count)
+                                    identifier [Point(row=59, column=33) -> Point(row=59, column=36)] : str
+                                    argument_list [Point(row=59, column=36) -> Point(row=59, column=43)] : (count)
+                                        ( [Point(row=59, column=36) -> Point(row=59, column=37)] : (
+                                        identifier [Point(row=59, column=37) -> Point(row=59, column=42)] : count
+                                        ) [Point(row=59, column=42) -> Point(row=59, column=43)] : )
+                    expression_statement [Point(row=60, column=8) -> Point(row=60, column=18)] : count += 1
+                        augmented_assignment [Point(row=60, column=8) -> Point(row=60, column=18)] : count += 1
+                            identifier [Point(row=60, column=8) -> Point(row=60, column=13)] : count
+                            += [Point(row=60, column=14) -> Point(row=60, column=16)] : +=
+                            integer [Point(row=60, column=17) -> Point(row=60, column=18)] : 1
+            expression_statement [Point(row=61, column=4) -> Point(row=61, column=42)] : builder.callable_class_names.add(name)
+                call [Point(row=61, column=4) -> Point(row=61, column=42)] : builder.callable_class_names.add(name)
+                    attribute [Point(row=61, column=4) -> Point(row=61, column=36)] : builder.callable_class_names.add
+                        attribute [Point(row=61, column=4) -> Point(row=61, column=32)] : builder.callable_class_names
+                            identifier [Point(row=61, column=4) -> Point(row=61, column=11)] : builder
+                            . [Point(row=61, column=11) -> Point(row=61, column=12)] : .
+                            identifier [Point(row=61, column=12) -> Point(row=61, column=32)] : callable_class_names
+                        . [Point(row=61, column=32) -> Point(row=61, column=33)] : .
+                        identifier [Point(row=61, column=33) -> Point(row=61, column=36)] : add
+                    argument_list [Point(row=61, column=36) -> Point(row=61, column=42)] : (name)
+                        ( [Point(row=61, column=36) -> Point(row=61, column=37)] : (
+                        identifier [Point(row=61, column=37) -> Point(row=61, column=41)] : name
+                        ) [Point(row=61, column=41) -> Point(row=61, column=42)] : )
+            comment [Point(row=63, column=4) -> Point(row=63, column=59)] : # Define the actual callable class ClassIR, and se...
+            comment [Point(row=64, column=4) -> Point(row=64, column=64)] : # environment to point at the previously defined e...
+            comment [Point(row=65, column=4) -> Point(row=65, column=12)] : # class.
+            expression_statement [Point(row=66, column=4) -> Point(row=66, column=98)] : callable_class_ir = ClassIR(name, builder.module_n...
+                assignment [Point(row=66, column=4) -> Point(row=66, column=98)] : callable_class_ir = ClassIR(name, builder.module_n...
+                    identifier [Point(row=66, column=4) -> Point(row=66, column=21)] : callable_class_ir
+                    = [Point(row=66, column=22) -> Point(row=66, column=23)] : =
+                    call [Point(row=66, column=24) -> Point(row=66, column=98)] : ClassIR(name, builder.module_name, is_generated=Tr...
+                        identifier [Point(row=66, column=24) -> Point(row=66, column=31)] : ClassIR
+                        argument_list [Point(row=66, column=31) -> Point(row=66, column=98)] : (name, builder.module_name, is_generated=True, is_...
+                            ( [Point(row=66, column=31) -> Point(row=66, column=32)] : (
+                            identifier [Point(row=66, column=32) -> Point(row=66, column=36)] : name
+                            , [Point(row=66, column=36) -> Point(row=66, column=37)] : ,
+                            attribute [Point(row=66, column=38) -> Point(row=66, column=57)] : builder.module_name
+                                identifier [Point(row=66, column=38) -> Point(row=66, column=45)] : builder
+                                . [Point(row=66, column=45) -> Point(row=66, column=46)] : .
+                                identifier [Point(row=66, column=46) -> Point(row=66, column=57)] : module_name
+                            , [Point(row=66, column=57) -> Point(row=66, column=58)] : ,
+                            keyword_argument [Point(row=66, column=59) -> Point(row=66, column=76)] : is_generated=True
+                                identifier [Point(row=66, column=59) -> Point(row=66, column=71)] : is_generated
+                                = [Point(row=66, column=71) -> Point(row=66, column=72)] : =
+                                true [Point(row=66, column=72) -> Point(row=66, column=76)] : True
+                            , [Point(row=66, column=76) -> Point(row=66, column=77)] : ,
+                            keyword_argument [Point(row=66, column=78) -> Point(row=66, column=97)] : is_final_class=True
+                                identifier [Point(row=66, column=78) -> Point(row=66, column=92)] : is_final_class
+                                = [Point(row=66, column=92) -> Point(row=66, column=93)] : =
+                                true [Point(row=66, column=93) -> Point(row=66, column=97)] : True
+                            ) [Point(row=66, column=97) -> Point(row=66, column=98)] : )
+            expression_statement [Point(row=67, column=4) -> Point(row=67, column=49)] : callable_class_ir.reuse_freed_instance = True
+                assignment [Point(row=67, column=4) -> Point(row=67, column=49)] : callable_class_ir.reuse_freed_instance = True
+                    attribute [Point(row=67, column=4) -> Point(row=67, column=42)] : callable_class_ir.reuse_freed_instance
+                        identifier [Point(row=67, column=4) -> Point(row=67, column=21)] : callable_class_ir
+                        . [Point(row=67, column=21) -> Point(row=67, column=22)] : .
+                        identifier [Point(row=67, column=22) -> Point(row=67, column=42)] : reuse_freed_instance
+                    = [Point(row=67, column=43) -> Point(row=67, column=44)] : =
+                    true [Point(row=67, column=45) -> Point(row=67, column=49)] : True
+            comment [Point(row=69, column=4) -> Point(row=69, column=64)] : # The functools @wraps decorator attempts to call ...
+            comment [Point(row=70, column=4) -> Point(row=70, column=60)] : # nested functions, so we create a dict for these ...
+            comment [Point(row=71, column=4) -> Point(row=71, column=16)] : # functions.
+            comment [Point(row=72, column=4) -> Point(row=72, column=69)] : # https://github.com/python/cpython/blob/3.7/Lib/f...
+            if_statement [Point(row=73, column=4) -> Point(row=74, column=41)] : if builder.fn_info.is_nested:\n        callable_cl...
+                if [Point(row=73, column=4) -> Point(row=73, column=6)] : if
+                attribute [Point(row=73, column=7) -> Point(row=73, column=32)] : builder.fn_info.is_nested
+                    attribute [Point(row=73, column=7) -> Point(row=73, column=22)] : builder.fn_info
+                        identifier [Point(row=73, column=7) -> Point(row=73, column=14)] : builder
+                        . [Point(row=73, column=14) -> Point(row=73, column=15)] : .
+                        identifier [Point(row=73, column=15) -> Point(row=73, column=22)] : fn_info
+                    . [Point(row=73, column=22) -> Point(row=73, column=23)] : .
+                    identifier [Point(row=73, column=23) -> Point(row=73, column=32)] : is_nested
+                : [Point(row=73, column=32) -> Point(row=73, column=33)] : :
+                block [Point(row=74, column=8) -> Point(row=74, column=41)] : callable_class_ir.has_dict = True
+                    expression_statement [Point(row=74, column=8) -> Point(row=74, column=41)] : callable_class_ir.has_dict = True
+                        assignment [Point(row=74, column=8) -> Point(row=74, column=41)] : callable_class_ir.has_dict = True
+                            attribute [Point(row=74, column=8) -> Point(row=74, column=34)] : callable_class_ir.has_dict
+                                identifier [Point(row=74, column=8) -> Point(row=74, column=25)] : callable_class_ir
+                                . [Point(row=74, column=25) -> Point(row=74, column=26)] : .
+                                identifier [Point(row=74, column=26) -> Point(row=74, column=34)] : has_dict
+                            = [Point(row=74, column=35) -> Point(row=74, column=36)] : =
+                            true [Point(row=74, column=37) -> Point(row=74, column=41)] : True
+            comment [Point(row=76, column=4) -> Point(row=76, column=73)] : # If the enclosing class doesn't contain nested (w...
+            comment [Point(row=77, column=4) -> Point(row=77, column=62)] : # this is a toplevel lambda), don't set up an envi...
+            if_statement [Point(row=78, column=4) -> Point(row=79, column=95)] : if builder.fn_infos[-2].contains_nested:\n        ...
+                if [Point(row=78, column=4) -> Point(row=78, column=6)] : if
+                attribute [Point(row=78, column=7) -> Point(row=78, column=43)] : builder.fn_infos[-2].contains_nested
+                    subscript [Point(row=78, column=7) -> Point(row=78, column=27)] : builder.fn_infos[-2]
+                        attribute [Point(row=78, column=7) -> Point(row=78, column=23)] : builder.fn_infos
+                            identifier [Point(row=78, column=7) -> Point(row=78, column=14)] : builder
+                            . [Point(row=78, column=14) -> Point(row=78, column=15)] : .
+                            identifier [Point(row=78, column=15) -> Point(row=78, column=23)] : fn_infos
+                        [ [Point(row=78, column=23) -> Point(row=78, column=24)] : [
+                        unary_operator [Point(row=78, column=24) -> Point(row=78, column=26)] : -2
+                            - [Point(row=78, column=24) -> Point(row=78, column=25)] : -
+                            integer [Point(row=78, column=25) -> Point(row=78, column=26)] : 2
+                        ] [Point(row=78, column=26) -> Point(row=78, column=27)] : ]
+                    . [Point(row=78, column=27) -> Point(row=78, column=28)] : .
+                    identifier [Point(row=78, column=28) -> Point(row=78, column=43)] : contains_nested
+                : [Point(row=78, column=43) -> Point(row=78, column=44)] : :
+                block [Point(row=79, column=8) -> Point(row=79, column=95)] : callable_class_ir.attributes[ENV_ATTR_NAME] = RIns...
+                    expression_statement [Point(row=79, column=8) -> Point(row=79, column=95)] : callable_class_ir.attributes[ENV_ATTR_NAME] = RIns...
+                        assignment [Point(row=79, column=8) -> Point(row=79, column=95)] : callable_class_ir.attributes[ENV_ATTR_NAME] = RIns...
+                            subscript [Point(row=79, column=8) -> Point(row=79, column=51)] : callable_class_ir.attributes[ENV_ATTR_NAME]
+                                attribute [Point(row=79, column=8) -> Point(row=79, column=36)] : callable_class_ir.attributes
+                                    identifier [Point(row=79, column=8) -> Point(row=79, column=25)] : callable_class_ir
+                                    . [Point(row=79, column=25) -> Point(row=79, column=26)] : .
+                                    identifier [Point(row=79, column=26) -> Point(row=79, column=36)] : attributes
+                                [ [Point(row=79, column=36) -> Point(row=79, column=37)] : [
+                                identifier [Point(row=79, column=37) -> Point(row=79, column=50)] : ENV_ATTR_NAME
+                                ] [Point(row=79, column=50) -> Point(row=79, column=51)] : ]
+                            = [Point(row=79, column=52) -> Point(row=79, column=53)] : =
+                            call [Point(row=79, column=54) -> Point(row=79, column=95)] : RInstance(builder.fn_infos[-2].env_class)
+                                identifier [Point(row=79, column=54) -> Point(row=79, column=63)] : RInstance
+                                argument_list [Point(row=79, column=63) -> Point(row=79, column=95)] : (builder.fn_infos[-2].env_class)
+                                    ( [Point(row=79, column=63) -> Point(row=79, column=64)] : (
+                                    attribute [Point(row=79, column=64) -> Point(row=79, column=94)] : builder.fn_infos[-2].env_class
+                                        subscript [Point(row=79, column=64) -> Point(row=79, column=84)] : builder.fn_infos[-2]
+                                            attribute [Point(row=79, column=64) -> Point(row=79, column=80)] : builder.fn_infos
+                                                identifier [Point(row=79, column=64) -> Point(row=79, column=71)] : builder
+                                                . [Point(row=79, column=71) -> Point(row=79, column=72)] : .
+                                                identifier [Point(row=79, column=72) -> Point(row=79, column=80)] : fn_infos
+                                            [ [Point(row=79, column=80) -> Point(row=79, column=81)] : [
+                                            unary_operator [Point(row=79, column=81) -> Point(row=79, column=83)] : -2
+                                                - [Point(row=79, column=81) -> Point(row=79, column=82)] : -
+                                                integer [Point(row=79, column=82) -> Point(row=79, column=83)] : 2
+                                            ] [Point(row=79, column=83) -> Point(row=79, column=84)] : ]
+                                        . [Point(row=79, column=84) -> Point(row=79, column=85)] : .
+                                        identifier [Point(row=79, column=85) -> Point(row=79, column=94)] : env_class
+                                    ) [Point(row=79, column=94) -> Point(row=79, column=95)] : )
+            expression_statement [Point(row=80, column=4) -> Point(row=80, column=47)] : callable_class_ir.mro = [callable_class_ir]
+                assignment [Point(row=80, column=4) -> Point(row=80, column=47)] : callable_class_ir.mro = [callable_class_ir]
+                    attribute [Point(row=80, column=4) -> Point(row=80, column=25)] : callable_class_ir.mro
+                        identifier [Point(row=80, column=4) -> Point(row=80, column=21)] : callable_class_ir
+                        . [Point(row=80, column=21) -> Point(row=80, column=22)] : .
+                        identifier [Point(row=80, column=22) -> Point(row=80, column=25)] : mro
+                    = [Point(row=80, column=26) -> Point(row=80, column=27)] : =
+                    list [Point(row=80, column=28) -> Point(row=80, column=47)] : [callable_class_ir]
+                        [ [Point(row=80, column=28) -> Point(row=80, column=29)] : [
+                        identifier [Point(row=80, column=29) -> Point(row=80, column=46)] : callable_class_ir
+                        ] [Point(row=80, column=46) -> Point(row=80, column=47)] : ]
+            expression_statement [Point(row=81, column=4) -> Point(row=81, column=69)] : builder.fn_info.callable_class = ImplicitClass(cal...
+                assignment [Point(row=81, column=4) -> Point(row=81, column=69)] : builder.fn_info.callable_class = ImplicitClass(cal...
+                    attribute [Point(row=81, column=4) -> Point(row=81, column=34)] : builder.fn_info.callable_class
+                        attribute [Point(row=81, column=4) -> Point(row=81, column=19)] : builder.fn_info
+                            identifier [Point(row=81, column=4) -> Point(row=81, column=11)] : builder
+                            . [Point(row=81, column=11) -> Point(row=81, column=12)] : .
+                            identifier [Point(row=81, column=12) -> Point(row=81, column=19)] : fn_info
+                        . [Point(row=81, column=19) -> Point(row=81, column=20)] : .
+                        identifier [Point(row=81, column=20) -> Point(row=81, column=34)] : callable_class
+                    = [Point(row=81, column=35) -> Point(row=81, column=36)] : =
+                    call [Point(row=81, column=37) -> Point(row=81, column=69)] : ImplicitClass(callable_class_ir)
+                        identifier [Point(row=81, column=37) -> Point(row=81, column=50)] : ImplicitClass
+                        argument_list [Point(row=81, column=50) -> Point(row=81, column=69)] : (callable_class_ir)
+                            ( [Point(row=81, column=50) -> Point(row=81, column=51)] : (
+                            identifier [Point(row=81, column=51) -> Point(row=81, column=68)] : callable_class_ir
+                            ) [Point(row=81, column=68) -> Point(row=81, column=69)] : )
+            expression_statement [Point(row=82, column=4) -> Point(row=82, column=45)] : builder.classes.append(callable_class_ir)
+                call [Point(row=82, column=4) -> Point(row=82, column=45)] : builder.classes.append(callable_class_ir)
+                    attribute [Point(row=82, column=4) -> Point(row=82, column=26)] : builder.classes.append
+                        attribute [Point(row=82, column=4) -> Point(row=82, column=19)] : builder.classes
+                            identifier [Point(row=82, column=4) -> Point(row=82, column=11)] : builder
+                            . [Point(row=82, column=11) -> Point(row=82, column=12)] : .
+                            identifier [Point(row=82, column=12) -> Point(row=82, column=19)] : classes
+                        . [Point(row=82, column=19) -> Point(row=82, column=20)] : .
+                        identifier [Point(row=82, column=20) -> Point(row=82, column=26)] : append
+                    argument_list [Point(row=82, column=26) -> Point(row=82, column=45)] : (callable_class_ir)
+                        ( [Point(row=82, column=26) -> Point(row=82, column=27)] : (
+                        identifier [Point(row=82, column=27) -> Point(row=82, column=44)] : callable_class_ir
+                        ) [Point(row=82, column=44) -> Point(row=82, column=45)] : )
+            comment [Point(row=84, column=4) -> Point(row=84, column=69)] : # Add a 'self' variable to the environment of the ...
+            comment [Point(row=85, column=4) -> Point(row=85, column=65)] : # and store that variable in a register to be acce...
+            expression_statement [Point(row=86, column=4) -> Point(row=86, column=60)] : self_target = builder.add_self_to_env(callable_cla...
+                assignment [Point(row=86, column=4) -> Point(row=86, column=60)] : self_target = builder.add_self_to_env(callable_cla...
+                    identifier [Point(row=86, column=4) -> Point(row=86, column=15)] : self_target
+                    = [Point(row=86, column=16) -> Point(row=86, column=17)] : =
+                    call [Point(row=86, column=18) -> Point(row=86, column=60)] : builder.add_self_to_env(callable_class_ir)
+                        attribute [Point(row=86, column=18) -> Point(row=86, column=41)] : builder.add_self_to_env
+                            identifier [Point(row=86, column=18) -> Point(row=86, column=25)] : builder
+                            . [Point(row=86, column=25) -> Point(row=86, column=26)] : .
+                            identifier [Point(row=86, column=26) -> Point(row=86, column=41)] : add_self_to_env
+                        argument_list [Point(row=86, column=41) -> Point(row=86, column=60)] : (callable_class_ir)
+                            ( [Point(row=86, column=41) -> Point(row=86, column=42)] : (
+                            identifier [Point(row=86, column=42) -> Point(row=86, column=59)] : callable_class_ir
+                            ) [Point(row=86, column=59) -> Point(row=86, column=60)] : )
+            expression_statement [Point(row=87, column=4) -> Point(row=87, column=99)] : builder.fn_info.callable_class.self_reg = builder....
+                assignment [Point(row=87, column=4) -> Point(row=87, column=99)] : builder.fn_info.callable_class.self_reg = builder....
+                    attribute [Point(row=87, column=4) -> Point(row=87, column=43)] : builder.fn_info.callable_class.self_reg
+                        attribute [Point(row=87, column=4) -> Point(row=87, column=34)] : builder.fn_info.callable_class
+                            attribute [Point(row=87, column=4) -> Point(row=87, column=19)] : builder.fn_info
+                                identifier [Point(row=87, column=4) -> Point(row=87, column=11)] : builder
+                                . [Point(row=87, column=11) -> Point(row=87, column=12)] : .
+                                identifier [Point(row=87, column=12) -> Point(row=87, column=19)] : fn_info
+                            . [Point(row=87, column=19) -> Point(row=87, column=20)] : .
+                            identifier [Point(row=87, column=20) -> Point(row=87, column=34)] : callable_class
+                        . [Point(row=87, column=34) -> Point(row=87, column=35)] : .
+                        identifier [Point(row=87, column=35) -> Point(row=87, column=43)] : self_reg
+                    = [Point(row=87, column=44) -> Point(row=87, column=45)] : =
+                    call [Point(row=87, column=46) -> Point(row=87, column=99)] : builder.read(self_target, builder.fn_info.fitem.li...
+                        attribute [Point(row=87, column=46) -> Point(row=87, column=58)] : builder.read
+                            identifier [Point(row=87, column=46) -> Point(row=87, column=53)] : builder
+                            . [Point(row=87, column=53) -> Point(row=87, column=54)] : .
+                            identifier [Point(row=87, column=54) -> Point(row=87, column=58)] : read
+                        argument_list [Point(row=87, column=58) -> Point(row=87, column=99)] : (self_target, builder.fn_info.fitem.line)
+                            ( [Point(row=87, column=58) -> Point(row=87, column=59)] : (
+                            identifier [Point(row=87, column=59) -> Point(row=87, column=70)] : self_target
+                            , [Point(row=87, column=70) -> Point(row=87, column=71)] : ,
+                            attribute [Point(row=87, column=72) -> Point(row=87, column=98)] : builder.fn_info.fitem.line
+                                attribute [Point(row=87, column=72) -> Point(row=87, column=93)] : builder.fn_info.fitem
+                                    attribute [Point(row=87, column=72) -> Point(row=87, column=87)] : builder.fn_info
+                                        identifier [Point(row=87, column=72) -> Point(row=87, column=79)] : builder
+                                        . [Point(row=87, column=79) -> Point(row=87, column=80)] : .
+                                        identifier [Point(row=87, column=80) -> Point(row=87, column=87)] : fn_info
+                                    . [Point(row=87, column=87) -> Point(row=87, column=88)] : .
+                                    identifier [Point(row=87, column=88) -> Point(row=87, column=93)] : fitem
+                                . [Point(row=87, column=93) -> Point(row=87, column=94)] : .
+                                identifier [Point(row=87, column=94) -> Point(row=87, column=98)] : line
+                            ) [Point(row=87, column=98) -> Point(row=87, column=99)] : )
+            if_statement [Point(row=89, column=4) -> Point(row=90, column=82)] : if not builder.fn_info.in_non_ext and builder.fn_i...
+                if [Point(row=89, column=4) -> Point(row=89, column=6)] : if
+                boolean_operator [Point(row=89, column=7) -> Point(row=89, column=70)] : not builder.fn_info.in_non_ext and builder.fn_info...
+                    not_operator [Point(row=89, column=7) -> Point(row=89, column=37)] : not builder.fn_info.in_non_ext
+                        not [Point(row=89, column=7) -> Point(row=89, column=10)] : not
+                        attribute [Point(row=89, column=11) -> Point(row=89, column=37)] : builder.fn_info.in_non_ext
+                            attribute [Point(row=89, column=11) -> Point(row=89, column=26)] : builder.fn_info
+                                identifier [Point(row=89, column=11) -> Point(row=89, column=18)] : builder
+                                . [Point(row=89, column=18) -> Point(row=89, column=19)] : .
+                                identifier [Point(row=89, column=19) -> Point(row=89, column=26)] : fn_info
+                            . [Point(row=89, column=26) -> Point(row=89, column=27)] : .
+                            identifier [Point(row=89, column=27) -> Point(row=89, column=37)] : in_non_ext
+                    and [Point(row=89, column=38) -> Point(row=89, column=41)] : and
+                    attribute [Point(row=89, column=42) -> Point(row=89, column=70)] : builder.fn_info.is_coroutine
+                        attribute [Point(row=89, column=42) -> Point(row=89, column=57)] : builder.fn_info
+                            identifier [Point(row=89, column=42) -> Point(row=89, column=49)] : builder
+                            . [Point(row=89, column=49) -> Point(row=89, column=50)] : .
+                            identifier [Point(row=89, column=50) -> Point(row=89, column=57)] : fn_info
+                        . [Point(row=89, column=57) -> Point(row=89, column=58)] : .
+                        identifier [Point(row=89, column=58) -> Point(row=89, column=70)] : is_coroutine
+                : [Point(row=89, column=70) -> Point(row=89, column=71)] : :
+                block [Point(row=90, column=8) -> Point(row=90, column=82)] : add_coroutine_properties(builder, callable_class_i...
+                    expression_statement [Point(row=90, column=8) -> Point(row=90, column=82)] : add_coroutine_properties(builder, callable_class_i...
+                        call [Point(row=90, column=8) -> Point(row=90, column=82)] : add_coroutine_properties(builder, callable_class_i...
+                            identifier [Point(row=90, column=8) -> Point(row=90, column=32)] : add_coroutine_properties
+                            argument_list [Point(row=90, column=32) -> Point(row=90, column=82)] : (builder, callable_class_ir, builder.fn_info.name)
+                                ( [Point(row=90, column=32) -> Point(row=90, column=33)] : (
+                                identifier [Point(row=90, column=33) -> Point(row=90, column=40)] : builder
+                                , [Point(row=90, column=40) -> Point(row=90, column=41)] : ,
+                                identifier [Point(row=90, column=42) -> Point(row=90, column=59)] : callable_class_ir
+                                , [Point(row=90, column=59) -> Point(row=90, column=60)] : ,
+                                attribute [Point(row=90, column=61) -> Point(row=90, column=81)] : builder.fn_info.name
+                                    attribute [Point(row=90, column=61) -> Point(row=90, column=76)] : builder.fn_info
+                                        identifier [Point(row=90, column=61) -> Point(row=90, column=68)] : builder
+                                        . [Point(row=90, column=68) -> Point(row=90, column=69)] : .
+                                        identifier [Point(row=90, column=69) -> Point(row=90, column=76)] : fn_info
+                                    . [Point(row=90, column=76) -> Point(row=90, column=77)] : .
+                                    identifier [Point(row=90, column=77) -> Point(row=90, column=81)] : name
+                                ) [Point(row=90, column=81) -> Point(row=90, column=82)] : )
+    function_definition [Point(row=93, column=0) -> Point(row=141, column=61)] : def add_coroutine_properties(\n    builder: IRBuil...
+        def [Point(row=93, column=0) -> Point(row=93, column=3)] : def
+        identifier [Point(row=93, column=4) -> Point(row=93, column=28)] : add_coroutine_properties
+        parameters [Point(row=93, column=28) -> Point(row=95, column=1)] : (\n    builder: IRBuilder, callable_class_ir: Clas...
+            ( [Point(row=93, column=28) -> Point(row=93, column=29)] : (
+            typed_parameter [Point(row=94, column=4) -> Point(row=94, column=22)] : builder: IRBuilder
+                identifier [Point(row=94, column=4) -> Point(row=94, column=11)] : builder
+                : [Point(row=94, column=11) -> Point(row=94, column=12)] : :
+                type [Point(row=94, column=13) -> Point(row=94, column=22)] : IRBuilder
+                    identifier [Point(row=94, column=13) -> Point(row=94, column=22)] : IRBuilder
+            , [Point(row=94, column=22) -> Point(row=94, column=23)] : ,
+            typed_parameter [Point(row=94, column=24) -> Point(row=94, column=50)] : callable_class_ir: ClassIR
+                identifier [Point(row=94, column=24) -> Point(row=94, column=41)] : callable_class_ir
+                : [Point(row=94, column=41) -> Point(row=94, column=42)] : :
+                type [Point(row=94, column=43) -> Point(row=94, column=50)] : ClassIR
+                    identifier [Point(row=94, column=43) -> Point(row=94, column=50)] : ClassIR
+            , [Point(row=94, column=50) -> Point(row=94, column=51)] : ,
+            typed_parameter [Point(row=94, column=52) -> Point(row=94, column=71)] : coroutine_name: str
+                identifier [Point(row=94, column=52) -> Point(row=94, column=66)] : coroutine_name
+                : [Point(row=94, column=66) -> Point(row=94, column=67)] : :
+                type [Point(row=94, column=68) -> Point(row=94, column=71)] : str
+                    identifier [Point(row=94, column=68) -> Point(row=94, column=71)] : str
+            ) [Point(row=95, column=0) -> Point(row=95, column=1)] : )
+        -> [Point(row=95, column=2) -> Point(row=95, column=4)] : ->
+        type [Point(row=95, column=5) -> Point(row=95, column=9)] : None
+            none [Point(row=95, column=5) -> Point(row=95, column=9)] : None
+        : [Point(row=95, column=9) -> Point(row=95, column=10)] : :
+        block [Point(row=96, column=4) -> Point(row=141, column=61)] : """Adds properties to the class to make it look li...
+            expression_statement [Point(row=96, column=4) -> Point(row=98, column=7)] : """Adds properties to the class to make it look li...
+                string [Point(row=96, column=4) -> Point(row=98, column=7)] : """Adds properties to the class to make it look li...
+                    string_start [Point(row=96, column=4) -> Point(row=96, column=7)] : """
+                    string_content [Point(row=96, column=7) -> Point(row=98, column=4)] : Adds properties to the class to make it look like ...
+                    string_end [Point(row=98, column=4) -> Point(row=98, column=7)] : """
+            expression_statement [Point(row=99, column=4) -> Point(row=99, column=53)] : callable_class_ir.coroutine_name = coroutine_name
+                assignment [Point(row=99, column=4) -> Point(row=99, column=53)] : callable_class_ir.coroutine_name = coroutine_name
+                    attribute [Point(row=99, column=4) -> Point(row=99, column=36)] : callable_class_ir.coroutine_name
+                        identifier [Point(row=99, column=4) -> Point(row=99, column=21)] : callable_class_ir
+                        . [Point(row=99, column=21) -> Point(row=99, column=22)] : .
+                        identifier [Point(row=99, column=22) -> Point(row=99, column=36)] : coroutine_name
+                    = [Point(row=99, column=37) -> Point(row=99, column=38)] : =
+                    identifier [Point(row=99, column=39) -> Point(row=99, column=53)] : coroutine_name
+            expression_statement [Point(row=100, column=4) -> Point(row=100, column=70)] : callable_class_ir.attributes[CPYFUNCTION_NAME] = o...
+                assignment [Point(row=100, column=4) -> Point(row=100, column=70)] : callable_class_ir.attributes[CPYFUNCTION_NAME] = o...
+                    subscript [Point(row=100, column=4) -> Point(row=100, column=50)] : callable_class_ir.attributes[CPYFUNCTION_NAME]
+                        attribute [Point(row=100, column=4) -> Point(row=100, column=32)] : callable_class_ir.attributes
+                            identifier [Point(row=100, column=4) -> Point(row=100, column=21)] : callable_class_ir
+                            . [Point(row=100, column=21) -> Point(row=100, column=22)] : .
+                            identifier [Point(row=100, column=22) -> Point(row=100, column=32)] : attributes
+                        [ [Point(row=100, column=32) -> Point(row=100, column=33)] : [
+                        identifier [Point(row=100, column=33) -> Point(row=100, column=49)] : CPYFUNCTION_NAME
+                        ] [Point(row=100, column=49) -> Point(row=100, column=50)] : ]
+                    = [Point(row=100, column=51) -> Point(row=100, column=52)] : =
+                    identifier [Point(row=100, column=53) -> Point(row=100, column=70)] : object_rprimitive
+            expression_statement [Point(row=102, column=4) -> Point(row=108, column=5)] : properties = {\n        "__name__": cpyfunction_ge...
+                assignment [Point(row=102, column=4) -> Point(row=108, column=5)] : properties = {\n        "__name__": cpyfunction_ge...
+                    identifier [Point(row=102, column=4) -> Point(row=102, column=14)] : properties
+                    = [Point(row=102, column=15) -> Point(row=102, column=16)] : =
+                    dictionary [Point(row=102, column=17) -> Point(row=108, column=5)] : {\n        "__name__": cpyfunction_get_name,\n    ...
+                        { [Point(row=102, column=17) -> Point(row=102, column=18)] : {
+                        pair [Point(row=103, column=8) -> Point(row=103, column=40)] : "__name__": cpyfunction_get_name
+                            string [Point(row=103, column=8) -> Point(row=103, column=18)] : "__name__"
+                                string_start [Point(row=103, column=8) -> Point(row=103, column=9)] : "
+                                string_content [Point(row=103, column=9) -> Point(row=103, column=17)] : __name__
+                                string_end [Point(row=103, column=17) -> Point(row=103, column=18)] : "
+                            : [Point(row=103, column=18) -> Point(row=103, column=19)] : :
+                            identifier [Point(row=103, column=20) -> Point(row=103, column=40)] : cpyfunction_get_name
+                        , [Point(row=103, column=40) -> Point(row=103, column=41)] : ,
+                        pair [Point(row=104, column=8) -> Point(row=104, column=40)] : "__code__": cpyfunction_get_code
+                            string [Point(row=104, column=8) -> Point(row=104, column=18)] : "__code__"
+                                string_start [Point(row=104, column=8) -> Point(row=104, column=9)] : "
+                                string_content [Point(row=104, column=9) -> Point(row=104, column=17)] : __code__
+                                string_end [Point(row=104, column=17) -> Point(row=104, column=18)] : "
+                            : [Point(row=104, column=18) -> Point(row=104, column=19)] : :
+                            identifier [Point(row=104, column=20) -> Point(row=104, column=40)] : cpyfunction_get_code
+                        , [Point(row=104, column=40) -> Point(row=104, column=41)] : ,
+                        pair [Point(row=105, column=8) -> Point(row=105, column=54)] : "__annotations__": cpyfunction_get_annotations
+                            string [Point(row=105, column=8) -> Point(row=105, column=25)] : "__annotations__"
+                                string_start [Point(row=105, column=8) -> Point(row=105, column=9)] : "
+                                string_content [Point(row=105, column=9) -> Point(row=105, column=24)] : __annotations__
+                                string_end [Point(row=105, column=24) -> Point(row=105, column=25)] : "
+                            : [Point(row=105, column=25) -> Point(row=105, column=26)] : :
+                            identifier [Point(row=105, column=27) -> Point(row=105, column=54)] : cpyfunction_get_annotations
+                        , [Point(row=105, column=54) -> Point(row=105, column=55)] : ,
+                        pair [Point(row=106, column=8) -> Point(row=106, column=48)] : "__defaults__": cpyfunction_get_defaults
+                            string [Point(row=106, column=8) -> Point(row=106, column=22)] : "__defaults__"
+                                string_start [Point(row=106, column=8) -> Point(row=106, column=9)] : "
+                                string_content [Point(row=106, column=9) -> Point(row=106, column=21)] : __defaults__
+                                string_end [Point(row=106, column=21) -> Point(row=106, column=22)] : "
+                            : [Point(row=106, column=22) -> Point(row=106, column=23)] : :
+                            identifier [Point(row=106, column=24) -> Point(row=106, column=48)] : cpyfunction_get_defaults
+                        , [Point(row=106, column=48) -> Point(row=106, column=49)] : ,
+                        pair [Point(row=107, column=8) -> Point(row=107, column=52)] : "__kwdefaults__": cpyfunction_get_kwdefaults
+                            string [Point(row=107, column=8) -> Point(row=107, column=24)] : "__kwdefaults__"
+                                string_start [Point(row=107, column=8) -> Point(row=107, column=9)] : "
+                                string_content [Point(row=107, column=9) -> Point(row=107, column=23)] : __kwdefaults__
+                                string_end [Point(row=107, column=23) -> Point(row=107, column=24)] : "
+                            : [Point(row=107, column=24) -> Point(row=107, column=25)] : :
+                            identifier [Point(row=107, column=26) -> Point(row=107, column=52)] : cpyfunction_get_kwdefaults
+                        , [Point(row=107, column=52) -> Point(row=107, column=53)] : ,
+                        } [Point(row=108, column=4) -> Point(row=108, column=5)] : }
+            expression_statement [Point(row=110, column=4) -> Point(row=113, column=5)] : writable_props = {\n        "__name__": cpyfunctio...
+                assignment [Point(row=110, column=4) -> Point(row=113, column=5)] : writable_props = {\n        "__name__": cpyfunctio...
+                    identifier [Point(row=110, column=4) -> Point(row=110, column=18)] : writable_props
+                    = [Point(row=110, column=19) -> Point(row=110, column=20)] : =
+                    dictionary [Point(row=110, column=21) -> Point(row=113, column=5)] : {\n        "__name__": cpyfunction_set_name,\n    ...
+                        { [Point(row=110, column=21) -> Point(row=110, column=22)] : {
+                        pair [Point(row=111, column=8) -> Point(row=111, column=40)] : "__name__": cpyfunction_set_name
+                            string [Point(row=111, column=8) -> Point(row=111, column=18)] : "__name__"
+                                string_start [Point(row=111, column=8) -> Point(row=111, column=9)] : "
+                                string_content [Point(row=111, column=9) -> Point(row=111, column=17)] : __name__
+                                string_end [Point(row=111, column=17) -> Point(row=111, column=18)] : "
+                            : [Point(row=111, column=18) -> Point(row=111, column=19)] : :
+                            identifier [Point(row=111, column=20) -> Point(row=111, column=40)] : cpyfunction_set_name
+                        , [Point(row=111, column=40) -> Point(row=111, column=41)] : ,
+                        pair [Point(row=112, column=8) -> Point(row=112, column=54)] : "__annotations__": cpyfunction_set_annotations
+                            string [Point(row=112, column=8) -> Point(row=112, column=25)] : "__annotations__"
+                                string_start [Point(row=112, column=8) -> Point(row=112, column=9)] : "
+                                string_content [Point(row=112, column=9) -> Point(row=112, column=24)] : __annotations__
+                                string_end [Point(row=112, column=24) -> Point(row=112, column=25)] : "
+                            : [Point(row=112, column=25) -> Point(row=112, column=26)] : :
+                            identifier [Point(row=112, column=27) -> Point(row=112, column=54)] : cpyfunction_set_annotations
+                        , [Point(row=112, column=54) -> Point(row=112, column=55)] : ,
+                        } [Point(row=113, column=4) -> Point(row=113, column=5)] : }
+            expression_statement [Point(row=115, column=4) -> Point(row=115, column=37)] : line = builder.fn_info.fitem.line
+                assignment [Point(row=115, column=4) -> Point(row=115, column=37)] : line = builder.fn_info.fitem.line
+                    identifier [Point(row=115, column=4) -> Point(row=115, column=8)] : line
+                    = [Point(row=115, column=9) -> Point(row=115, column=10)] : =
+                    attribute [Point(row=115, column=11) -> Point(row=115, column=37)] : builder.fn_info.fitem.line
+                        attribute [Point(row=115, column=11) -> Point(row=115, column=32)] : builder.fn_info.fitem
+                            attribute [Point(row=115, column=11) -> Point(row=115, column=26)] : builder.fn_info
+                                identifier [Point(row=115, column=11) -> Point(row=115, column=18)] : builder
+                                . [Point(row=115, column=18) -> Point(row=115, column=19)] : .
+                                identifier [Point(row=115, column=19) -> Point(row=115, column=26)] : fn_info
+                            . [Point(row=115, column=26) -> Point(row=115, column=27)] : .
+                            identifier [Point(row=115, column=27) -> Point(row=115, column=32)] : fitem
+                        . [Point(row=115, column=32) -> Point(row=115, column=33)] : .
+                        identifier [Point(row=115, column=33) -> Point(row=115, column=37)] : line
+            function_definition [Point(row=117, column=4) -> Point(row=118, column=75)] : def get_func_wrapper() -> Value:\n        return b...
+                def [Point(row=117, column=4) -> Point(row=117, column=7)] : def
+                identifier [Point(row=117, column=8) -> Point(row=117, column=24)] : get_func_wrapper
+                parameters [Point(row=117, column=24) -> Point(row=117, column=26)] : ()
+                    ( [Point(row=117, column=24) -> Point(row=117, column=25)] : (
+                    ) [Point(row=117, column=25) -> Point(row=117, column=26)] : )
+                -> [Point(row=117, column=27) -> Point(row=117, column=29)] : ->
+                type [Point(row=117, column=30) -> Point(row=117, column=35)] : Value
+                    identifier [Point(row=117, column=30) -> Point(row=117, column=35)] : Value
+                : [Point(row=117, column=35) -> Point(row=117, column=36)] : :
+                block [Point(row=118, column=8) -> Point(row=118, column=75)] : return builder.add(GetAttr(builder.self(), CPYFUNC...
+                    return_statement [Point(row=118, column=8) -> Point(row=118, column=75)] : return builder.add(GetAttr(builder.self(), CPYFUNC...
+                        return [Point(row=118, column=8) -> Point(row=118, column=14)] : return
+                        call [Point(row=118, column=15) -> Point(row=118, column=75)] : builder.add(GetAttr(builder.self(), CPYFUNCTION_NA...
+                            attribute [Point(row=118, column=15) -> Point(row=118, column=26)] : builder.add
+                                identifier [Point(row=118, column=15) -> Point(row=118, column=22)] : builder
+                                . [Point(row=118, column=22) -> Point(row=118, column=23)] : .
+                                identifier [Point(row=118, column=23) -> Point(row=118, column=26)] : add
+                            argument_list [Point(row=118, column=26) -> Point(row=118, column=75)] : (GetAttr(builder.self(), CPYFUNCTION_NAME, line))
+                                ( [Point(row=118, column=26) -> Point(row=118, column=27)] : (
+                                call [Point(row=118, column=27) -> Point(row=118, column=74)] : GetAttr(builder.self(), CPYFUNCTION_NAME, line)
+                                    identifier [Point(row=118, column=27) -> Point(row=118, column=34)] : GetAttr
+                                    argument_list [Point(row=118, column=34) -> Point(row=118, column=74)] : (builder.self(), CPYFUNCTION_NAME, line)
+                                        ( [Point(row=118, column=34) -> Point(row=118, column=35)] : (
+                                        call [Point(row=118, column=35) -> Point(row=118, column=49)] : builder.self()
+                                            attribute [Point(row=118, column=35) -> Point(row=118, column=47)] : builder.self
+                                                identifier [Point(row=118, column=35) -> Point(row=118, column=42)] : builder
+                                                . [Point(row=118, column=42) -> Point(row=118, column=43)] : .
+                                                identifier [Point(row=118, column=43) -> Point(row=118, column=47)] : self
+                                            argument_list [Point(row=118, column=47) -> Point(row=118, column=49)] : ()
+                                                ( [Point(row=118, column=47) -> Point(row=118, column=48)] : (
+                                                ) [Point(row=118, column=48) -> Point(row=118, column=49)] : )
+                                        , [Point(row=118, column=49) -> Point(row=118, column=50)] : ,
+                                        identifier [Point(row=118, column=51) -> Point(row=118, column=67)] : CPYFUNCTION_NAME
+                                        , [Point(row=118, column=67) -> Point(row=118, column=68)] : ,
+                                        identifier [Point(row=118, column=69) -> Point(row=118, column=73)] : line
+                                        ) [Point(row=118, column=73) -> Point(row=118, column=74)] : )
+                                ) [Point(row=118, column=74) -> Point(row=118, column=75)] : )
+            for_statement [Point(row=120, column=4) -> Point(row=124, column=36)] : for name, primitive in properties.items():\n      ...
+                for [Point(row=120, column=4) -> Point(row=120, column=7)] : for
+                pattern_list [Point(row=120, column=8) -> Point(row=120, column=23)] : name, primitive
+                    identifier [Point(row=120, column=8) -> Point(row=120, column=12)] : name
+                    , [Point(row=120, column=12) -> Point(row=120, column=13)] : ,
+                    identifier [Point(row=120, column=14) -> Point(row=120, column=23)] : primitive
+                in [Point(row=120, column=24) -> Point(row=120, column=26)] : in
+                call [Point(row=120, column=27) -> Point(row=120, column=45)] : properties.items()
+                    attribute [Point(row=120, column=27) -> Point(row=120, column=43)] : properties.items
+                        identifier [Point(row=120, column=27) -> Point(row=120, column=37)] : properties
+                        . [Point(row=120, column=37) -> Point(row=120, column=38)] : .
+                        identifier [Point(row=120, column=38) -> Point(row=120, column=43)] : items
+                    argument_list [Point(row=120, column=43) -> Point(row=120, column=45)] : ()
+                        ( [Point(row=120, column=43) -> Point(row=120, column=44)] : (
+                        ) [Point(row=120, column=44) -> Point(row=120, column=45)] : )
+                : [Point(row=120, column=45) -> Point(row=120, column=46)] : :
+                block [Point(row=121, column=8) -> Point(row=124, column=36)] : with builder.enter_method(callable_class_ir, name,...
+                    with_statement [Point(row=121, column=8) -> Point(row=124, column=36)] : with builder.enter_method(callable_class_ir, name,...
+                        with [Point(row=121, column=8) -> Point(row=121, column=12)] : with
+                        with_clause [Point(row=121, column=13) -> Point(row=121, column=92)] : builder.enter_method(callable_class_ir, name, obje...
+                            with_item [Point(row=121, column=13) -> Point(row=121, column=92)] : builder.enter_method(callable_class_ir, name, obje...
+                                call [Point(row=121, column=13) -> Point(row=121, column=92)] : builder.enter_method(callable_class_ir, name, obje...
+                                    attribute [Point(row=121, column=13) -> Point(row=121, column=33)] : builder.enter_method
+                                        identifier [Point(row=121, column=13) -> Point(row=121, column=20)] : builder
+                                        . [Point(row=121, column=20) -> Point(row=121, column=21)] : .
+                                        identifier [Point(row=121, column=21) -> Point(row=121, column=33)] : enter_method
+                                    argument_list [Point(row=121, column=33) -> Point(row=121, column=92)] : (callable_class_ir, name, object_rprimitive, inter...
+                                        ( [Point(row=121, column=33) -> Point(row=121, column=34)] : (
+                                        identifier [Point(row=121, column=34) -> Point(row=121, column=51)] : callable_class_ir
+                                        , [Point(row=121, column=51) -> Point(row=121, column=52)] : ,
+                                        identifier [Point(row=121, column=53) -> Point(row=121, column=57)] : name
+                                        , [Point(row=121, column=57) -> Point(row=121, column=58)] : ,
+                                        identifier [Point(row=121, column=59) -> Point(row=121, column=76)] : object_rprimitive
+                                        , [Point(row=121, column=76) -> Point(row=121, column=77)] : ,
+                                        keyword_argument [Point(row=121, column=78) -> Point(row=121, column=91)] : internal=True
+                                            identifier [Point(row=121, column=78) -> Point(row=121, column=86)] : internal
+                                            = [Point(row=121, column=86) -> Point(row=121, column=87)] : =
+                                            true [Point(row=121, column=87) -> Point(row=121, column=91)] : True
+                                        ) [Point(row=121, column=91) -> Point(row=121, column=92)] : )
+                        : [Point(row=121, column=92) -> Point(row=121, column=93)] : :
+                        block [Point(row=122, column=12) -> Point(row=124, column=36)] : func = get_func_wrapper()\n            val = build...
+                            expression_statement [Point(row=122, column=12) -> Point(row=122, column=37)] : func = get_func_wrapper()
+                                assignment [Point(row=122, column=12) -> Point(row=122, column=37)] : func = get_func_wrapper()
+                                    identifier [Point(row=122, column=12) -> Point(row=122, column=16)] : func
+                                    = [Point(row=122, column=17) -> Point(row=122, column=18)] : =
+                                    call [Point(row=122, column=19) -> Point(row=122, column=37)] : get_func_wrapper()
+                                        identifier [Point(row=122, column=19) -> Point(row=122, column=35)] : get_func_wrapper
+                                        argument_list [Point(row=122, column=35) -> Point(row=122, column=37)] : ()
+                                            ( [Point(row=122, column=35) -> Point(row=122, column=36)] : (
+                                            ) [Point(row=122, column=36) -> Point(row=122, column=37)] : )
+                            expression_statement [Point(row=123, column=12) -> Point(row=123, column=97)] : val = builder.primitive_op(primitive, [func, Integ...
+                                assignment [Point(row=123, column=12) -> Point(row=123, column=97)] : val = builder.primitive_op(primitive, [func, Integ...
+                                    identifier [Point(row=123, column=12) -> Point(row=123, column=15)] : val
+                                    = [Point(row=123, column=16) -> Point(row=123, column=17)] : =
+                                    call [Point(row=123, column=18) -> Point(row=123, column=97)] : builder.primitive_op(primitive, [func, Integer(0, ...
+                                        attribute [Point(row=123, column=18) -> Point(row=123, column=38)] : builder.primitive_op
+                                            identifier [Point(row=123, column=18) -> Point(row=123, column=25)] : builder
+                                            . [Point(row=123, column=25) -> Point(row=123, column=26)] : .
+                                            identifier [Point(row=123, column=26) -> Point(row=123, column=38)] : primitive_op
+                                        argument_list [Point(row=123, column=38) -> Point(row=123, column=97)] : (primitive, [func, Integer(0, c_pointer_rprimitive...
+                                            ( [Point(row=123, column=38) -> Point(row=123, column=39)] : (
+                                            identifier [Point(row=123, column=39) -> Point(row=123, column=48)] : primitive
+                                            , [Point(row=123, column=48) -> Point(row=123, column=49)] : ,
+                                            list [Point(row=123, column=50) -> Point(row=123, column=90)] : [func, Integer(0, c_pointer_rprimitive)]
+                                                [ [Point(row=123, column=50) -> Point(row=123, column=51)] : [
+                                                identifier [Point(row=123, column=51) -> Point(row=123, column=55)] : func
+                                                , [Point(row=123, column=55) -> Point(row=123, column=56)] : ,
+                                                call [Point(row=123, column=57) -> Point(row=123, column=89)] : Integer(0, c_pointer_rprimitive)
+                                                    identifier [Point(row=123, column=57) -> Point(row=123, column=64)] : Integer
+                                                    argument_list [Point(row=123, column=64) -> Point(row=123, column=89)] : (0, c_pointer_rprimitive)
+                                                        ( [Point(row=123, column=64) -> Point(row=123, column=65)] : (
+                                                        integer [Point(row=123, column=65) -> Point(row=123, column=66)] : 0
+                                                        , [Point(row=123, column=66) -> Point(row=123, column=67)] : ,
+                                                        identifier [Point(row=123, column=68) -> Point(row=123, column=88)] : c_pointer_rprimitive
+                                                        ) [Point(row=123, column=88) -> Point(row=123, column=89)] : )
+                                                ] [Point(row=123, column=89) -> Point(row=123, column=90)] : ]
+                                            , [Point(row=123, column=90) -> Point(row=123, column=91)] : ,
+                                            identifier [Point(row=123, column=92) -> Point(row=123, column=96)] : line
+                                            ) [Point(row=123, column=96) -> Point(row=123, column=97)] : )
+                            expression_statement [Point(row=124, column=12) -> Point(row=124, column=36)] : builder.add(Return(val))
+                                call [Point(row=124, column=12) -> Point(row=124, column=36)] : builder.add(Return(val))
+                                    attribute [Point(row=124, column=12) -> Point(row=124, column=23)] : builder.add
+                                        identifier [Point(row=124, column=12) -> Point(row=124, column=19)] : builder
+                                        . [Point(row=124, column=19) -> Point(row=124, column=20)] : .
+                                        identifier [Point(row=124, column=20) -> Point(row=124, column=23)] : add
+                                    argument_list [Point(row=124, column=23) -> Point(row=124, column=36)] : (Return(val))
+                                        ( [Point(row=124, column=23) -> Point(row=124, column=24)] : (
+                                        call [Point(row=124, column=24) -> Point(row=124, column=35)] : Return(val)
+                                            identifier [Point(row=124, column=24) -> Point(row=124, column=30)] : Return
+                                            argument_list [Point(row=124, column=30) -> Point(row=124, column=35)] : (val)
+                                                ( [Point(row=124, column=30) -> Point(row=124, column=31)] : (
+                                                identifier [Point(row=124, column=31) -> Point(row=124, column=34)] : val
+                                                ) [Point(row=124, column=34) -> Point(row=124, column=35)] : )
+                                        ) [Point(row=124, column=35) -> Point(row=124, column=36)] : )
+            for_statement [Point(row=126, column=4) -> Point(row=135, column=35)] : for name, primitive in writable_props.items():\n  ...
+                for [Point(row=126, column=4) -> Point(row=126, column=7)] : for
+                pattern_list [Point(row=126, column=8) -> Point(row=126, column=23)] : name, primitive
+                    identifier [Point(row=126, column=8) -> Point(row=126, column=12)] : name
+                    , [Point(row=126, column=12) -> Point(row=126, column=13)] : ,
+                    identifier [Point(row=126, column=14) -> Point(row=126, column=23)] : primitive
+                in [Point(row=126, column=24) -> Point(row=126, column=26)] : in
+                call [Point(row=126, column=27) -> Point(row=126, column=49)] : writable_props.items()
+                    attribute [Point(row=126, column=27) -> Point(row=126, column=47)] : writable_props.items
+                        identifier [Point(row=126, column=27) -> Point(row=126, column=41)] : writable_props
+                        . [Point(row=126, column=41) -> Point(row=126, column=42)] : .
+                        identifier [Point(row=126, column=42) -> Point(row=126, column=47)] : items
+                    argument_list [Point(row=126, column=47) -> Point(row=126, column=49)] : ()
+                        ( [Point(row=126, column=47) -> Point(row=126, column=48)] : (
+                        ) [Point(row=126, column=48) -> Point(row=126, column=49)] : )
+                : [Point(row=126, column=49) -> Point(row=126, column=50)] : :
+                block [Point(row=127, column=8) -> Point(row=135, column=35)] : with builder.enter_method(\n            callable_c...
+                    with_statement [Point(row=127, column=8) -> Point(row=135, column=35)] : with builder.enter_method(\n            callable_c...
+                        with [Point(row=127, column=8) -> Point(row=127, column=12)] : with
+                        with_clause [Point(row=127, column=13) -> Point(row=129, column=9)] : builder.enter_method(\n            callable_class_...
+                            with_item [Point(row=127, column=13) -> Point(row=129, column=9)] : builder.enter_method(\n            callable_class_...
+                                call [Point(row=127, column=13) -> Point(row=129, column=9)] : builder.enter_method(\n            callable_class_...
+                                    attribute [Point(row=127, column=13) -> Point(row=127, column=33)] : builder.enter_method
+                                        identifier [Point(row=127, column=13) -> Point(row=127, column=20)] : builder
+                                        . [Point(row=127, column=20) -> Point(row=127, column=21)] : .
+                                        identifier [Point(row=127, column=21) -> Point(row=127, column=33)] : enter_method
+                                    argument_list [Point(row=127, column=33) -> Point(row=129, column=9)] : (\n            callable_class_ir, f"{PROPSET_PREFI...
+                                        ( [Point(row=127, column=33) -> Point(row=127, column=34)] : (
+                                        identifier [Point(row=128, column=12) -> Point(row=128, column=29)] : callable_class_ir
+                                        , [Point(row=128, column=29) -> Point(row=128, column=30)] : ,
+                                        string [Point(row=128, column=31) -> Point(row=128, column=56)] : f"{PROPSET_PREFIX}{name}"
+                                            string_start [Point(row=128, column=31) -> Point(row=128, column=33)] : f"
+                                            interpolation [Point(row=128, column=33) -> Point(row=128, column=49)] : {PROPSET_PREFIX}
+                                                { [Point(row=128, column=33) -> Point(row=128, column=34)] : {
+                                                identifier [Point(row=128, column=34) -> Point(row=128, column=48)] : PROPSET_PREFIX
+                                                } [Point(row=128, column=48) -> Point(row=128, column=49)] : }
+                                            interpolation [Point(row=128, column=49) -> Point(row=128, column=55)] : {name}
+                                                { [Point(row=128, column=49) -> Point(row=128, column=50)] : {
+                                                identifier [Point(row=128, column=50) -> Point(row=128, column=54)] : name
+                                                } [Point(row=128, column=54) -> Point(row=128, column=55)] : }
+                                            string_end [Point(row=128, column=55) -> Point(row=128, column=56)] : "
+                                        , [Point(row=128, column=56) -> Point(row=128, column=57)] : ,
+                                        identifier [Point(row=128, column=58) -> Point(row=128, column=72)] : int_rprimitive
+                                        , [Point(row=128, column=72) -> Point(row=128, column=73)] : ,
+                                        keyword_argument [Point(row=128, column=74) -> Point(row=128, column=87)] : internal=True
+                                            identifier [Point(row=128, column=74) -> Point(row=128, column=82)] : internal
+                                            = [Point(row=128, column=82) -> Point(row=128, column=83)] : =
+                                            true [Point(row=128, column=83) -> Point(row=128, column=87)] : True
+                                        ) [Point(row=129, column=8) -> Point(row=129, column=9)] : )
+                        : [Point(row=129, column=9) -> Point(row=129, column=10)] : :
+                        block [Point(row=130, column=12) -> Point(row=135, column=35)] : value = builder.add_argument("value", object_rprim...
+                            expression_statement [Point(row=130, column=12) -> Point(row=130, column=68)] : value = builder.add_argument("value", object_rprim...
+                                assignment [Point(row=130, column=12) -> Point(row=130, column=68)] : value = builder.add_argument("value", object_rprim...
+                                    identifier [Point(row=130, column=12) -> Point(row=130, column=17)] : value
+                                    = [Point(row=130, column=18) -> Point(row=130, column=19)] : =
+                                    call [Point(row=130, column=20) -> Point(row=130, column=68)] : builder.add_argument("value", object_rprimitive)
+                                        attribute [Point(row=130, column=20) -> Point(row=130, column=40)] : builder.add_argument
+                                            identifier [Point(row=130, column=20) -> Point(row=130, column=27)] : builder
+                                            . [Point(row=130, column=27) -> Point(row=130, column=28)] : .
+                                            identifier [Point(row=130, column=28) -> Point(row=130, column=40)] : add_argument
+                                        argument_list [Point(row=130, column=40) -> Point(row=130, column=68)] : ("value", object_rprimitive)
+                                            ( [Point(row=130, column=40) -> Point(row=130, column=41)] : (
+                                            string [Point(row=130, column=41) -> Point(row=130, column=48)] : "value"
+                                                string_start [Point(row=130, column=41) -> Point(row=130, column=42)] : "
+                                                string_content [Point(row=130, column=42) -> Point(row=130, column=47)] : value
+                                                string_end [Point(row=130, column=47) -> Point(row=130, column=48)] : "
+                                            , [Point(row=130, column=48) -> Point(row=130, column=49)] : ,
+                                            identifier [Point(row=130, column=50) -> Point(row=130, column=67)] : object_rprimitive
+                                            ) [Point(row=130, column=67) -> Point(row=130, column=68)] : )
+                            expression_statement [Point(row=131, column=12) -> Point(row=131, column=37)] : func = get_func_wrapper()
+                                assignment [Point(row=131, column=12) -> Point(row=131, column=37)] : func = get_func_wrapper()
+                                    identifier [Point(row=131, column=12) -> Point(row=131, column=16)] : func
+                                    = [Point(row=131, column=17) -> Point(row=131, column=18)] : =
+                                    call [Point(row=131, column=19) -> Point(row=131, column=37)] : get_func_wrapper()
+                                        identifier [Point(row=131, column=19) -> Point(row=131, column=35)] : get_func_wrapper
+                                        argument_list [Point(row=131, column=35) -> Point(row=131, column=37)] : ()
+                                            ( [Point(row=131, column=35) -> Point(row=131, column=36)] : (
+                                            ) [Point(row=131, column=36) -> Point(row=131, column=37)] : )
+                            expression_statement [Point(row=132, column=12) -> Point(row=134, column=13)] : rv = builder.primitive_op(\n                primit...
+                                assignment [Point(row=132, column=12) -> Point(row=134, column=13)] : rv = builder.primitive_op(\n                primit...
+                                    identifier [Point(row=132, column=12) -> Point(row=132, column=14)] : rv
+                                    = [Point(row=132, column=15) -> Point(row=132, column=16)] : =
+                                    call [Point(row=132, column=17) -> Point(row=134, column=13)] : builder.primitive_op(\n                primitive, ...
+                                        attribute [Point(row=132, column=17) -> Point(row=132, column=37)] : builder.primitive_op
+                                            identifier [Point(row=132, column=17) -> Point(row=132, column=24)] : builder
+                                            . [Point(row=132, column=24) -> Point(row=132, column=25)] : .
+                                            identifier [Point(row=132, column=25) -> Point(row=132, column=37)] : primitive_op
+                                        argument_list [Point(row=132, column=37) -> Point(row=134, column=13)] : (\n                primitive, [func, value, Intege...
+                                            ( [Point(row=132, column=37) -> Point(row=132, column=38)] : (
+                                            identifier [Point(row=133, column=16) -> Point(row=133, column=25)] : primitive
+                                            , [Point(row=133, column=25) -> Point(row=133, column=26)] : ,
+                                            list [Point(row=133, column=27) -> Point(row=133, column=74)] : [func, value, Integer(0, c_pointer_rprimitive)]
+                                                [ [Point(row=133, column=27) -> Point(row=133, column=28)] : [
+                                                identifier [Point(row=133, column=28) -> Point(row=133, column=32)] : func
+                                                , [Point(row=133, column=32) -> Point(row=133, column=33)] : ,
+                                                identifier [Point(row=133, column=34) -> Point(row=133, column=39)] : value
+                                                , [Point(row=133, column=39) -> Point(row=133, column=40)] : ,
+                                                call [Point(row=133, column=41) -> Point(row=133, column=73)] : Integer(0, c_pointer_rprimitive)
+                                                    identifier [Point(row=133, column=41) -> Point(row=133, column=48)] : Integer
+                                                    argument_list [Point(row=133, column=48) -> Point(row=133, column=73)] : (0, c_pointer_rprimitive)
+                                                        ( [Point(row=133, column=48) -> Point(row=133, column=49)] : (
+                                                        integer [Point(row=133, column=49) -> Point(row=133, column=50)] : 0
+                                                        , [Point(row=133, column=50) -> Point(row=133, column=51)] : ,
+                                                        identifier [Point(row=133, column=52) -> Point(row=133, column=72)] : c_pointer_rprimitive
+                                                        ) [Point(row=133, column=72) -> Point(row=133, column=73)] : )
+                                                ] [Point(row=133, column=73) -> Point(row=133, column=74)] : ]
+                                            , [Point(row=133, column=74) -> Point(row=133, column=75)] : ,
+                                            identifier [Point(row=133, column=76) -> Point(row=133, column=80)] : line
+                                            ) [Point(row=134, column=12) -> Point(row=134, column=13)] : )
+                            expression_statement [Point(row=135, column=12) -> Point(row=135, column=35)] : builder.add(Return(rv))
+                                call [Point(row=135, column=12) -> Point(row=135, column=35)] : builder.add(Return(rv))
+                                    attribute [Point(row=135, column=12) -> Point(row=135, column=23)] : builder.add
+                                        identifier [Point(row=135, column=12) -> Point(row=135, column=19)] : builder
+                                        . [Point(row=135, column=19) -> Point(row=135, column=20)] : .
+                                        identifier [Point(row=135, column=20) -> Point(row=135, column=23)] : add
+                                    argument_list [Point(row=135, column=23) -> Point(row=135, column=35)] : (Return(rv))
+                                        ( [Point(row=135, column=23) -> Point(row=135, column=24)] : (
+                                        call [Point(row=135, column=24) -> Point(row=135, column=34)] : Return(rv)
+                                            identifier [Point(row=135, column=24) -> Point(row=135, column=30)] : Return
+                                            argument_list [Point(row=135, column=30) -> Point(row=135, column=34)] : (rv)
+                                                ( [Point(row=135, column=30) -> Point(row=135, column=31)] : (
+                                                identifier [Point(row=135, column=31) -> Point(row=135, column=33)] : rv
+                                                ) [Point(row=135, column=33) -> Point(row=135, column=34)] : )
+                                        ) [Point(row=135, column=34) -> Point(row=135, column=35)] : )
+            for_statement [Point(row=137, column=4) -> Point(row=141, column=61)] : for name in properties:\n        getter = callable...
+                for [Point(row=137, column=4) -> Point(row=137, column=7)] : for
+                identifier [Point(row=137, column=8) -> Point(row=137, column=12)] : name
+                in [Point(row=137, column=13) -> Point(row=137, column=15)] : in
+                identifier [Point(row=137, column=16) -> Point(row=137, column=26)] : properties
+                : [Point(row=137, column=26) -> Point(row=137, column=27)] : :
+                block [Point(row=138, column=8) -> Point(row=141, column=61)] : getter = callable_class_ir.get_method(name)\n     ...
+                    expression_statement [Point(row=138, column=8) -> Point(row=138, column=51)] : getter = callable_class_ir.get_method(name)
+                        assignment [Point(row=138, column=8) -> Point(row=138, column=51)] : getter = callable_class_ir.get_method(name)
+                            identifier [Point(row=138, column=8) -> Point(row=138, column=14)] : getter
+                            = [Point(row=138, column=15) -> Point(row=138, column=16)] : =
+                            call [Point(row=138, column=17) -> Point(row=138, column=51)] : callable_class_ir.get_method(name)
+                                attribute [Point(row=138, column=17) -> Point(row=138, column=45)] : callable_class_ir.get_method
+                                    identifier [Point(row=138, column=17) -> Point(row=138, column=34)] : callable_class_ir
+                                    . [Point(row=138, column=34) -> Point(row=138, column=35)] : .
+                                    identifier [Point(row=138, column=35) -> Point(row=138, column=45)] : get_method
+                                argument_list [Point(row=138, column=45) -> Point(row=138, column=51)] : (name)
+                                    ( [Point(row=138, column=45) -> Point(row=138, column=46)] : (
+                                    identifier [Point(row=138, column=46) -> Point(row=138, column=50)] : name
+                                    ) [Point(row=138, column=50) -> Point(row=138, column=51)] : )
+                    assert_statement [Point(row=139, column=8) -> Point(row=139, column=21)] : assert getter
+                        assert [Point(row=139, column=8) -> Point(row=139, column=14)] : assert
+                        identifier [Point(row=139, column=15) -> Point(row=139, column=21)] : getter
+                    expression_statement [Point(row=140, column=8) -> Point(row=140, column=72)] : setter = callable_class_ir.get_method(f"{PROPSET_P...
+                        assignment [Point(row=140, column=8) -> Point(row=140, column=72)] : setter = callable_class_ir.get_method(f"{PROPSET_P...
+                            identifier [Point(row=140, column=8) -> Point(row=140, column=14)] : setter
+                            = [Point(row=140, column=15) -> Point(row=140, column=16)] : =
+                            call [Point(row=140, column=17) -> Point(row=140, column=72)] : callable_class_ir.get_method(f"{PROPSET_PREFIX}{na...
+                                attribute [Point(row=140, column=17) -> Point(row=140, column=45)] : callable_class_ir.get_method
+                                    identifier [Point(row=140, column=17) -> Point(row=140, column=34)] : callable_class_ir
+                                    . [Point(row=140, column=34) -> Point(row=140, column=35)] : .
+                                    identifier [Point(row=140, column=35) -> Point(row=140, column=45)] : get_method
+                                argument_list [Point(row=140, column=45) -> Point(row=140, column=72)] : (f"{PROPSET_PREFIX}{name}")
+                                    ( [Point(row=140, column=45) -> Point(row=140, column=46)] : (
+                                    string [Point(row=140, column=46) -> Point(row=140, column=71)] : f"{PROPSET_PREFIX}{name}"
+                                        string_start [Point(row=140, column=46) -> Point(row=140, column=48)] : f"
+                                        interpolation [Point(row=140, column=48) -> Point(row=140, column=64)] : {PROPSET_PREFIX}
+                                            { [Point(row=140, column=48) -> Point(row=140, column=49)] : {
+                                            identifier [Point(row=140, column=49) -> Point(row=140, column=63)] : PROPSET_PREFIX
+                                            } [Point(row=140, column=63) -> Point(row=140, column=64)] : }
+                                        interpolation [Point(row=140, column=64) -> Point(row=140, column=70)] : {name}
+                                            { [Point(row=140, column=64) -> Point(row=140, column=65)] : {
+                                            identifier [Point(row=140, column=65) -> Point(row=140, column=69)] : name
+                                            } [Point(row=140, column=69) -> Point(row=140, column=70)] : }
+                                        string_end [Point(row=140, column=70) -> Point(row=140, column=71)] : "
+                                    ) [Point(row=140, column=71) -> Point(row=140, column=72)] : )
+                    expression_statement [Point(row=141, column=8) -> Point(row=141, column=61)] : callable_class_ir.properties[name] = (getter, sett...
+                        assignment [Point(row=141, column=8) -> Point(row=141, column=61)] : callable_class_ir.properties[name] = (getter, sett...
+                            subscript [Point(row=141, column=8) -> Point(row=141, column=42)] : callable_class_ir.properties[name]
+                                attribute [Point(row=141, column=8) -> Point(row=141, column=36)] : callable_class_ir.properties
+                                    identifier [Point(row=141, column=8) -> Point(row=141, column=25)] : callable_class_ir
+                                    . [Point(row=141, column=25) -> Point(row=141, column=26)] : .
+                                    identifier [Point(row=141, column=26) -> Point(row=141, column=36)] : properties
+                                [ [Point(row=141, column=36) -> Point(row=141, column=37)] : [
+                                identifier [Point(row=141, column=37) -> Point(row=141, column=41)] : name
+                                ] [Point(row=141, column=41) -> Point(row=141, column=42)] : ]
+                            = [Point(row=141, column=43) -> Point(row=141, column=44)] : =
+                            tuple [Point(row=141, column=45) -> Point(row=141, column=61)] : (getter, setter)
+                                ( [Point(row=141, column=45) -> Point(row=141, column=46)] : (
+                                identifier [Point(row=141, column=46) -> Point(row=141, column=52)] : getter
+                                , [Point(row=141, column=52) -> Point(row=141, column=53)] : ,
+                                identifier [Point(row=141, column=54) -> Point(row=141, column=60)] : setter
+                                ) [Point(row=141, column=60) -> Point(row=141, column=61)] : )
+    function_definition [Point(row=144, column=0) -> Point(row=168, column=21)] : def add_call_to_callable_class(\n    builder: IRBu...
+        def [Point(row=144, column=0) -> Point(row=144, column=3)] : def
+        identifier [Point(row=144, column=4) -> Point(row=144, column=30)] : add_call_to_callable_class
+        parameters [Point(row=144, column=30) -> Point(row=150, column=1)] : (\n    builder: IRBuilder,\n    args: list[Registe...
+            ( [Point(row=144, column=30) -> Point(row=144, column=31)] : (
+            typed_parameter [Point(row=145, column=4) -> Point(row=145, column=22)] : builder: IRBuilder
+                identifier [Point(row=145, column=4) -> Point(row=145, column=11)] : builder
+                : [Point(row=145, column=11) -> Point(row=145, column=12)] : :
+                type [Point(row=145, column=13) -> Point(row=145, column=22)] : IRBuilder
+                    identifier [Point(row=145, column=13) -> Point(row=145, column=22)] : IRBuilder
+            , [Point(row=145, column=22) -> Point(row=145, column=23)] : ,
+            typed_parameter [Point(row=146, column=4) -> Point(row=146, column=24)] : args: list[Register]
+                identifier [Point(row=146, column=4) -> Point(row=146, column=8)] : args
+                : [Point(row=146, column=8) -> Point(row=146, column=9)] : :
+                type [Point(row=146, column=10) -> Point(row=146, column=24)] : list[Register]
+                    generic_type [Point(row=146, column=10) -> Point(row=146, column=24)] : list[Register]
+                        identifier [Point(row=146, column=10) -> Point(row=146, column=14)] : list
+                        type_parameter [Point(row=146, column=14) -> Point(row=146, column=24)] : [Register]
+                            [ [Point(row=146, column=14) -> Point(row=146, column=15)] : [
+                            type [Point(row=146, column=15) -> Point(row=146, column=23)] : Register
+                                identifier [Point(row=146, column=15) -> Point(row=146, column=23)] : Register
+                            ] [Point(row=146, column=23) -> Point(row=146, column=24)] : ]
+            , [Point(row=146, column=24) -> Point(row=146, column=25)] : ,
+            typed_parameter [Point(row=147, column=4) -> Point(row=147, column=28)] : blocks: list[BasicBlock]
+                identifier [Point(row=147, column=4) -> Point(row=147, column=10)] : blocks
+                : [Point(row=147, column=10) -> Point(row=147, column=11)] : :
+                type [Point(row=147, column=12) -> Point(row=147, column=28)] : list[BasicBlock]
+                    generic_type [Point(row=147, column=12) -> Point(row=147, column=28)] : list[BasicBlock]
+                        identifier [Point(row=147, column=12) -> Point(row=147, column=16)] : list
+                        type_parameter [Point(row=147, column=16) -> Point(row=147, column=28)] : [BasicBlock]
+                            [ [Point(row=147, column=16) -> Point(row=147, column=17)] : [
+                            type [Point(row=147, column=17) -> Point(row=147, column=27)] : BasicBlock
+                                identifier [Point(row=147, column=17) -> Point(row=147, column=27)] : BasicBlock
+                            ] [Point(row=147, column=27) -> Point(row=147, column=28)] : ]
+            , [Point(row=147, column=28) -> Point(row=147, column=29)] : ,
+            typed_parameter [Point(row=148, column=4) -> Point(row=148, column=22)] : sig: FuncSignature
+                identifier [Point(row=148, column=4) -> Point(row=148, column=7)] : sig
+                : [Point(row=148, column=7) -> Point(row=148, column=8)] : :
+                type [Point(row=148, column=9) -> Point(row=148, column=22)] : FuncSignature
+                    identifier [Point(row=148, column=9) -> Point(row=148, column=22)] : FuncSignature
+            , [Point(row=148, column=22) -> Point(row=148, column=23)] : ,
+            typed_parameter [Point(row=149, column=4) -> Point(row=149, column=21)] : fn_info: FuncInfo
+                identifier [Point(row=149, column=4) -> Point(row=149, column=11)] : fn_info
+                : [Point(row=149, column=11) -> Point(row=149, column=12)] : :
+                type [Point(row=149, column=13) -> Point(row=149, column=21)] : FuncInfo
+                    identifier [Point(row=149, column=13) -> Point(row=149, column=21)] : FuncInfo
+            , [Point(row=149, column=21) -> Point(row=149, column=22)] : ,
+            ) [Point(row=150, column=0) -> Point(row=150, column=1)] : )
+        -> [Point(row=150, column=2) -> Point(row=150, column=4)] : ->
+        type [Point(row=150, column=5) -> Point(row=150, column=11)] : FuncIR
+            identifier [Point(row=150, column=5) -> Point(row=150, column=11)] : FuncIR
+        : [Point(row=150, column=11) -> Point(row=150, column=12)] : :
+        block [Point(row=151, column=4) -> Point(row=168, column=21)] : """Generate a '__call__' method for a callable cla...
+            expression_statement [Point(row=151, column=4) -> Point(row=156, column=7)] : """Generate a '__call__' method for a callable cla...
+                string [Point(row=151, column=4) -> Point(row=156, column=7)] : """Generate a '__call__' method for a callable cla...
+                    string_start [Point(row=151, column=4) -> Point(row=151, column=7)] : """
+                    string_content [Point(row=151, column=7) -> Point(row=156, column=4)] : Generate a '__call__' method for a callable class ...
+                    string_end [Point(row=156, column=4) -> Point(row=156, column=7)] : """
+            comment [Point(row=157, column=4) -> Point(row=157, column=63)] : # Since we create a method, we also add a 'self' p...
+            expression_statement [Point(row=158, column=4) -> Point(row=158, column=47)] : nargs = len(sig.args) - sig.num_bitmap_args
+                assignment [Point(row=158, column=4) -> Point(row=158, column=47)] : nargs = len(sig.args) - sig.num_bitmap_args
+                    identifier [Point(row=158, column=4) -> Point(row=158, column=9)] : nargs
+                    = [Point(row=158, column=10) -> Point(row=158, column=11)] : =
+                    binary_operator [Point(row=158, column=12) -> Point(row=158, column=47)] : len(sig.args) - sig.num_bitmap_args
+                        call [Point(row=158, column=12) -> Point(row=158, column=25)] : len(sig.args)
+                            identifier [Point(row=158, column=12) -> Point(row=158, column=15)] : len
+                            argument_list [Point(row=158, column=15) -> Point(row=158, column=25)] : (sig.args)
+                                ( [Point(row=158, column=15) -> Point(row=158, column=16)] : (
+                                attribute [Point(row=158, column=16) -> Point(row=158, column=24)] : sig.args
+                                    identifier [Point(row=158, column=16) -> Point(row=158, column=19)] : sig
+                                    . [Point(row=158, column=19) -> Point(row=158, column=20)] : .
+                                    identifier [Point(row=158, column=20) -> Point(row=158, column=24)] : args
+                                ) [Point(row=158, column=24) -> Point(row=158, column=25)] : )
+                        - [Point(row=158, column=26) -> Point(row=158, column=27)] : -
+                        attribute [Point(row=158, column=28) -> Point(row=158, column=47)] : sig.num_bitmap_args
+                            identifier [Point(row=158, column=28) -> Point(row=158, column=31)] : sig
+                            . [Point(row=158, column=31) -> Point(row=158, column=32)] : .
+                            identifier [Point(row=158, column=32) -> Point(row=158, column=47)] : num_bitmap_args
+            expression_statement [Point(row=159, column=4) -> Point(row=161, column=5)] : sig = FuncSignature(\n        (RuntimeArg(SELF_NAM...
+                assignment [Point(row=159, column=4) -> Point(row=161, column=5)] : sig = FuncSignature(\n        (RuntimeArg(SELF_NAM...
+                    identifier [Point(row=159, column=4) -> Point(row=159, column=7)] : sig
+                    = [Point(row=159, column=8) -> Point(row=159, column=9)] : =
+                    call [Point(row=159, column=10) -> Point(row=161, column=5)] : FuncSignature(\n        (RuntimeArg(SELF_NAME, obj...
+                        identifier [Point(row=159, column=10) -> Point(row=159, column=23)] : FuncSignature
+                        argument_list [Point(row=159, column=23) -> Point(row=161, column=5)] : (\n        (RuntimeArg(SELF_NAME, object_rprimitiv...
+                            ( [Point(row=159, column=23) -> Point(row=159, column=24)] : (
+                            binary_operator [Point(row=160, column=8) -> Point(row=160, column=70)] : (RuntimeArg(SELF_NAME, object_rprimitive),) + sig....
+                                tuple [Point(row=160, column=8) -> Point(row=160, column=51)] : (RuntimeArg(SELF_NAME, object_rprimitive),)
+                                    ( [Point(row=160, column=8) -> Point(row=160, column=9)] : (
+                                    call [Point(row=160, column=9) -> Point(row=160, column=49)] : RuntimeArg(SELF_NAME, object_rprimitive)
+                                        identifier [Point(row=160, column=9) -> Point(row=160, column=19)] : RuntimeArg
+                                        argument_list [Point(row=160, column=19) -> Point(row=160, column=49)] : (SELF_NAME, object_rprimitive)
+                                            ( [Point(row=160, column=19) -> Point(row=160, column=20)] : (
+                                            identifier [Point(row=160, column=20) -> Point(row=160, column=29)] : SELF_NAME
+                                            , [Point(row=160, column=29) -> Point(row=160, column=30)] : ,
+                                            identifier [Point(row=160, column=31) -> Point(row=160, column=48)] : object_rprimitive
+                                            ) [Point(row=160, column=48) -> Point(row=160, column=49)] : )
+                                    , [Point(row=160, column=49) -> Point(row=160, column=50)] : ,
+                                    ) [Point(row=160, column=50) -> Point(row=160, column=51)] : )
+                                + [Point(row=160, column=52) -> Point(row=160, column=53)] : +
+                                subscript [Point(row=160, column=54) -> Point(row=160, column=70)] : sig.args[:nargs]
+                                    attribute [Point(row=160, column=54) -> Point(row=160, column=62)] : sig.args
+                                        identifier [Point(row=160, column=54) -> Point(row=160, column=57)] : sig
+                                        . [Point(row=160, column=57) -> Point(row=160, column=58)] : .
+                                        identifier [Point(row=160, column=58) -> Point(row=160, column=62)] : args
+                                    [ [Point(row=160, column=62) -> Point(row=160, column=63)] : [
+                                    slice [Point(row=160, column=63) -> Point(row=160, column=69)] : :nargs
+                                        : [Point(row=160, column=63) -> Point(row=160, column=64)] : :
+                                        identifier [Point(row=160, column=64) -> Point(row=160, column=69)] : nargs
+                                    ] [Point(row=160, column=69) -> Point(row=160, column=70)] : ]
+                            , [Point(row=160, column=70) -> Point(row=160, column=71)] : ,
+                            attribute [Point(row=160, column=72) -> Point(row=160, column=84)] : sig.ret_type
+                                identifier [Point(row=160, column=72) -> Point(row=160, column=75)] : sig
+                                . [Point(row=160, column=75) -> Point(row=160, column=76)] : .
+                                identifier [Point(row=160, column=76) -> Point(row=160, column=84)] : ret_type
+                            ) [Point(row=161, column=4) -> Point(row=161, column=5)] : )
+            expression_statement [Point(row=162, column=4) -> Point(row=162, column=97)] : call_fn_decl = FuncDecl("__call__", fn_info.callab...
+                assignment [Point(row=162, column=4) -> Point(row=162, column=97)] : call_fn_decl = FuncDecl("__call__", fn_info.callab...
+                    identifier [Point(row=162, column=4) -> Point(row=162, column=16)] : call_fn_decl
+                    = [Point(row=162, column=17) -> Point(row=162, column=18)] : =
+                    call [Point(row=162, column=19) -> Point(row=162, column=97)] : FuncDecl("__call__", fn_info.callable_class.ir.nam...
+                        identifier [Point(row=162, column=19) -> Point(row=162, column=27)] : FuncDecl
+                        argument_list [Point(row=162, column=27) -> Point(row=162, column=97)] : ("__call__", fn_info.callable_class.ir.name, build...
+                            ( [Point(row=162, column=27) -> Point(row=162, column=28)] : (
+                            string [Point(row=162, column=28) -> Point(row=162, column=38)] : "__call__"
+                                string_start [Point(row=162, column=28) -> Point(row=162, column=29)] : "
+                                string_content [Point(row=162, column=29) -> Point(row=162, column=37)] : __call__
+                                string_end [Point(row=162, column=37) -> Point(row=162, column=38)] : "
+                            , [Point(row=162, column=38) -> Point(row=162, column=39)] : ,
+                            attribute [Point(row=162, column=40) -> Point(row=162, column=70)] : fn_info.callable_class.ir.name
+                                attribute [Point(row=162, column=40) -> Point(row=162, column=65)] : fn_info.callable_class.ir
+                                    attribute [Point(row=162, column=40) -> Point(row=162, column=62)] : fn_info.callable_class
+                                        identifier [Point(row=162, column=40) -> Point(row=162, column=47)] : fn_info
+                                        . [Point(row=162, column=47) -> Point(row=162, column=48)] : .
+                                        identifier [Point(row=162, column=48) -> Point(row=162, column=62)] : callable_class
+                                    . [Point(row=162, column=62) -> Point(row=162, column=63)] : .
+                                    identifier [Point(row=162, column=63) -> Point(row=162, column=65)] : ir
+                                . [Point(row=162, column=65) -> Point(row=162, column=66)] : .
+                                identifier [Point(row=162, column=66) -> Point(row=162, column=70)] : name
+                            , [Point(row=162, column=70) -> Point(row=162, column=71)] : ,
+                            attribute [Point(row=162, column=72) -> Point(row=162, column=91)] : builder.module_name
+                                identifier [Point(row=162, column=72) -> Point(row=162, column=79)] : builder
+                                . [Point(row=162, column=79) -> Point(row=162, column=80)] : .
+                                identifier [Point(row=162, column=80) -> Point(row=162, column=91)] : module_name
+                            , [Point(row=162, column=91) -> Point(row=162, column=92)] : ,
+                            identifier [Point(row=162, column=93) -> Point(row=162, column=96)] : sig
+                            ) [Point(row=162, column=96) -> Point(row=162, column=97)] : )
+            expression_statement [Point(row=163, column=4) -> Point(row=165, column=5)] : call_fn_ir = FuncIR(\n        call_fn_decl, args, ...
+                assignment [Point(row=163, column=4) -> Point(row=165, column=5)] : call_fn_ir = FuncIR(\n        call_fn_decl, args, ...
+                    identifier [Point(row=163, column=4) -> Point(row=163, column=14)] : call_fn_ir
+                    = [Point(row=163, column=15) -> Point(row=163, column=16)] : =
+                    call [Point(row=163, column=17) -> Point(row=165, column=5)] : FuncIR(\n        call_fn_decl, args, blocks, fn_in...
+                        identifier [Point(row=163, column=17) -> Point(row=163, column=23)] : FuncIR
+                        argument_list [Point(row=163, column=23) -> Point(row=165, column=5)] : (\n        call_fn_decl, args, blocks, fn_info.fit...
+                            ( [Point(row=163, column=23) -> Point(row=163, column=24)] : (
+                            identifier [Point(row=164, column=8) -> Point(row=164, column=20)] : call_fn_decl
+                            , [Point(row=164, column=20) -> Point(row=164, column=21)] : ,
+                            identifier [Point(row=164, column=22) -> Point(row=164, column=26)] : args
+                            , [Point(row=164, column=26) -> Point(row=164, column=27)] : ,
+                            identifier [Point(row=164, column=28) -> Point(row=164, column=34)] : blocks
+                            , [Point(row=164, column=34) -> Point(row=164, column=35)] : ,
+                            attribute [Point(row=164, column=36) -> Point(row=164, column=54)] : fn_info.fitem.line
+                                attribute [Point(row=164, column=36) -> Point(row=164, column=49)] : fn_info.fitem
+                                    identifier [Point(row=164, column=36) -> Point(row=164, column=43)] : fn_info
+                                    . [Point(row=164, column=43) -> Point(row=164, column=44)] : .
+                                    identifier [Point(row=164, column=44) -> Point(row=164, column=49)] : fitem
+                                . [Point(row=164, column=49) -> Point(row=164, column=50)] : .
+                                identifier [Point(row=164, column=50) -> Point(row=164, column=54)] : line
+                            , [Point(row=164, column=54) -> Point(row=164, column=55)] : ,
+                            keyword_argument [Point(row=164, column=56) -> Point(row=164, column=89)] : traceback_name=fn_info.fitem.name
+                                identifier [Point(row=164, column=56) -> Point(row=164, column=70)] : traceback_name
+                                = [Point(row=164, column=70) -> Point(row=164, column=71)] : =
+                                attribute [Point(row=164, column=71) -> Point(row=164, column=89)] : fn_info.fitem.name
+                                    attribute [Point(row=164, column=71) -> Point(row=164, column=84)] : fn_info.fitem
+                                        identifier [Point(row=164, column=71) -> Point(row=164, column=78)] : fn_info
+                                        . [Point(row=164, column=78) -> Point(row=164, column=79)] : .
+                                        identifier [Point(row=164, column=79) -> Point(row=164, column=84)] : fitem
+                                    . [Point(row=164, column=84) -> Point(row=164, column=85)] : .
+                                    identifier [Point(row=164, column=85) -> Point(row=164, column=89)] : name
+                            ) [Point(row=165, column=4) -> Point(row=165, column=5)] : )
+            expression_statement [Point(row=166, column=4) -> Point(row=166, column=62)] : fn_info.callable_class.ir.methods["__call__"] = ca...
+                assignment [Point(row=166, column=4) -> Point(row=166, column=62)] : fn_info.callable_class.ir.methods["__call__"] = ca...
+                    subscript [Point(row=166, column=4) -> Point(row=166, column=49)] : fn_info.callable_class.ir.methods["__call__"]
+                        attribute [Point(row=166, column=4) -> Point(row=166, column=37)] : fn_info.callable_class.ir.methods
+                            attribute [Point(row=166, column=4) -> Point(row=166, column=29)] : fn_info.callable_class.ir
+                                attribute [Point(row=166, column=4) -> Point(row=166, column=26)] : fn_info.callable_class
+                                    identifier [Point(row=166, column=4) -> Point(row=166, column=11)] : fn_info
+                                    . [Point(row=166, column=11) -> Point(row=166, column=12)] : .
+                                    identifier [Point(row=166, column=12) -> Point(row=166, column=26)] : callable_class
+                                . [Point(row=166, column=26) -> Point(row=166, column=27)] : .
+                                identifier [Point(row=166, column=27) -> Point(row=166, column=29)] : ir
+                            . [Point(row=166, column=29) -> Point(row=166, column=30)] : .
+                            identifier [Point(row=166, column=30) -> Point(row=166, column=37)] : methods
+                        [ [Point(row=166, column=37) -> Point(row=166, column=38)] : [
+                        string [Point(row=166, column=38) -> Point(row=166, column=48)] : "__call__"
+                            string_start [Point(row=166, column=38) -> Point(row=166, column=39)] : "
+                            string_content [Point(row=166, column=39) -> Point(row=166, column=47)] : __call__
+                            string_end [Point(row=166, column=47) -> Point(row=166, column=48)] : "
+                        ] [Point(row=166, column=48) -> Point(row=166, column=49)] : ]
+                    = [Point(row=166, column=50) -> Point(row=166, column=51)] : =
+                    identifier [Point(row=166, column=52) -> Point(row=166, column=62)] : call_fn_ir
+            expression_statement [Point(row=167, column=4) -> Point(row=167, column=69)] : fn_info.callable_class.ir.method_decls["__call__"]...
+                assignment [Point(row=167, column=4) -> Point(row=167, column=69)] : fn_info.callable_class.ir.method_decls["__call__"]...
+                    subscript [Point(row=167, column=4) -> Point(row=167, column=54)] : fn_info.callable_class.ir.method_decls["__call__"]
+                        attribute [Point(row=167, column=4) -> Point(row=167, column=42)] : fn_info.callable_class.ir.method_decls
+                            attribute [Point(row=167, column=4) -> Point(row=167, column=29)] : fn_info.callable_class.ir
+                                attribute [Point(row=167, column=4) -> Point(row=167, column=26)] : fn_info.callable_class
+                                    identifier [Point(row=167, column=4) -> Point(row=167, column=11)] : fn_info
+                                    . [Point(row=167, column=11) -> Point(row=167, column=12)] : .
+                                    identifier [Point(row=167, column=12) -> Point(row=167, column=26)] : callable_class
+                                . [Point(row=167, column=26) -> Point(row=167, column=27)] : .
+                                identifier [Point(row=167, column=27) -> Point(row=167, column=29)] : ir
+                            . [Point(row=167, column=29) -> Point(row=167, column=30)] : .
+                            identifier [Point(row=167, column=30) -> Point(row=167, column=42)] : method_decls
+                        [ [Point(row=167, column=42) -> Point(row=167, column=43)] : [
+                        string [Point(row=167, column=43) -> Point(row=167, column=53)] : "__call__"
+                            string_start [Point(row=167, column=43) -> Point(row=167, column=44)] : "
+                            string_content [Point(row=167, column=44) -> Point(row=167, column=52)] : __call__
+                            string_end [Point(row=167, column=52) -> Point(row=167, column=53)] : "
+                        ] [Point(row=167, column=53) -> Point(row=167, column=54)] : ]
+                    = [Point(row=167, column=55) -> Point(row=167, column=56)] : =
+                    identifier [Point(row=167, column=57) -> Point(row=167, column=69)] : call_fn_decl
+            return_statement [Point(row=168, column=4) -> Point(row=168, column=21)] : return call_fn_ir
+                return [Point(row=168, column=4) -> Point(row=168, column=10)] : return
+                identifier [Point(row=168, column=11) -> Point(row=168, column=21)] : call_fn_ir
+    function_definition [Point(row=171, column=0) -> Point(row=199, column=9)] : def add_get_to_callable_class(builder: IRBuilder, ...
+        def [Point(row=171, column=0) -> Point(row=171, column=3)] : def
+        identifier [Point(row=171, column=4) -> Point(row=171, column=29)] : add_get_to_callable_class
+        parameters [Point(row=171, column=29) -> Point(row=171, column=68)] : (builder: IRBuilder, fn_info: FuncInfo)
+            ( [Point(row=171, column=29) -> Point(row=171, column=30)] : (
+            typed_parameter [Point(row=171, column=30) -> Point(row=171, column=48)] : builder: IRBuilder
+                identifier [Point(row=171, column=30) -> Point(row=171, column=37)] : builder
+                : [Point(row=171, column=37) -> Point(row=171, column=38)] : :
+                type [Point(row=171, column=39) -> Point(row=171, column=48)] : IRBuilder
+                    identifier [Point(row=171, column=39) -> Point(row=171, column=48)] : IRBuilder
+            , [Point(row=171, column=48) -> Point(row=171, column=49)] : ,
+            typed_parameter [Point(row=171, column=50) -> Point(row=171, column=67)] : fn_info: FuncInfo
+                identifier [Point(row=171, column=50) -> Point(row=171, column=57)] : fn_info
+                : [Point(row=171, column=57) -> Point(row=171, column=58)] : :
+                type [Point(row=171, column=59) -> Point(row=171, column=67)] : FuncInfo
+                    identifier [Point(row=171, column=59) -> Point(row=171, column=67)] : FuncInfo
+            ) [Point(row=171, column=67) -> Point(row=171, column=68)] : )
+        -> [Point(row=171, column=69) -> Point(row=171, column=71)] : ->
+        type [Point(row=171, column=72) -> Point(row=171, column=76)] : None
+            none [Point(row=171, column=72) -> Point(row=171, column=76)] : None
+        : [Point(row=171, column=76) -> Point(row=171, column=77)] : :
+        block [Point(row=172, column=4) -> Point(row=199, column=9)] : """Generate the '__get__' method for a callable cl...
+            expression_statement [Point(row=172, column=4) -> Point(row=172, column=61)] : """Generate the '__get__' method for a callable cl...
+                string [Point(row=172, column=4) -> Point(row=172, column=61)] : """Generate the '__get__' method for a callable cl...
+                    string_start [Point(row=172, column=4) -> Point(row=172, column=7)] : """
+                    string_content [Point(row=172, column=7) -> Point(row=172, column=58)] : Generate the '__get__' method for a callable class...
+                    string_end [Point(row=172, column=58) -> Point(row=172, column=61)] : """
+            expression_statement [Point(row=173, column=4) -> Point(row=173, column=29)] : line = fn_info.fitem.line
+                assignment [Point(row=173, column=4) -> Point(row=173, column=29)] : line = fn_info.fitem.line
+                    identifier [Point(row=173, column=4) -> Point(row=173, column=8)] : line
+                    = [Point(row=173, column=9) -> Point(row=173, column=10)] : =
+                    attribute [Point(row=173, column=11) -> Point(row=173, column=29)] : fn_info.fitem.line
+                        attribute [Point(row=173, column=11) -> Point(row=173, column=24)] : fn_info.fitem
+                            identifier [Point(row=173, column=11) -> Point(row=173, column=18)] : fn_info
+                            . [Point(row=173, column=18) -> Point(row=173, column=19)] : .
+                            identifier [Point(row=173, column=19) -> Point(row=173, column=24)] : fitem
+                        . [Point(row=173, column=24) -> Point(row=173, column=25)] : .
+                        identifier [Point(row=173, column=25) -> Point(row=173, column=29)] : line
+            with_statement [Point(row=174, column=4) -> Point(row=199, column=9)] : with builder.enter_method(\n        fn_info.callab...
+                with [Point(row=174, column=4) -> Point(row=174, column=8)] : with
+                with_clause [Point(row=174, column=9) -> Point(row=180, column=5)] : builder.enter_method(\n        fn_info.callable_cl...
+                    with_item [Point(row=174, column=9) -> Point(row=180, column=5)] : builder.enter_method(\n        fn_info.callable_cl...
+                        call [Point(row=174, column=9) -> Point(row=180, column=5)] : builder.enter_method(\n        fn_info.callable_cl...
+                            attribute [Point(row=174, column=9) -> Point(row=174, column=29)] : builder.enter_method
+                                identifier [Point(row=174, column=9) -> Point(row=174, column=16)] : builder
+                                . [Point(row=174, column=16) -> Point(row=174, column=17)] : .
+                                identifier [Point(row=174, column=17) -> Point(row=174, column=29)] : enter_method
+                            argument_list [Point(row=174, column=29) -> Point(row=180, column=5)] : (\n        fn_info.callable_class.ir,\n        "__...
+                                ( [Point(row=174, column=29) -> Point(row=174, column=30)] : (
+                                attribute [Point(row=175, column=8) -> Point(row=175, column=33)] : fn_info.callable_class.ir
+                                    attribute [Point(row=175, column=8) -> Point(row=175, column=30)] : fn_info.callable_class
+                                        identifier [Point(row=175, column=8) -> Point(row=175, column=15)] : fn_info
+                                        . [Point(row=175, column=15) -> Point(row=175, column=16)] : .
+                                        identifier [Point(row=175, column=16) -> Point(row=175, column=30)] : callable_class
+                                    . [Point(row=175, column=30) -> Point(row=175, column=31)] : .
+                                    identifier [Point(row=175, column=31) -> Point(row=175, column=33)] : ir
+                                , [Point(row=175, column=33) -> Point(row=175, column=34)] : ,
+                                string [Point(row=176, column=8) -> Point(row=176, column=17)] : "__get__"
+                                    string_start [Point(row=176, column=8) -> Point(row=176, column=9)] : "
+                                    string_content [Point(row=176, column=9) -> Point(row=176, column=16)] : __get__
+                                    string_end [Point(row=176, column=16) -> Point(row=176, column=17)] : "
+                                , [Point(row=176, column=17) -> Point(row=176, column=18)] : ,
+                                identifier [Point(row=177, column=8) -> Point(row=177, column=25)] : object_rprimitive
+                                , [Point(row=177, column=25) -> Point(row=177, column=26)] : ,
+                                identifier [Point(row=178, column=8) -> Point(row=178, column=15)] : fn_info
+                                , [Point(row=178, column=15) -> Point(row=178, column=16)] : ,
+                                keyword_argument [Point(row=179, column=8) -> Point(row=179, column=35)] : self_type=object_rprimitive
+                                    identifier [Point(row=179, column=8) -> Point(row=179, column=17)] : self_type
+                                    = [Point(row=179, column=17) -> Point(row=179, column=18)] : =
+                                    identifier [Point(row=179, column=18) -> Point(row=179, column=35)] : object_rprimitive
+                                , [Point(row=179, column=35) -> Point(row=179, column=36)] : ,
+                                ) [Point(row=180, column=4) -> Point(row=180, column=5)] : )
+                : [Point(row=180, column=5) -> Point(row=180, column=6)] : :
+                block [Point(row=181, column=8) -> Point(row=199, column=9)] : instance = builder.add_argument("instance", object...
+                    expression_statement [Point(row=181, column=8) -> Point(row=181, column=70)] : instance = builder.add_argument("instance", object...
+                        assignment [Point(row=181, column=8) -> Point(row=181, column=70)] : instance = builder.add_argument("instance", object...
+                            identifier [Point(row=181, column=8) -> Point(row=181, column=16)] : instance
+                            = [Point(row=181, column=17) -> Point(row=181, column=18)] : =
+                            call [Point(row=181, column=19) -> Point(row=181, column=70)] : builder.add_argument("instance", object_rprimitive...
+                                attribute [Point(row=181, column=19) -> Point(row=181, column=39)] : builder.add_argument
+                                    identifier [Point(row=181, column=19) -> Point(row=181, column=26)] : builder
+                                    . [Point(row=181, column=26) -> Point(row=181, column=27)] : .
+                                    identifier [Point(row=181, column=27) -> Point(row=181, column=39)] : add_argument
+                                argument_list [Point(row=181, column=39) -> Point(row=181, column=70)] : ("instance", object_rprimitive)
+                                    ( [Point(row=181, column=39) -> Point(row=181, column=40)] : (
+                                    string [Point(row=181, column=40) -> Point(row=181, column=50)] : "instance"
+                                        string_start [Point(row=181, column=40) -> Point(row=181, column=41)] : "
+                                        string_content [Point(row=181, column=41) -> Point(row=181, column=49)] : instance
+                                        string_end [Point(row=181, column=49) -> Point(row=181, column=50)] : "
+                                    , [Point(row=181, column=50) -> Point(row=181, column=51)] : ,
+                                    identifier [Point(row=181, column=52) -> Point(row=181, column=69)] : object_rprimitive
+                                    ) [Point(row=181, column=69) -> Point(row=181, column=70)] : )
+                    expression_statement [Point(row=182, column=8) -> Point(row=182, column=56)] : builder.add_argument("owner", object_rprimitive)
+                        call [Point(row=182, column=8) -> Point(row=182, column=56)] : builder.add_argument("owner", object_rprimitive)
+                            attribute [Point(row=182, column=8) -> Point(row=182, column=28)] : builder.add_argument
+                                identifier [Point(row=182, column=8) -> Point(row=182, column=15)] : builder
+                                . [Point(row=182, column=15) -> Point(row=182, column=16)] : .
+                                identifier [Point(row=182, column=16) -> Point(row=182, column=28)] : add_argument
+                            argument_list [Point(row=182, column=28) -> Point(row=182, column=56)] : ("owner", object_rprimitive)
+                                ( [Point(row=182, column=28) -> Point(row=182, column=29)] : (
+                                string [Point(row=182, column=29) -> Point(row=182, column=36)] : "owner"
+                                    string_start [Point(row=182, column=29) -> Point(row=182, column=30)] : "
+                                    string_content [Point(row=182, column=30) -> Point(row=182, column=35)] : owner
+                                    string_end [Point(row=182, column=35) -> Point(row=182, column=36)] : "
+                                , [Point(row=182, column=36) -> Point(row=182, column=37)] : ,
+                                identifier [Point(row=182, column=38) -> Point(row=182, column=55)] : object_rprimitive
+                                ) [Point(row=182, column=55) -> Point(row=182, column=56)] : )
+                    comment [Point(row=184, column=8) -> Point(row=184, column=65)] : # If accessed through the class, just return the c...
+                    comment [Point(row=185, column=8) -> Point(row=185, column=67)] : # object. If accessed through an object, create a ...
+                    comment [Point(row=186, column=8) -> Point(row=186, column=33)] : # instance method object.
+                    expression_statement [Point(row=187, column=8) -> Point(row=187, column=64)] : instance_block, class_block = BasicBlock(), BasicB...
+                        assignment [Point(row=187, column=8) -> Point(row=187, column=64)] : instance_block, class_block = BasicBlock(), BasicB...
+                            pattern_list [Point(row=187, column=8) -> Point(row=187, column=35)] : instance_block, class_block
+                                identifier [Point(row=187, column=8) -> Point(row=187, column=22)] : instance_block
+                                , [Point(row=187, column=22) -> Point(row=187, column=23)] : ,
+                                identifier [Point(row=187, column=24) -> Point(row=187, column=35)] : class_block
+                            = [Point(row=187, column=36) -> Point(row=187, column=37)] : =
+                            expression_list [Point(row=187, column=38) -> Point(row=187, column=64)] : BasicBlock(), BasicBlock()
+                                call [Point(row=187, column=38) -> Point(row=187, column=50)] : BasicBlock()
+                                    identifier [Point(row=187, column=38) -> Point(row=187, column=48)] : BasicBlock
+                                    argument_list [Point(row=187, column=48) -> Point(row=187, column=50)] : ()
+                                        ( [Point(row=187, column=48) -> Point(row=187, column=49)] : (
+                                        ) [Point(row=187, column=49) -> Point(row=187, column=50)] : )
+                                , [Point(row=187, column=50) -> Point(row=187, column=51)] : ,
+                                call [Point(row=187, column=52) -> Point(row=187, column=64)] : BasicBlock()
+                                    identifier [Point(row=187, column=52) -> Point(row=187, column=62)] : BasicBlock
+                                    argument_list [Point(row=187, column=62) -> Point(row=187, column=64)] : ()
+                                        ( [Point(row=187, column=62) -> Point(row=187, column=63)] : (
+                                        ) [Point(row=187, column=63) -> Point(row=187, column=64)] : )
+                    expression_statement [Point(row=188, column=8) -> Point(row=190, column=9)] : comparison = builder.translate_is_op(\n           ...
+                        assignment [Point(row=188, column=8) -> Point(row=190, column=9)] : comparison = builder.translate_is_op(\n           ...
+                            identifier [Point(row=188, column=8) -> Point(row=188, column=18)] : comparison
+                            = [Point(row=188, column=19) -> Point(row=188, column=20)] : =
+                            call [Point(row=188, column=21) -> Point(row=190, column=9)] : builder.translate_is_op(\n            builder.read...
+                                attribute [Point(row=188, column=21) -> Point(row=188, column=44)] : builder.translate_is_op
+                                    identifier [Point(row=188, column=21) -> Point(row=188, column=28)] : builder
+                                    . [Point(row=188, column=28) -> Point(row=188, column=29)] : .
+                                    identifier [Point(row=188, column=29) -> Point(row=188, column=44)] : translate_is_op
+                                argument_list [Point(row=188, column=44) -> Point(row=190, column=9)] : (\n            builder.read(instance), builder.non...
+                                    ( [Point(row=188, column=44) -> Point(row=188, column=45)] : (
+                                    call [Point(row=189, column=12) -> Point(row=189, column=34)] : builder.read(instance)
+                                        attribute [Point(row=189, column=12) -> Point(row=189, column=24)] : builder.read
+                                            identifier [Point(row=189, column=12) -> Point(row=189, column=19)] : builder
+                                            . [Point(row=189, column=19) -> Point(row=189, column=20)] : .
+                                            identifier [Point(row=189, column=20) -> Point(row=189, column=24)] : read
+                                        argument_list [Point(row=189, column=24) -> Point(row=189, column=34)] : (instance)
+                                            ( [Point(row=189, column=24) -> Point(row=189, column=25)] : (
+                                            identifier [Point(row=189, column=25) -> Point(row=189, column=33)] : instance
+                                            ) [Point(row=189, column=33) -> Point(row=189, column=34)] : )
+                                    , [Point(row=189, column=34) -> Point(row=189, column=35)] : ,
+                                    call [Point(row=189, column=36) -> Point(row=189, column=61)] : builder.none_object(line)
+                                        attribute [Point(row=189, column=36) -> Point(row=189, column=55)] : builder.none_object
+                                            identifier [Point(row=189, column=36) -> Point(row=189, column=43)] : builder
+                                            . [Point(row=189, column=43) -> Point(row=189, column=44)] : .
+                                            identifier [Point(row=189, column=44) -> Point(row=189, column=55)] : none_object
+                                        argument_list [Point(row=189, column=55) -> Point(row=189, column=61)] : (line)
+                                            ( [Point(row=189, column=55) -> Point(row=189, column=56)] : (
+                                            identifier [Point(row=189, column=56) -> Point(row=189, column=60)] : line
+                                            ) [Point(row=189, column=60) -> Point(row=189, column=61)] : )
+                                    , [Point(row=189, column=61) -> Point(row=189, column=62)] : ,
+                                    string [Point(row=189, column=63) -> Point(row=189, column=67)] : "is"
+                                        string_start [Point(row=189, column=63) -> Point(row=189, column=64)] : "
+                                        string_content [Point(row=189, column=64) -> Point(row=189, column=66)] : is
+                                        string_end [Point(row=189, column=66) -> Point(row=189, column=67)] : "
+                                    , [Point(row=189, column=67) -> Point(row=189, column=68)] : ,
+                                    identifier [Point(row=189, column=69) -> Point(row=189, column=73)] : line
+                                    ) [Point(row=190, column=8) -> Point(row=190, column=9)] : )
+                    expression_statement [Point(row=191, column=8) -> Point(row=191, column=72)] : builder.add_bool_branch(comparison, class_block, i...
+                        call [Point(row=191, column=8) -> Point(row=191, column=72)] : builder.add_bool_branch(comparison, class_block, i...
+                            attribute [Point(row=191, column=8) -> Point(row=191, column=31)] : builder.add_bool_branch
+                                identifier [Point(row=191, column=8) -> Point(row=191, column=15)] : builder
+                                . [Point(row=191, column=15) -> Point(row=191, column=16)] : .
+                                identifier [Point(row=191, column=16) -> Point(row=191, column=31)] : add_bool_branch
+                            argument_list [Point(row=191, column=31) -> Point(row=191, column=72)] : (comparison, class_block, instance_block)
+                                ( [Point(row=191, column=31) -> Point(row=191, column=32)] : (
+                                identifier [Point(row=191, column=32) -> Point(row=191, column=42)] : comparison
+                                , [Point(row=191, column=42) -> Point(row=191, column=43)] : ,
+                                identifier [Point(row=191, column=44) -> Point(row=191, column=55)] : class_block
+                                , [Point(row=191, column=55) -> Point(row=191, column=56)] : ,
+                                identifier [Point(row=191, column=57) -> Point(row=191, column=71)] : instance_block
+                                ) [Point(row=191, column=71) -> Point(row=191, column=72)] : )
+                    expression_statement [Point(row=193, column=8) -> Point(row=193, column=43)] : builder.activate_block(class_block)
+                        call [Point(row=193, column=8) -> Point(row=193, column=43)] : builder.activate_block(class_block)
+                            attribute [Point(row=193, column=8) -> Point(row=193, column=30)] : builder.activate_block
+                                identifier [Point(row=193, column=8) -> Point(row=193, column=15)] : builder
+                                . [Point(row=193, column=15) -> Point(row=193, column=16)] : .
+                                identifier [Point(row=193, column=16) -> Point(row=193, column=30)] : activate_block
+                            argument_list [Point(row=193, column=30) -> Point(row=193, column=43)] : (class_block)
+                                ( [Point(row=193, column=30) -> Point(row=193, column=31)] : (
+                                identifier [Point(row=193, column=31) -> Point(row=193, column=42)] : class_block
+                                ) [Point(row=193, column=42) -> Point(row=193, column=43)] : )
+                    expression_statement [Point(row=194, column=8) -> Point(row=194, column=43)] : builder.add(Return(builder.self()))
+                        call [Point(row=194, column=8) -> Point(row=194, column=43)] : builder.add(Return(builder.self()))
+                            attribute [Point(row=194, column=8) -> Point(row=194, column=19)] : builder.add
+                                identifier [Point(row=194, column=8) -> Point(row=194, column=15)] : builder
+                                . [Point(row=194, column=15) -> Point(row=194, column=16)] : .
+                                identifier [Point(row=194, column=16) -> Point(row=194, column=19)] : add
+                            argument_list [Point(row=194, column=19) -> Point(row=194, column=43)] : (Return(builder.self()))
+                                ( [Point(row=194, column=19) -> Point(row=194, column=20)] : (
+                                call [Point(row=194, column=20) -> Point(row=194, column=42)] : Return(builder.self())
+                                    identifier [Point(row=194, column=20) -> Point(row=194, column=26)] : Return
+                                    argument_list [Point(row=194, column=26) -> Point(row=194, column=42)] : (builder.self())
+                                        ( [Point(row=194, column=26) -> Point(row=194, column=27)] : (
+                                        call [Point(row=194, column=27) -> Point(row=194, column=41)] : builder.self()
+                                            attribute [Point(row=194, column=27) -> Point(row=194, column=39)] : builder.self
+                                                identifier [Point(row=194, column=27) -> Point(row=194, column=34)] : builder
+                                                . [Point(row=194, column=34) -> Point(row=194, column=35)] : .
+                                                identifier [Point(row=194, column=35) -> Point(row=194, column=39)] : self
+                                            argument_list [Point(row=194, column=39) -> Point(row=194, column=41)] : ()
+                                                ( [Point(row=194, column=39) -> Point(row=194, column=40)] : (
+                                                ) [Point(row=194, column=40) -> Point(row=194, column=41)] : )
+                                        ) [Point(row=194, column=41) -> Point(row=194, column=42)] : )
+                                ) [Point(row=194, column=42) -> Point(row=194, column=43)] : )
+                    expression_statement [Point(row=196, column=8) -> Point(row=196, column=46)] : builder.activate_block(instance_block)
+                        call [Point(row=196, column=8) -> Point(row=196, column=46)] : builder.activate_block(instance_block)
+                            attribute [Point(row=196, column=8) -> Point(row=196, column=30)] : builder.activate_block
+                                identifier [Point(row=196, column=8) -> Point(row=196, column=15)] : builder
+                                . [Point(row=196, column=15) -> Point(row=196, column=16)] : .
+                                identifier [Point(row=196, column=16) -> Point(row=196, column=30)] : activate_block
+                            argument_list [Point(row=196, column=30) -> Point(row=196, column=46)] : (instance_block)
+                                ( [Point(row=196, column=30) -> Point(row=196, column=31)] : (
+                                identifier [Point(row=196, column=31) -> Point(row=196, column=45)] : instance_block
+                                ) [Point(row=196, column=45) -> Point(row=196, column=46)] : )
+                    expression_statement [Point(row=197, column=8) -> Point(row=199, column=9)] : builder.add(\n            Return(builder.call_c(me...
+                        call [Point(row=197, column=8) -> Point(row=199, column=9)] : builder.add(\n            Return(builder.call_c(me...
+                            attribute [Point(row=197, column=8) -> Point(row=197, column=19)] : builder.add
+                                identifier [Point(row=197, column=8) -> Point(row=197, column=15)] : builder
+                                . [Point(row=197, column=15) -> Point(row=197, column=16)] : .
+                                identifier [Point(row=197, column=16) -> Point(row=197, column=19)] : add
+                            argument_list [Point(row=197, column=19) -> Point(row=199, column=9)] : (\n            Return(builder.call_c(method_new_op...
+                                ( [Point(row=197, column=19) -> Point(row=197, column=20)] : (
+                                call [Point(row=198, column=12) -> Point(row=198, column=97)] : Return(builder.call_c(method_new_op, [builder.self...
+                                    identifier [Point(row=198, column=12) -> Point(row=198, column=18)] : Return
+                                    argument_list [Point(row=198, column=18) -> Point(row=198, column=97)] : (builder.call_c(method_new_op, [builder.self(), bu...
+                                        ( [Point(row=198, column=18) -> Point(row=198, column=19)] : (
+                                        call [Point(row=198, column=19) -> Point(row=198, column=96)] : builder.call_c(method_new_op, [builder.self(), bui...
+                                            attribute [Point(row=198, column=19) -> Point(row=198, column=33)] : builder.call_c
+                                                identifier [Point(row=198, column=19) -> Point(row=198, column=26)] : builder
+                                                . [Point(row=198, column=26) -> Point(row=198, column=27)] : .
+                                                identifier [Point(row=198, column=27) -> Point(row=198, column=33)] : call_c
+                                            argument_list [Point(row=198, column=33) -> Point(row=198, column=96)] : (method_new_op, [builder.self(), builder.read(inst...
+                                                ( [Point(row=198, column=33) -> Point(row=198, column=34)] : (
+                                                identifier [Point(row=198, column=34) -> Point(row=198, column=47)] : method_new_op
+                                                , [Point(row=198, column=47) -> Point(row=198, column=48)] : ,
+                                                list [Point(row=198, column=49) -> Point(row=198, column=89)] : [builder.self(), builder.read(instance)]
+                                                    [ [Point(row=198, column=49) -> Point(row=198, column=50)] : [
+                                                    call [Point(row=198, column=50) -> Point(row=198, column=64)] : builder.self()
+                                                        attribute [Point(row=198, column=50) -> Point(row=198, column=62)] : builder.self
+                                                            identifier [Point(row=198, column=50) -> Point(row=198, column=57)] : builder
+                                                            . [Point(row=198, column=57) -> Point(row=198, column=58)] : .
+                                                            identifier [Point(row=198, column=58) -> Point(row=198, column=62)] : self
+                                                        argument_list [Point(row=198, column=62) -> Point(row=198, column=64)] : ()
+                                                            ( [Point(row=198, column=62) -> Point(row=198, column=63)] : (
+                                                            ) [Point(row=198, column=63) -> Point(row=198, column=64)] : )
+                                                    , [Point(row=198, column=64) -> Point(row=198, column=65)] : ,
+                                                    call [Point(row=198, column=66) -> Point(row=198, column=88)] : builder.read(instance)
+                                                        attribute [Point(row=198, column=66) -> Point(row=198, column=78)] : builder.read
+                                                            identifier [Point(row=198, column=66) -> Point(row=198, column=73)] : builder
+                                                            . [Point(row=198, column=73) -> Point(row=198, column=74)] : .
+                                                            identifier [Point(row=198, column=74) -> Point(row=198, column=78)] : read
+                                                        argument_list [Point(row=198, column=78) -> Point(row=198, column=88)] : (instance)
+                                                            ( [Point(row=198, column=78) -> Point(row=198, column=79)] : (
+                                                            identifier [Point(row=198, column=79) -> Point(row=198, column=87)] : instance
+                                                            ) [Point(row=198, column=87) -> Point(row=198, column=88)] : )
+                                                    ] [Point(row=198, column=88) -> Point(row=198, column=89)] : ]
+                                                , [Point(row=198, column=89) -> Point(row=198, column=90)] : ,
+                                                identifier [Point(row=198, column=91) -> Point(row=198, column=95)] : line
+                                                ) [Point(row=198, column=95) -> Point(row=198, column=96)] : )
+                                        ) [Point(row=198, column=96) -> Point(row=198, column=97)] : )
+                                ) [Point(row=199, column=8) -> Point(row=199, column=9)] : )
+    function_definition [Point(row=202, column=0) -> Point(row=243, column=19)] : def instantiate_callable_class(builder: IRBuilder,...
+        def [Point(row=202, column=0) -> Point(row=202, column=3)] : def
+        identifier [Point(row=202, column=4) -> Point(row=202, column=30)] : instantiate_callable_class
+        parameters [Point(row=202, column=30) -> Point(row=202, column=69)] : (builder: IRBuilder, fn_info: FuncInfo)
+            ( [Point(row=202, column=30) -> Point(row=202, column=31)] : (
+            typed_parameter [Point(row=202, column=31) -> Point(row=202, column=49)] : builder: IRBuilder
+                identifier [Point(row=202, column=31) -> Point(row=202, column=38)] : builder
+                : [Point(row=202, column=38) -> Point(row=202, column=39)] : :
+                type [Point(row=202, column=40) -> Point(row=202, column=49)] : IRBuilder
+                    identifier [Point(row=202, column=40) -> Point(row=202, column=49)] : IRBuilder
+            , [Point(row=202, column=49) -> Point(row=202, column=50)] : ,
+            typed_parameter [Point(row=202, column=51) -> Point(row=202, column=68)] : fn_info: FuncInfo
+                identifier [Point(row=202, column=51) -> Point(row=202, column=58)] : fn_info
+                : [Point(row=202, column=58) -> Point(row=202, column=59)] : :
+                type [Point(row=202, column=60) -> Point(row=202, column=68)] : FuncInfo
+                    identifier [Point(row=202, column=60) -> Point(row=202, column=68)] : FuncInfo
+            ) [Point(row=202, column=68) -> Point(row=202, column=69)] : )
+        -> [Point(row=202, column=70) -> Point(row=202, column=72)] : ->
+        type [Point(row=202, column=73) -> Point(row=202, column=78)] : Value
+            identifier [Point(row=202, column=73) -> Point(row=202, column=78)] : Value
+        : [Point(row=202, column=78) -> Point(row=202, column=79)] : :
+        block [Point(row=203, column=4) -> Point(row=243, column=19)] : """Create an instance of a callable class for a fu...
+            expression_statement [Point(row=203, column=4) -> Point(row=210, column=7)] : """Create an instance of a callable class for a fu...
+                string [Point(row=203, column=4) -> Point(row=210, column=7)] : """Create an instance of a callable class for a fu...
+                    string_start [Point(row=203, column=4) -> Point(row=203, column=7)] : """
+                    string_content [Point(row=203, column=7) -> Point(row=210, column=4)] : Create an instance of a callable class for a funct...
+                    string_end [Point(row=210, column=4) -> Point(row=210, column=7)] : """
+            expression_statement [Point(row=211, column=4) -> Point(row=211, column=25)] : fitem = fn_info.fitem
+                assignment [Point(row=211, column=4) -> Point(row=211, column=25)] : fitem = fn_info.fitem
+                    identifier [Point(row=211, column=4) -> Point(row=211, column=9)] : fitem
+                    = [Point(row=211, column=10) -> Point(row=211, column=11)] : =
+                    attribute [Point(row=211, column=12) -> Point(row=211, column=25)] : fn_info.fitem
+                        identifier [Point(row=211, column=12) -> Point(row=211, column=19)] : fn_info
+                        . [Point(row=211, column=19) -> Point(row=211, column=20)] : .
+                        identifier [Point(row=211, column=20) -> Point(row=211, column=25)] : fitem
+            expression_statement [Point(row=212, column=4) -> Point(row=212, column=80)] : func_reg = builder.add(Call(fn_info.callable_class...
+                assignment [Point(row=212, column=4) -> Point(row=212, column=80)] : func_reg = builder.add(Call(fn_info.callable_class...
+                    identifier [Point(row=212, column=4) -> Point(row=212, column=12)] : func_reg
+                    = [Point(row=212, column=13) -> Point(row=212, column=14)] : =
+                    call [Point(row=212, column=15) -> Point(row=212, column=80)] : builder.add(Call(fn_info.callable_class.ir.ctor, [...
+                        attribute [Point(row=212, column=15) -> Point(row=212, column=26)] : builder.add
+                            identifier [Point(row=212, column=15) -> Point(row=212, column=22)] : builder
+                            . [Point(row=212, column=22) -> Point(row=212, column=23)] : .
+                            identifier [Point(row=212, column=23) -> Point(row=212, column=26)] : add
+                        argument_list [Point(row=212, column=26) -> Point(row=212, column=80)] : (Call(fn_info.callable_class.ir.ctor, [], fitem.li...
+                            ( [Point(row=212, column=26) -> Point(row=212, column=27)] : (
+                            call [Point(row=212, column=27) -> Point(row=212, column=79)] : Call(fn_info.callable_class.ir.ctor, [], fitem.lin...
+                                identifier [Point(row=212, column=27) -> Point(row=212, column=31)] : Call
+                                argument_list [Point(row=212, column=31) -> Point(row=212, column=79)] : (fn_info.callable_class.ir.ctor, [], fitem.line)
+                                    ( [Point(row=212, column=31) -> Point(row=212, column=32)] : (
+                                    attribute [Point(row=212, column=32) -> Point(row=212, column=62)] : fn_info.callable_class.ir.ctor
+                                        attribute [Point(row=212, column=32) -> Point(row=212, column=57)] : fn_info.callable_class.ir
+                                            attribute [Point(row=212, column=32) -> Point(row=212, column=54)] : fn_info.callable_class
+                                                identifier [Point(row=212, column=32) -> Point(row=212, column=39)] : fn_info
+                                                . [Point(row=212, column=39) -> Point(row=212, column=40)] : .
+                                                identifier [Point(row=212, column=40) -> Point(row=212, column=54)] : callable_class
+                                            . [Point(row=212, column=54) -> Point(row=212, column=55)] : .
+                                            identifier [Point(row=212, column=55) -> Point(row=212, column=57)] : ir
+                                        . [Point(row=212, column=57) -> Point(row=212, column=58)] : .
+                                        identifier [Point(row=212, column=58) -> Point(row=212, column=62)] : ctor
+                                    , [Point(row=212, column=62) -> Point(row=212, column=63)] : ,
+                                    list [Point(row=212, column=64) -> Point(row=212, column=66)] : []
+                                        [ [Point(row=212, column=64) -> Point(row=212, column=65)] : [
+                                        ] [Point(row=212, column=65) -> Point(row=212, column=66)] : ]
+                                    , [Point(row=212, column=66) -> Point(row=212, column=67)] : ,
+                                    attribute [Point(row=212, column=68) -> Point(row=212, column=78)] : fitem.line
+                                        identifier [Point(row=212, column=68) -> Point(row=212, column=73)] : fitem
+                                        . [Point(row=212, column=73) -> Point(row=212, column=74)] : .
+                                        identifier [Point(row=212, column=74) -> Point(row=212, column=78)] : line
+                                    ) [Point(row=212, column=78) -> Point(row=212, column=79)] : )
+                            ) [Point(row=212, column=79) -> Point(row=212, column=80)] : )
+            comment [Point(row=214, column=4) -> Point(row=214, column=69)] : # Set the environment attribute of the callable cl...
+            comment [Point(row=215, column=4) -> Point(row=215, column=68)] : # the environment class defined in the callable cl...
+            comment [Point(row=216, column=4) -> Point(row=216, column=65)] : # outer scope. Note that there are three possible ...
+            comment [Point(row=217, column=4) -> Point(row=217, column=72)] : # class registers we may use. This depends on what...
+            comment [Point(row=218, column=4) -> Point(row=218, column=27)] : # (parent) function is:
+            comment [Point(row=219, column=4) -> Point(row=219, column=5)] : #
+            comment [Point(row=220, column=4) -> Point(row=220, column=61)] : # - A nested function: the callable class is insta...
+            comment [Point(row=221, column=4) -> Point(row=221, column=71)] : #   from the current callable class' '__call__' fu...
+            comment [Point(row=222, column=4) -> Point(row=222, column=57)] : #   the callable class' environment register is us...
+            comment [Point(row=223, column=4) -> Point(row=223, column=64)] : # - A generator function: the callable class is in...
+            comment [Point(row=224, column=4) -> Point(row=224, column=72)] : #   from the '__next__' method of the generator cl...
+            comment [Point(row=225, column=4) -> Point(row=225, column=51)] : #   environment of the generator class is used.
+            comment [Point(row=226, column=4) -> Point(row=226, column=71)] : # - Regular function or comprehension scope: we us...
+            comment [Point(row=227, column=4) -> Point(row=227, column=70)] : #   of the original function. Comprehension scopes...
+            comment [Point(row=228, column=4) -> Point(row=228, column=71)] : #   callable class), so they fall into this case d...
+            expression_statement [Point(row=229, column=4) -> Point(row=229, column=23)] : curr_env_reg = None
+                assignment [Point(row=229, column=4) -> Point(row=229, column=23)] : curr_env_reg = None
+                    identifier [Point(row=229, column=4) -> Point(row=229, column=16)] : curr_env_reg
+                    = [Point(row=229, column=17) -> Point(row=229, column=18)] : =
+                    none [Point(row=229, column=19) -> Point(row=229, column=23)] : None
+            if_statement [Point(row=230, column=4) -> Point(row=235, column=51)] : if builder.fn_info.is_generator:\n        curr_env...
+                if [Point(row=230, column=4) -> Point(row=230, column=6)] : if
+                attribute [Point(row=230, column=7) -> Point(row=230, column=35)] : builder.fn_info.is_generator
+                    attribute [Point(row=230, column=7) -> Point(row=230, column=22)] : builder.fn_info
+                        identifier [Point(row=230, column=7) -> Point(row=230, column=14)] : builder
+                        . [Point(row=230, column=14) -> Point(row=230, column=15)] : .
+                        identifier [Point(row=230, column=15) -> Point(row=230, column=22)] : fn_info
+                    . [Point(row=230, column=22) -> Point(row=230, column=23)] : .
+                    identifier [Point(row=230, column=23) -> Point(row=230, column=35)] : is_generator
+                : [Point(row=230, column=35) -> Point(row=230, column=36)] : :
+                block [Point(row=231, column=8) -> Point(row=231, column=67)] : curr_env_reg = builder.fn_info.generator_class.cur...
+                    expression_statement [Point(row=231, column=8) -> Point(row=231, column=67)] : curr_env_reg = builder.fn_info.generator_class.cur...
+                        assignment [Point(row=231, column=8) -> Point(row=231, column=67)] : curr_env_reg = builder.fn_info.generator_class.cur...
+                            identifier [Point(row=231, column=8) -> Point(row=231, column=20)] : curr_env_reg
+                            = [Point(row=231, column=21) -> Point(row=231, column=22)] : =
+                            attribute [Point(row=231, column=23) -> Point(row=231, column=67)] : builder.fn_info.generator_class.curr_env_reg
+                                attribute [Point(row=231, column=23) -> Point(row=231, column=54)] : builder.fn_info.generator_class
+                                    attribute [Point(row=231, column=23) -> Point(row=231, column=38)] : builder.fn_info
+                                        identifier [Point(row=231, column=23) -> Point(row=231, column=30)] : builder
+                                        . [Point(row=231, column=30) -> Point(row=231, column=31)] : .
+                                        identifier [Point(row=231, column=31) -> Point(row=231, column=38)] : fn_info
+                                    . [Point(row=231, column=38) -> Point(row=231, column=39)] : .
+                                    identifier [Point(row=231, column=39) -> Point(row=231, column=54)] : generator_class
+                                . [Point(row=231, column=54) -> Point(row=231, column=55)] : .
+                                identifier [Point(row=231, column=55) -> Point(row=231, column=67)] : curr_env_reg
+                elif_clause [Point(row=232, column=4) -> Point(row=233, column=66)] : elif builder.fn_info.is_nested and not builder.fn_...
+                    elif [Point(row=232, column=4) -> Point(row=232, column=8)] : elif
+                    boolean_operator [Point(row=232, column=9) -> Point(row=232, column=81)] : builder.fn_info.is_nested and not builder.fn_info....
+                        attribute [Point(row=232, column=9) -> Point(row=232, column=34)] : builder.fn_info.is_nested
+                            attribute [Point(row=232, column=9) -> Point(row=232, column=24)] : builder.fn_info
+                                identifier [Point(row=232, column=9) -> Point(row=232, column=16)] : builder
+                                . [Point(row=232, column=16) -> Point(row=232, column=17)] : .
+                                identifier [Point(row=232, column=17) -> Point(row=232, column=24)] : fn_info
+                            . [Point(row=232, column=24) -> Point(row=232, column=25)] : .
+                            identifier [Point(row=232, column=25) -> Point(row=232, column=34)] : is_nested
+                        and [Point(row=232, column=35) -> Point(row=232, column=38)] : and
+                        not_operator [Point(row=232, column=39) -> Point(row=232, column=81)] : not builder.fn_info.is_comprehension_scope
+                            not [Point(row=232, column=39) -> Point(row=232, column=42)] : not
+                            attribute [Point(row=232, column=43) -> Point(row=232, column=81)] : builder.fn_info.is_comprehension_scope
+                                attribute [Point(row=232, column=43) -> Point(row=232, column=58)] : builder.fn_info
+                                    identifier [Point(row=232, column=43) -> Point(row=232, column=50)] : builder
+                                    . [Point(row=232, column=50) -> Point(row=232, column=51)] : .
+                                    identifier [Point(row=232, column=51) -> Point(row=232, column=58)] : fn_info
+                                . [Point(row=232, column=58) -> Point(row=232, column=59)] : .
+                                identifier [Point(row=232, column=59) -> Point(row=232, column=81)] : is_comprehension_scope
+                    : [Point(row=232, column=81) -> Point(row=232, column=82)] : :
+                    block [Point(row=233, column=8) -> Point(row=233, column=66)] : curr_env_reg = builder.fn_info.callable_class.curr...
+                        expression_statement [Point(row=233, column=8) -> Point(row=233, column=66)] : curr_env_reg = builder.fn_info.callable_class.curr...
+                            assignment [Point(row=233, column=8) -> Point(row=233, column=66)] : curr_env_reg = builder.fn_info.callable_class.curr...
+                                identifier [Point(row=233, column=8) -> Point(row=233, column=20)] : curr_env_reg
+                                = [Point(row=233, column=21) -> Point(row=233, column=22)] : =
+                                attribute [Point(row=233, column=23) -> Point(row=233, column=66)] : builder.fn_info.callable_class.curr_env_reg
+                                    attribute [Point(row=233, column=23) -> Point(row=233, column=53)] : builder.fn_info.callable_class
+                                        attribute [Point(row=233, column=23) -> Point(row=233, column=38)] : builder.fn_info
+                                            identifier [Point(row=233, column=23) -> Point(row=233, column=30)] : builder
+                                            . [Point(row=233, column=30) -> Point(row=233, column=31)] : .
+                                            identifier [Point(row=233, column=31) -> Point(row=233, column=38)] : fn_info
+                                        . [Point(row=233, column=38) -> Point(row=233, column=39)] : .
+                                        identifier [Point(row=233, column=39) -> Point(row=233, column=53)] : callable_class
+                                    . [Point(row=233, column=53) -> Point(row=233, column=54)] : .
+                                    identifier [Point(row=233, column=54) -> Point(row=233, column=66)] : curr_env_reg
+                elif_clause [Point(row=234, column=4) -> Point(row=235, column=51)] : elif builder.fn_info.contains_nested:\n        cur...
+                    elif [Point(row=234, column=4) -> Point(row=234, column=8)] : elif
+                    attribute [Point(row=234, column=9) -> Point(row=234, column=40)] : builder.fn_info.contains_nested
+                        attribute [Point(row=234, column=9) -> Point(row=234, column=24)] : builder.fn_info
+                            identifier [Point(row=234, column=9) -> Point(row=234, column=16)] : builder
+                            . [Point(row=234, column=16) -> Point(row=234, column=17)] : .
+                            identifier [Point(row=234, column=17) -> Point(row=234, column=24)] : fn_info
+                        . [Point(row=234, column=24) -> Point(row=234, column=25)] : .
+                        identifier [Point(row=234, column=25) -> Point(row=234, column=40)] : contains_nested
+                    : [Point(row=234, column=40) -> Point(row=234, column=41)] : :
+                    block [Point(row=235, column=8) -> Point(row=235, column=51)] : curr_env_reg = builder.fn_info.curr_env_reg
+                        expression_statement [Point(row=235, column=8) -> Point(row=235, column=51)] : curr_env_reg = builder.fn_info.curr_env_reg
+                            assignment [Point(row=235, column=8) -> Point(row=235, column=51)] : curr_env_reg = builder.fn_info.curr_env_reg
+                                identifier [Point(row=235, column=8) -> Point(row=235, column=20)] : curr_env_reg
+                                = [Point(row=235, column=21) -> Point(row=235, column=22)] : =
+                                attribute [Point(row=235, column=23) -> Point(row=235, column=51)] : builder.fn_info.curr_env_reg
+                                    attribute [Point(row=235, column=23) -> Point(row=235, column=38)] : builder.fn_info
+                                        identifier [Point(row=235, column=23) -> Point(row=235, column=30)] : builder
+                                        . [Point(row=235, column=30) -> Point(row=235, column=31)] : .
+                                        identifier [Point(row=235, column=31) -> Point(row=235, column=38)] : fn_info
+                                    . [Point(row=235, column=38) -> Point(row=235, column=39)] : .
+                                    identifier [Point(row=235, column=39) -> Point(row=235, column=51)] : curr_env_reg
+            if_statement [Point(row=236, column=4) -> Point(row=237, column=79)] : if curr_env_reg:\n        builder.add(SetAttr(func...
+                if [Point(row=236, column=4) -> Point(row=236, column=6)] : if
+                identifier [Point(row=236, column=7) -> Point(row=236, column=19)] : curr_env_reg
+                : [Point(row=236, column=19) -> Point(row=236, column=20)] : :
+                block [Point(row=237, column=8) -> Point(row=237, column=79)] : builder.add(SetAttr(func_reg, ENV_ATTR_NAME, curr_...
+                    expression_statement [Point(row=237, column=8) -> Point(row=237, column=79)] : builder.add(SetAttr(func_reg, ENV_ATTR_NAME, curr_...
+                        call [Point(row=237, column=8) -> Point(row=237, column=79)] : builder.add(SetAttr(func_reg, ENV_ATTR_NAME, curr_...
+                            attribute [Point(row=237, column=8) -> Point(row=237, column=19)] : builder.add
+                                identifier [Point(row=237, column=8) -> Point(row=237, column=15)] : builder
+                                . [Point(row=237, column=15) -> Point(row=237, column=16)] : .
+                                identifier [Point(row=237, column=16) -> Point(row=237, column=19)] : add
+                            argument_list [Point(row=237, column=19) -> Point(row=237, column=79)] : (SetAttr(func_reg, ENV_ATTR_NAME, curr_env_reg, fi...
+                                ( [Point(row=237, column=19) -> Point(row=237, column=20)] : (
+                                call [Point(row=237, column=20) -> Point(row=237, column=78)] : SetAttr(func_reg, ENV_ATTR_NAME, curr_env_reg, fit...
+                                    identifier [Point(row=237, column=20) -> Point(row=237, column=27)] : SetAttr
+                                    argument_list [Point(row=237, column=27) -> Point(row=237, column=78)] : (func_reg, ENV_ATTR_NAME, curr_env_reg, fitem.line...
+                                        ( [Point(row=237, column=27) -> Point(row=237, column=28)] : (
+                                        identifier [Point(row=237, column=28) -> Point(row=237, column=36)] : func_reg
+                                        , [Point(row=237, column=36) -> Point(row=237, column=37)] : ,
+                                        identifier [Point(row=237, column=38) -> Point(row=237, column=51)] : ENV_ATTR_NAME
+                                        , [Point(row=237, column=51) -> Point(row=237, column=52)] : ,
+                                        identifier [Point(row=237, column=53) -> Point(row=237, column=65)] : curr_env_reg
+                                        , [Point(row=237, column=65) -> Point(row=237, column=66)] : ,
+                                        attribute [Point(row=237, column=67) -> Point(row=237, column=77)] : fitem.line
+                                            identifier [Point(row=237, column=67) -> Point(row=237, column=72)] : fitem
+                                            . [Point(row=237, column=72) -> Point(row=237, column=73)] : .
+                                            identifier [Point(row=237, column=73) -> Point(row=237, column=77)] : line
+                                        ) [Point(row=237, column=77) -> Point(row=237, column=78)] : )
+                                ) [Point(row=237, column=78) -> Point(row=237, column=79)] : )
+            comment [Point(row=238, column=4) -> Point(row=238, column=88)] : # Initialize function wrapper for callable classes...
+            comment [Point(row=239, column=4) -> Point(row=239, column=96)] : # each instance of a callable class needs its own ...
+            comment [Point(row=240, column=4) -> Point(row=240, column=29)] : # inside other functions.
+            if_statement [Point(row=241, column=4) -> Point(row=242, column=82)] : if not fn_info.in_non_ext and fn_info.is_coroutine...
+                if [Point(row=241, column=4) -> Point(row=241, column=6)] : if
+                boolean_operator [Point(row=241, column=7) -> Point(row=241, column=54)] : not fn_info.in_non_ext and fn_info.is_coroutine
+                    not_operator [Point(row=241, column=7) -> Point(row=241, column=29)] : not fn_info.in_non_ext
+                        not [Point(row=241, column=7) -> Point(row=241, column=10)] : not
+                        attribute [Point(row=241, column=11) -> Point(row=241, column=29)] : fn_info.in_non_ext
+                            identifier [Point(row=241, column=11) -> Point(row=241, column=18)] : fn_info
+                            . [Point(row=241, column=18) -> Point(row=241, column=19)] : .
+                            identifier [Point(row=241, column=19) -> Point(row=241, column=29)] : in_non_ext
+                    and [Point(row=241, column=30) -> Point(row=241, column=33)] : and
+                    attribute [Point(row=241, column=34) -> Point(row=241, column=54)] : fn_info.is_coroutine
+                        identifier [Point(row=241, column=34) -> Point(row=241, column=41)] : fn_info
+                        . [Point(row=241, column=41) -> Point(row=241, column=42)] : .
+                        identifier [Point(row=241, column=42) -> Point(row=241, column=54)] : is_coroutine
+                : [Point(row=241, column=54) -> Point(row=241, column=55)] : :
+                block [Point(row=242, column=8) -> Point(row=242, column=82)] : builder.add_coroutine_setup_call(fn_info.callable_...
+                    expression_statement [Point(row=242, column=8) -> Point(row=242, column=82)] : builder.add_coroutine_setup_call(fn_info.callable_...
+                        call [Point(row=242, column=8) -> Point(row=242, column=82)] : builder.add_coroutine_setup_call(fn_info.callable_...
+                            attribute [Point(row=242, column=8) -> Point(row=242, column=40)] : builder.add_coroutine_setup_call
+                                identifier [Point(row=242, column=8) -> Point(row=242, column=15)] : builder
+                                . [Point(row=242, column=15) -> Point(row=242, column=16)] : .
+                                identifier [Point(row=242, column=16) -> Point(row=242, column=40)] : add_coroutine_setup_call
+                            argument_list [Point(row=242, column=40) -> Point(row=242, column=82)] : (fn_info.callable_class.ir.name, func_reg)
+                                ( [Point(row=242, column=40) -> Point(row=242, column=41)] : (
+                                attribute [Point(row=242, column=41) -> Point(row=242, column=71)] : fn_info.callable_class.ir.name
+                                    attribute [Point(row=242, column=41) -> Point(row=242, column=66)] : fn_info.callable_class.ir
+                                        attribute [Point(row=242, column=41) -> Point(row=242, column=63)] : fn_info.callable_class
+                                            identifier [Point(row=242, column=41) -> Point(row=242, column=48)] : fn_info
+                                            . [Point(row=242, column=48) -> Point(row=242, column=49)] : .
+                                            identifier [Point(row=242, column=49) -> Point(row=242, column=63)] : callable_class
+                                        . [Point(row=242, column=63) -> Point(row=242, column=64)] : .
+                                        identifier [Point(row=242, column=64) -> Point(row=242, column=66)] : ir
+                                    . [Point(row=242, column=66) -> Point(row=242, column=67)] : .
+                                    identifier [Point(row=242, column=67) -> Point(row=242, column=71)] : name
+                                , [Point(row=242, column=71) -> Point(row=242, column=72)] : ,
+                                identifier [Point(row=242, column=73) -> Point(row=242, column=81)] : func_reg
+                                ) [Point(row=242, column=81) -> Point(row=242, column=82)] : )
+            return_statement [Point(row=243, column=4) -> Point(row=243, column=19)] : return func_reg
+                return [Point(row=243, column=4) -> Point(row=243, column=10)] : return
+                identifier [Point(row=243, column=11) -> Point(row=243, column=19)] : func_reg
