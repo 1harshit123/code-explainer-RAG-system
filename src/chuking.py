@@ -7,7 +7,7 @@ Output : chunks.json  — list of RAG-ready chunk dicts, one per function/class
 """
 
 
-
+ 
 from tree_sitter import Language, Parser
 import tree_sitter_python
 import json
@@ -20,9 +20,6 @@ from pathlib import Path
 PY_LANGUAGE = Language(tree_sitter_python.language())
 parser = Parser(PY_LANGUAGE)
 
-with open("demo.py", "r", encoding="utf-8") as f:
-        source_code = f.read()
-# ── 2. Core extractor ────────────────────────────────────────────────────────
 
 def extract_chunks(source_code: str, filepath: str) -> list[dict]:
     """
@@ -194,23 +191,3 @@ def process_repo(repo_path: str) -> list[dict]:
 
 # ── 6. Main ──────────────────────────────────────────────────────────────────
 
-def chuking():
-    import sys
-    repo_path = sys.argv[1] if len(sys.argv) > 1 else "."
-
-    print(f"Processing repo: {repo_path}")
-    chunks = process_repo(repo_path)
-    print(f"Extracted {len(chunks)} chunks")
-
-    out_path = "chunks.json"
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(chunks, f, indent=2, ensure_ascii=False)
-
-    print(f"Saved to {out_path}")
-
-    # quick preview
-    if chunks:
-        print("\n── Sample chunk (embed_text field) ──")
-        print(chunks[0]["embed_text"][:600])
-
-# Exporting chuking function
