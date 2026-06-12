@@ -117,6 +117,21 @@ def _get_signature(node, src_bytes: bytes) -> str:
     first_line = raw.split("\n")[0].strip()
     return first_line
 
+def _get_variables(node, src_bytes: bytes) -> list[str]:
+    """All variable names assigned in this node."""
+    variables = set()
+    _collect_variables(node, src_bytes, variables)
+    return sorted(variables)
+
+def _collect_variables(node, src_bytes: bytes, variables: set):
+    if node.type == "assignment":
+        target_node = node.child_by_field_name("left")
+        if target_node and target_node.type == "identifier":
+            name = src_bytes[target_node.start_byte:target_node.end_byte].decode("utf-8", errors="ignore")
+            variables.add(name)
+    for child in node.children:
+        _collect_variables(child, src_bytes, variables)
+
 
 def _get_docstring(node, src_bytes: bytes) -> str:
     """First string literal inside the function/class body, if any."""

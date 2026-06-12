@@ -2,3 +2,4 @@ requests
 tree-sitter
 tree-sitter-python
 GitPython
+chromadb
