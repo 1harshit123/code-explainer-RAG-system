@@ -3,6 +3,7 @@ import os
 import chromadb
 import json
 
+GLOBAL_EMBEDDING_ENGINE = embedding_functions.DefaultEmbeddingFunction()
 
 def chunk_embedding(chunk_path: str, vector_path: str):
     """Embeds the chunks using chromadb's inbuilt embedding function and saves the vector in vector store"""
@@ -24,11 +25,18 @@ def chunk_embedding(chunk_path: str, vector_path: str):
     default_ef = embedding_functions.DefaultEmbeddingFunction()
 
     # 5. Create or get your vector collection database table
+
+    
     collection = client.get_or_create_collection(
         name="codebase_rag_collection",
         embedding_function=default_ef,
         metadata={"hnsw:space": "cosine"} # Using cosine similarity for code matching
     )
+
+    if collection.count() > 0:
+        print(f"Collection already exists with {collection.count()} records. Skipping creation.")
+        return collection
+    
 
     # 6. Extract arrays for bulk insertion
     ids = []
@@ -62,13 +70,78 @@ def chunk_embedding(chunk_path: str, vector_path: str):
     
     print(f"Success! Database populated. Total indexed vector records: {collection.count()}")
 
+    return collection
+
+
+def search_query(query_text: str, vector_path: str, top_k: int = 5):
+    """
+    TASK REQUIREMENT: Operates directly on the stored vector_store folder path.
+    Does NOT depend on the 'collection' return token from the embedding function.
+    """
+    # Guard: Ensure the vector directory exists before trying to open it
+    if not os.path.exists(vector_path):
+        print(f"Search Error: Vector store directory '{vector_path}' does not exist.")
+        return None
+
+    # Connect to the physical storage bins on disk independently
+    client = chromadb.PersistentClient(path=vector_path)
+    
+    try:
+        collection = client.get_collection(
+            name="codebase_rag_collection",
+            embedding_function=GLOBAL_EMBEDDING_ENGINE
+        )
+    except Exception as e:
+        print(f"Search Error: Could not find indexed collection on disk. Details: {e}")
+        return None
+
+    print(f"[Standalone Search] Querying database directly for: '{query_text}'")
+    results = collection.query(
+        query_texts=[query_text],
+        n_results=top_k
+    )
+    return results
+
 
 if __name__ == "__main__":
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     CHUNK_PATH = os.path.join(BASE_DIR, "../../chunks.json")
     VECTOR_PATH = os.path.join(BASE_DIR, "../../vector_store")    
 
-    chunk_embedding(CHUNK_PATH, VECTOR_PATH)    
+    chunk_embedding(CHUNK_PATH, VECTOR_PATH)
+
+
+    query_text = "How does the function 'foo' work in the codebase?"   
+
+    search_results = search_query(query_text, VECTOR_PATH, top_k=5)
+
+    if search_results and 'ids' in search_results and search_results['ids'][0]:
+        print("\n" + "="*80)
+        print(f" VECTOR STORE RETRIEVAL MATCHES FOR: '{query_text}'")
+        print("="*80)
+
+        # Unpack the parallel arrays safely using standard indexing positioning
+        match_ids = search_results['ids'][0]
+        match_docs = search_results['documents'][0]
+        match_meta = search_results['metadatas'][0]
+        match_dist = search_results['distances'][0]
+
+        # Iterate through items side-by-side using zip
+        for rank, (id_, doc, meta, distance) in enumerate(zip(match_ids, match_docs, match_meta, match_dist), 1):
+            print(f"\n[RANK {rank}] MATCH ID: {id_}")
+            print(f"  Filepath : {meta.get('filepath')}")
+            print(f"  Component: {meta.get('type').upper()} | Class: {meta.get('parent_class')}")
+            print(f"  Range    : Lines {meta.get('start_line')} to {meta.get('end_line')}")
+            print(f"  Distance : {distance:.4f} (Cosine Closeness)")
+            print(f"  " + "-"*40)
+            
+            # Print the implementation block indented for visual alignment
+            print("  SOURCE IMPLEMENTATION EXTRACTION:")
+            indented_source = "\n".join(f"    {line}" for line in doc.splitlines())
+            print(indented_source)
+            print("\n" + "_"*80)
+    else:
+        print("\nWarning: No structural matches returned from vector store.")
 
 
 
