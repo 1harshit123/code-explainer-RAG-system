@@ -3,3 +3,10 @@ tree-sitter
 tree-sitter-python
 GitPython
 chromadb
+langchain
+langchain_community
+langchain-groq
+langgraph
+python-dotenv
+langchain-core
+langchain-community

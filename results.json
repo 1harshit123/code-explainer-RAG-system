@@ -1,0 +1,81 @@
+{
+    "ids": [
+        [
+            "tools/check_links.py::main",
+            "tools/check_links.py::extract_links_from_file",
+            "tools/check_links.py::check_all_links",
+            "tools/check_links.py::LinkChecker",
+            "tools/check_links.py::__init__"
+        ]
+    ],
+    "embeddings": null,
+    "documents": [
+        [
+            "File: tools/check_links.py\nName: main\nSignature: def main():\nCalls: LinkChecker, all_links.extend, checker.check_all_links, checker.extract_links_from_file, checker.generate_report, len, print, seen_urls.add, set, unique_links.append\n\nSource code:\ndef main():\n    checker = LinkChecker()\n    \n    # \u4eceREADME\u6587\u4ef6\u63d0\u53d6\u94fe\u63a5 (\u76f8\u5bf9\u4e8e\u9879\u76ee\u6839\u76ee\u5f55)\n    files_to_check = [ROOT_DIR / 'index.md', ROOT_DIR / 'zh-cn.md']\n    all_links = []\n    \n    for filename in files_to_check:\n        print(f\"\u4ece {filename} \u63d0\u53d6\u94fe\u63a5...\")\n        links = checker.extract_links_from_file(filename)\n        all_links.extend(links)\n        print(f\"\u627e\u5230 {len(links)} \u4e2a\u94fe\u63a5\")\n    \n    if not all_links:\n        print(\"\u6ca1\u6709\u627e\u5230\u4efb\u4f55\u94fe\u63a5!\")\n        return\n    \n    # \u53bb\u91cd\n    unique_links = []\n    seen_urls = set()\n    for link in all_links:\n        if link['url'] not in seen_urls:\n            unique_links.append(link)\n            seen_urls.add(link['url'])\n    \n    print(f\"\u53bb\u91cd\u540e\u5171 {len(unique_links)} \u4e2a\u552f\u4e00\u94fe\u63a5\")\n    \n    # \u68c0\u67e5\u94fe\u63a5\n    checker.check_all_links(unique_links)\n    \n    # \u751f\u6210\u62a5\u544a\n    checker.generate_report()",
+            "File: tools/check_links.py\nClass: LinkChecker\nName: extract_links_from_file\nSignature: def extract_links_from_file(self, filename):\nDescription: \u4ecemarkdown\u6587\u4ef6\u4e2d\u63d0\u53d6\u6240\u6709\u5916\u90e8\u94fe\u63a5\nCalls: any, f.read, links.append, open, print, re.findall, str, url.startswith\n\nSource code:\ndef extract_links_from_file(self, filename):\n        \"\"\"\u4ecemarkdown\u6587\u4ef6\u4e2d\u63d0\u53d6\u6240\u6709\u5916\u90e8\u94fe\u63a5\"\"\"\n        filename = str(filename)\n        try:\n            with open(filename, 'r', encoding='utf-8') as f:\n                content = f.read()\n        except Exception as e:\n            print(f\"\u65e0\u6cd5\u8bfb\u53d6\u6587\u4ef6 {filename}: {e}\")\n            return []\n        \n        # \u5339\u914dmarkdown\u94fe\u63a5\u683c\u5f0f [text](url)\n        markdown_links = re.findall(r'\\[([^\\]]*)\\]\\(([^)]+)\\)', content)\n        \n        # \u5339\u914d\u7eaf\u94fe\u63a5\u683c\u5f0f\n        url_pattern = r'https?://[^\\s\\])\\}]+'\n        plain_links = re.findall(url_pattern, content)\n        \n        links = []\n        \n        # \u5904\u7406markdown\u94fe\u63a5\n        for text, url in markdown_links:\n            if url.startswith('http'):\n                links.append({\n                    'text': text,\n                    'url': url,\n                    'file': filename,\n                    'type': 'markdown'\n                })\n        \n        # \u5904\u7406\u7eaf\u94fe\u63a5\n        for url in plain_links:\n            # \u907f\u514d\u91cd\u590d\n            if not any(link['url'] == url for link in links):\n                links.append({\n                    'text': url,\n                    'url': url,\n                    'file': filename,\n                    'type': 'plain'\n                })\n        \n        return links",
+            "File: tools/check_links.py\nClass: LinkChecker\nName: check_all_links\nSignature: def check_all_links(self, links, max_workers=10):\nDescription: \u5e76\u53d1\u68c0\u67e5\u6240\u6709\u94fe\u63a5\nCalls: ThreadPoolExecutor, as_completed, enumerate, executor.submit, future.result, len, print, result.get, status.upper, time.sleep\n\nSource code:\ndef check_all_links(self, links, max_workers=10):\n        \"\"\"\u5e76\u53d1\u68c0\u67e5\u6240\u6709\u94fe\u63a5\"\"\"\n        print(f\"\u5f00\u59cb\u68c0\u67e5 {len(links)} \u4e2a\u94fe\u63a5...\")\n        \n        with ThreadPoolExecutor(max_workers=max_workers) as executor:\n            future_to_link = {executor.submit(self.check_link, link): link for link in links}\n            \n            for i, future in enumerate(as_completed(future_to_link), 1):\n                link = future_to_link[future]\n                try:\n                    result = future.result()\n                    status = result.get('status', 'unknown')\n                    print(f\"[{i}/{len(links)}] {status.upper()}: {result['url']}\")\n                    time.sleep(0.1)\n                except Exception as e:\n                    print(f\"\u68c0\u67e5\u94fe\u63a5\u65f6\u51fa\u9519 {link['url']}: {e}\")",
+            "File: tools/check_links.py\nName: LinkChecker\nSignature: class LinkChecker:\nCalls: REPORTS_DIR.mkdir, ThreadPoolExecutor, any, as_completed, enumerate, executor.submit, f.read, future.result, json.dump, len, links.append, open, print, re.findall, requests.Session\n\nSource code:\nclass LinkChecker:\n    def __init__(self):\n        self.session = requests.Session()\n        self.session.headers.update({\n            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'\n        })\n        self.timeout = 10\n        self.results = {\n            'working': [],\n            'broken': [],\n            'redirect': [],\n            'timeout': [],\n            'unknown': []\n        }\n    \n    def extract_links_from_file(self, filename):\n        \"\"\"\u4ecemarkdown\u6587\u4ef6\u4e2d\u63d0\u53d6\u6240\u6709\u5916\u90e8\u94fe\u63a5\"\"\"\n        filename = str(filename)\n        try:\n            with open(filename, 'r', encoding='utf-8') as f:\n                content = f.read()\n        except Exception as e:\n            print(f\"\u65e0\u6cd5\u8bfb\u53d6\u6587\u4ef6 {filename}: {e}\")\n            return []\n        \n        # \u5339\u914dmarkdown\u94fe\u63a5\u683c\u5f0f [text](url)\n        markdown_links = re.findall(r'\\[([^\\]]*)\\]\\(([^)]+)\\)', content)\n        \n        # \u5339\u914d\u7eaf\u94fe\u63a5\u683c\u5f0f\n        url_pattern = r'https?://[^\\s\\])\\}]+'\n        plain_links = re.findall(url_pattern, content)\n        \n        links = []\n        \n        # \u5904\u7406markdown\u94fe\u63a5\n        for text, url in markdown_links:\n            if url.startswith('http'):\n                links.append({\n                    'text': text,\n                    'url': url,\n                    'file': filename,\n                    'type': 'markdown'\n                })\n        \n        # \u5904\u7406\u7eaf\u94fe\u63a5\n        for url in plain_links:\n            # \u907f\u514d\u91cd\u590d\n            if not any(link['url'] == url for link in links):\n                links.append({\n                    'text': url,\n                    'url': url,\n                    'file': filename,\n                    'type': 'plain'\n                })\n        \n        return links\n    \n    def check_link(self, link):\n        \"\"\"\u68c0\u67e5\u5355\u4e2a\u94fe\u63a5\u7684\u72b6\u6001\"\"\"\n        url = link['url']\n        try:\n            response = self.session.head(url, timeout=self.timeout, allow_redirects=True)\n            status_code = response.status_code\n            \n            if status_code == 200:\n                link['status'] = 'working'\n                link['status_code'] = status_code\n                self.results['working'].append(link)\n            elif 300 <= status_code < 400:\n                link['status'] = 'redirect'\n                link['status_code'] = status_code\n                link['final_url'] = response.url\n                self.results['redirect'].append(link)\n            else:\n                # \u5c1d\u8bd5GET\u8bf7\u6c42\uff0c\u6709\u4e9b\u7f51\u7ad9\u4e0d\u652f\u6301HEAD\n                try:\n                    response = self.session.get(url, timeout=self.timeout)\n                    if response.status_code == 200:\n                        link['status'] = 'working'\n                        link['status_code'] = response.status_code\n                        self.results['working'].append(link)\n                    else:\n                        link['status'] = 'broken'\n                        link['status_code'] = response.status_code\n                        self.results['broken'].append(link)\n                except:\n                    link['status'] = 'broken'\n                    link['status_code'] = status_code\n                    self.results['broken'].append(link)\n        \n        except requests.exceptions.Timeout:\n            link['status'] = 'timeout'\n            link['error'] = 'Request timeout'\n            self.results['timeout'].append(link)\n        \n        except requests.exceptions.RequestException as e:\n            link['status'] = 'unknown'\n            link['error'] = str(e)\n            self.results['unknown'].append(link)\n        \n        return link\n    \n    def check_all_links(self, links, max_workers=10):\n        \"\"\"\u5e76\u53d1\u68c0\u67e5\u6240\u6709\u94fe\u63a5\"\"\"\n        print(f\"\u5f00\u59cb\u68c0\u67e5 {len(links)} \u4e2a\u94fe\u63a5...\")\n        \n        with ThreadPoolExecutor(max_workers=max_workers) as executor:\n            future_to_link = {executor.submit(self.check_link, link): link for link in links}\n            \n            for i, future in enumerate(as_completed(future_to_link), 1):\n                link = future_to_link[future]\n                try:\n                    result = future.result()\n                    status = result.get('status', 'unknown')\n                    print(f\"[{i}/{len(links)}] {status.upper()}: {result['url']}\")\n                    time.sleep(0.1)\n                except Exception as e:\n                    print(f\"\u68c0\u67e5\u94fe\u63a5\u65f6\u51fa\u9519 {link['url']}: {e}\")\n    \n    def generate_report(self):\n        \"\"\"\u751f\u6210\u68c0\u67e5\u62a5\u544a\"\"\"\n        total = sum(len(links) for links in self.results.values())\n        \n        print(\"\\n\" + \"=\"*60)\n        print(\"\u94fe\u63a5\u68c0\u67e5\u62a5\u544a\")\n        print(\"=\"*60)\n        print(f\"\u603b\u94fe\u63a5\u6570: {total}\")\n        print(f\"\u6b63\u5e38\u94fe\u63a5: {len(self.results['working'])}\")\n        print(f\"\u91cd\u5b9a\u5411\u94fe\u63a5: {len(self.results['redirect'])}\")\n        print(f\"\u5931\u6548\u94fe\u63a5: {len(self.results['broken'])}\")\n        print(f\"\u8d85\u65f6\u94fe\u63a5: {len(self.results['timeout'])}\")\n        print(f\"\u672a\u77e5\u72b6\u6001: {len(self.results['unknown'])}\")\n        \n        # \u4fdd\u5b58\u8be6\u7ec6\u7ed3\u679c\n        REPORTS_DIR.mkdir(exist_ok=True)\n        with open(REPORTS_DIR / 'link_check_results.json', 'w', encoding='utf-8') as f:\n            json.dump(self.results, f, ensure_ascii=False, indent=2)\n        \n        print(f\"\\n\u8be6\u7ec6\u7ed3\u679c\u5df2\u4fdd\u5b58\u5230: reports/link_check_results.json\")",
+            "File: tools/check_links.py\nClass: LinkChecker\nName: __init__\nSignature: def __init__(self):\nCalls: requests.Session, self.session.headers.update\n\nSource code:\ndef __init__(self):\n        self.session = requests.Session()\n        self.session.headers.update({\n            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'\n        })\n        self.timeout = 10\n        self.results = {\n            'working': [],\n            'broken': [],\n            'redirect': [],\n            'timeout': [],\n            'unknown': []\n        }"
+        ]
+    ],
+    "uris": null,
+    "included": [
+        "metadatas",
+        "documents",
+        "distances"
+    ],
+    "data": null,
+    "metadatas": [
+        [
+            {
+                "parent_class": "None",
+                "end_line": 189,
+                "start_line": 158,
+                "filepath": "tools/check_links.py",
+                "type": "function",
+                "name": "main"
+            },
+            {
+                "type": "function",
+                "name": "extract_links_from_file",
+                "filepath": "tools/check_links.py",
+                "parent_class": "LinkChecker",
+                "end_line": 73,
+                "start_line": 33
+            },
+            {
+                "end_line": 135,
+                "parent_class": "LinkChecker",
+                "filepath": "tools/check_links.py",
+                "type": "function",
+                "start_line": 120,
+                "name": "check_all_links"
+            },
+            {
+                "end_line": 156,
+                "start_line": 18,
+                "type": "class",
+                "name": "LinkChecker",
+                "filepath": "tools/check_links.py",
+                "parent_class": "None"
+            },
+            {
+                "name": "__init__",
+                "start_line": 19,
+                "end_line": 31,
+                "type": "function",
+                "filepath": "tools/check_links.py",
+                "parent_class": "LinkChecker"
+            }
+        ]
+    ],
+    "distances": [
+        [
+            0.9607034921646118,
+            0.9620740413665771,
+            0.9684038162231445,
+            0.9717047810554504,
+            0.9909375309944153
+        ]
+    ]
+}
