@@ -10,3 +10,5 @@ langgraph
 python-dotenv
 langchain-core
 langchain-community
+fastapi
+uvicorn
