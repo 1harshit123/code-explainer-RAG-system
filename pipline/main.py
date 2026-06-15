@@ -1,6 +1,6 @@
-from src.repoAbstraction import cloning_repo, chunking
-from src.RAG.embedding import chunk_embedding
-from src.RAG.retrival import analyze_codebase_query
+from pipline.src.repoAbstraction import cloning_repo, chunking
+from pipline.src.RAG.embedding import chunk_embedding
+from pipline.src.RAG.retrival import analyze_codebase_query
 import git
 
 

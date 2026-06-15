@@ -1,11 +1,17 @@
 import asyncio
+import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from fastapi.sse import EventSourceResponse
 import time
-from main import processing_repo
+from pathlib import Path   
+
+ROOT_DIR = str(Path(__file__).resolve().parent.parent)
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
+from pipline.main import processing_repo
 
 
 app = FastAPI()

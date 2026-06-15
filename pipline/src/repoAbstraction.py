@@ -2,7 +2,7 @@ import git
 from pathlib import Path
 import json
 
-from chuking import process_repo
+from pipline.src.chuking import process_repo
 
 local_repo_path = Path(__file__).parent.parent / "notebook"
 
