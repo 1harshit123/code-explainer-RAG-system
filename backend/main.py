@@ -10,21 +10,32 @@ import time
 app = FastAPI()
 
 
+
+origins = [
+    "http://localhost:5173",    # Default Vite local development port
+    "http://127.0.0.1:5173",    # Loopback IP alternative for Vite
+]
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=origins, 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 class ChatPayload(BaseModel):
-    message: str
+    repoLink: str
 
 @app.post("/api/chat/stream")
 async def stream_rag_chat(payload: ChatPayload):
+    print(f"Link: {payload.repoLink}")
 
-    async def event_stream():
-        yield "Hello! This is the testing response"
+    if(payload.repoLink):
+        return {
+            "Status": "Success"
+        }
 
-    return EventSourceResponse(event_stream())
+
+

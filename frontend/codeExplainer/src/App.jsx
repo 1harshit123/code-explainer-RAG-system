@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Chatbox from './component/Chatbox';
+import axios from "axios";   
 
 import './App.css'
 
@@ -19,39 +21,14 @@ function App() {
       axios.post("http://localhost:8000/api/chat/stream", {
         repoLink: repoLink
       }).then((response) => {
-        if(response){
+        console.log(response)
+        if (response.data && response.data.Status === "Success"){
           setViewState('chat')
         } else{
           throw new Error("Error in getting success response from backend")        }
-      }).then((response) => {
-        let realTimeText = ""
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-
-        while(true){
-          const {done, value} = new reader.read();
-          const chunk = decoder.decode(value);
-
-          const lines = chunk.split("\n");
-
-          for (const line of lines) {
-            if (line.startsWith("data: ")) {
-              const text = line.replace("data: ", "");
-
-              realTimeText += text + "\n";
-
-              setStreamingText(realTimeText);
-            }
-          }
-
-
-        }
-
-        
       })
-
     } catch (error) {
-      onsole.error("Connection failed:", error);
+      console.error("Connection failed:", error);
     }
    
   };
@@ -106,7 +83,7 @@ function App() {
                 </p>
               </div>
 
-              <form onSubmit={handleInsert} className="relative group">
+              {viewState == 'idle' && (<><form onSubmit={handleInsert} className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-neutral-800 to-neutral-700 rounded-xl blur opacity-30 group-focus-within:opacity-60 transition duration-300" />
                 <div className="relative flex items-center bg-neutral-900 border border-neutral-800 rounded-xl p-2 shadow-2xl shadow-black/80">
                   <input
@@ -137,6 +114,12 @@ function App() {
                 <span className="font-mono text-neutral-400 bg-neutral-900 border border-neutral-800 px-1.5 py-0.5 rounded">Python</span>
                 <span className="font-mono text-neutral-400 bg-neutral-900 border border-neutral-800 px-1.5 py-0.5 rounded">TypeScript</span>
               </div>
+            </>)}
+            {viewState === "chat" &&(
+              <Chatbox
+              
+              />
+            )}
             </div>
           </section>
         </main>
