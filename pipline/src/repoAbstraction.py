@@ -4,6 +4,11 @@ import json
 
 from pipline.src.chuking import process_repo
 
+THIS_FILE_ABS_PATH = Path(__file__).resolve()
+
+
+PIPELINE_ABS_DIR = THIS_FILE_ABS_PATH.parent.parent
+
 local_repo_path = Path(__file__).parent.parent / "notebook"
 
 def cloning_repo(repo_url: str, local_path: str = local_repo_path) -> git.Repo:
@@ -37,7 +42,7 @@ def chunking():
     chunks = process_repo(repo_path)
     print(f"Extracted {len(chunks)} chunks")
 
-    out_path = "chunks.json"
+    out_path = PIPELINE_ABS_DIR / "chunks.json"
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(chunks, f, indent=2, ensure_ascii=False)
 
