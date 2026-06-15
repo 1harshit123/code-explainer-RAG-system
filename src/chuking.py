@@ -1,13 +1,3 @@
-"""
-repo_chunker.py
----------------
-Drop-in replacement for your AST dump script.
-Input  : a cloned GitHub repo path
-Output : chunks.json  — list of RAG-ready chunk dicts, one per function/class
-"""
-
-
- 
 from tree_sitter import Language, Parser
 import tree_sitter_python
 import json
@@ -204,5 +194,4 @@ def process_repo(repo_path: str) -> list[dict]:
     return all_chunks
 
 
-# ── 6. Main ──────────────────────────────────────────────────────────────────
 

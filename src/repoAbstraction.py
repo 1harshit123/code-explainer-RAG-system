@@ -6,7 +6,7 @@ from chuking import process_repo
 
 local_repo_path = Path(__file__).parent.parent / "notebook"
 
-def cloning_repo(repo_url: str, local_path: str) -> git.Repo:
+def cloning_repo(repo_url: str, local_path: str = local_repo_path) -> git.Repo:
     try:
         print("Attempting to clone using 'master' branch...")
         return git.Repo.clone_from(repo_url, local_path, branch="master")
@@ -27,7 +27,6 @@ def cloning_repo(repo_url: str, local_path: str) -> git.Repo:
         print(f"Unexpected error: {e}")
         raise
 
-cloning_repo("https://github.com/flypythoncom/python.git",local_repo_path)
 
 def chunking():
     import sys

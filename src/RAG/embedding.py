@@ -5,7 +5,11 @@ import json
 
 GLOBAL_EMBEDDING_ENGINE = embedding_functions.DefaultEmbeddingFunction()
 
-def chunk_embedding(chunk_path: str, vector_path: str):
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CHUNK_PATH = os.path.join(BASE_DIR, "../../chunks.json")
+VECTOR_PATH = os.path.join(BASE_DIR, "../../vector_store") 
+
+def chunk_embedding(chunk_path: str = CHUNK_PATH, vector_path: str = VECTOR_PATH):
     """Embeds the chunks using chromadb's inbuilt embedding function and saves the vector in vector store"""
 
     if not os.path.exists(chunk_path):

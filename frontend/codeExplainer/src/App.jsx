@@ -15,6 +15,13 @@ function App() {
     e.preventDefault();
     if (!repoLink.trim()) return;
 
+    const githubRegex = /^(https:\/\/github\.com\/|git@github\.com:)[a-zA-Z0-9-_.]+\/[a-zA-Z0-9-_.]+$/;
+
+    if (!githubRegex.test(repoLink.trim())) {
+      alert("Please enter a valid GitHub repository URL");
+      return;
+    }
+
     setViewState('loading')
 
     try {

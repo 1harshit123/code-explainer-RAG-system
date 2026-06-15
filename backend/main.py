@@ -34,8 +34,11 @@ async def stream_rag_chat(payload: ChatPayload):
 
     if(payload.repoLink):
         return {
-            "Status": "Success"
+            "Status": "Success",
+            "repo" : payload.repoLink
         }
+    
+    
 
 
 
