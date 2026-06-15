@@ -4,13 +4,13 @@ from src.RAG.retrival import analyze_codebase_query
 import git
 
 
-def processing_repo(repo: str) -> bool:
-    if not repo or not repo.strip():
+def processing_repo(repoLink: str) -> bool:
+    if not repoLink or not repoLink.strip():
         print("[RAG Pipeline] Aborted: Received empty repository string.")
         return False
     # Cloning the repo
     try:
-        repoObject = cloning_repo(repo)
+        repoObject = cloning_repo(repoLink)
         if not isinstance(repoObject, git.Repo):
             print("[RAG Pipeline] Step 1 Failed: Object returned is not a valid git.Repo instance.")
             return False

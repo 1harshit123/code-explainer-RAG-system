@@ -5,6 +5,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from fastapi.sse import EventSourceResponse
 import time
+from main import processing_repo
 
 
 app = FastAPI()
@@ -32,12 +33,19 @@ class ChatPayload(BaseModel):
 async def stream_rag_chat(payload: ChatPayload):
     print(f"Link: {payload.repoLink}")
 
+    repoLink = payload.repoLink
+
     if(payload.repoLink):
+        try:
+            processing_repo(repoLink)
+        except Exception as e:
+            print(f"[Backend]: error in processing repository.")
+
         return {
             "Status": "Success",
             "repo" : payload.repoLink
         }
-    
+
     
 
 
