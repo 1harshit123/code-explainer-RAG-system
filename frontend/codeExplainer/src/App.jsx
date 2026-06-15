@@ -127,6 +127,25 @@ function App() {
               
               />
             )}
+            {viewState === "loading" &&(
+              <>
+                  <div className="flex flex-col items-center justify-center space-y-6 py-12 relative z-10 animate-fade-in">
+                    <div className="relative flex items-center justify-center">
+                      <div className="absolute h-16 w-16 rounded-full border border-emerald-500/30 animate-ping duration-1000" />
+                      <div className="h-14 w-14 rounded-full border-2 border-neutral-800 border-t-emerald-500 animate-spin [animation-duration:0.8s]" />
+                      <div className="absolute h-3 w-3 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/50" />
+                    </div>
+                    <div className="text-center space-y-1.5">
+                      <h3 className="text-xs font-mono tracking-widest text-emerald-400 uppercase font-medium">
+                        Assembling Semantic Index
+                      </h3>
+                      <p className="text-xs text-neutral-500 font-mono animate-pulse max-w-xs mx-auto">
+                        Cloning repository architecture, parsing AST nodes, and mapping vectors...
+                      </p>
+                    </div>
+                  </div>
+              </>
+            )}
             </div>
           </section>
         </main>
