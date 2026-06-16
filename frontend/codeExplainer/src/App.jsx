@@ -25,7 +25,7 @@ function App() {
     setViewState('loading')
 
     try {
-      axios.post("http://localhost:8000/api/chat/stream", {
+      axios.post("http://localhost:8000/api/repo", {
         repoLink: repoLink
       }).then((response) => {
         console.log(response)

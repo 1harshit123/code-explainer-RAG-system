@@ -9,6 +9,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
+from typing import Generator
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VECTOR_PATH = os.path.abspath(os.path.join(BASE_DIR, "../../vector_store"))
@@ -95,6 +96,53 @@ def analyze_codebase_query(user_query: str, raw_chroma_results: dict):
     print("\n--- Structural LLM JSON Extraction Output ---")
     print(json.dumps(result, indent=2, ensure_ascii=False))
 
+def stream_query_pipeline(user_query: str) -> Generator[str, None, None]:
+    """
+    Function to handle the streamline SSE chat with the frontend.
+    """
+    raw_results = getting_raw_search_results(user_query, VECTOR_PATH)
+    
+    if not raw_results or not raw_results.get('documents') or not raw_results['documents'][0]:
+        yield "Error: No relevant code contextual markers found in the active database index cluster."
+        return
+    try:
+        structured_analysis = chain.invoke({
+            "input": user_query,
+            "code_snippets": json.dumps(raw_results['documents'][0], indent=2, ensure_ascii=False),
+            "metadatas": json.dumps(raw_results['metadatas'][0], indent=2, ensure_ascii=False),
+            "distances": json.dumps(raw_results['distances'][0], indent=2),
+            "format_instructions": "Output valid JSON containing summary, primary_function, and dependencies keys."
+        })
+    except Exception as e:
+        yield f"Error extracting codebase context structural specs: {str(e)}"
+        return
+
+    stream_prompt = ChatPromptTemplate.from_messages([
+        ("system", """You are an expert software engineer architecture analyzer agent.
+Answer the user's specific query using the provided structural codebase analysis metadata report.
+Format your final output using clean Markdown prose with explicit backticks for code symbols. Be brief, direct, and conversational.
+
+Codebase Structural Report:
+- Summary of relevant modules: {summary}
+- Main execution entry function: {primary_function}
+- Module dependencies/calls: {dependencies}
+"""),
+        ("human", "{user_query}")
+    ])
+
+    streaming_chain = stream_prompt | llm
+    try:
+        for chunk in streaming_chain.stream({
+            "summary": structured_analysis.get("summary", "N/A"),
+            "primary_function": structured_analysis.get("primary_function", "N/A"),
+            "dependencies": ", ".join(structured_analysis.get("dependencies", [])),
+            "user_query": user_query
+        }):
+            if chunk.content:
+                yield chunk.content
+    except Exception as e:
+        yield f"\n[Streaming Engine Crash Intercept]: {str(e)}"
+
 
 if __name__ == "__main__":
     query = "Which function is creating the dictonaries?"
@@ -104,4 +152,3 @@ if __name__ == "__main__":
     analyze_codebase_query(query, results)
 
 
-   

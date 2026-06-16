@@ -5,13 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from fastapi.sse import EventSourceResponse
-import time
+import time, json
 from pathlib import Path   
 
 ROOT_DIR = str(Path(__file__).resolve().parent.parent)
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 from pipline.main import processing_repo
+from pipline.src.RAG.retrival import stream_query_pipeline
 
 
 app = FastAPI()
@@ -35,8 +36,11 @@ app.add_middleware(
 class ChatPayload(BaseModel):
     repoLink: str
 
-@app.post("/api/chat/stream")
-async def stream_rag_chat(payload: ChatPayload):
+class QueryPayload(BaseModel):
+    message: str
+
+@app.post("/api/repo")
+async def repo_vectorization(payload: ChatPayload):
     print(f"Link: {payload.repoLink}")
 
     repoLink = payload.repoLink
@@ -51,6 +55,29 @@ async def stream_rag_chat(payload: ChatPayload):
             "Status": "Success",
             "repo" : payload.repoLink
         }
+    
+@app.post("/api/chat/stream")
+async def stream_from_chatbox(payload: QueryPayload):
+    print(f"User Query Target Received: {payload.message}")
+
+    async def sse_event_generator():
+        try:
+            # Directly loop through the sync generator from retrival.py
+            for token in stream_query_pipeline(payload.message):
+                yield f"data: {json.dumps({'token': token})}\n\n"
+                await asyncio.sleep(0.01)  # Keeps event loop unblocked
+        except Exception as e:
+            yield f"data: {json.dumps({'error': str(e)})}\n\n"
+
+    return StreamingResponse(
+        sse_event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no" 
+        }
+    )
 
     
 

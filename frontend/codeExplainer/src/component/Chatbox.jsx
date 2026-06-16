@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 export default function Chatbox({ onBackToIndexer }) {
-    // 1. Local state variables to handle dynamic user data tracking
     const [messages, setMessages] = useState([
         { role: 'assistant', content: 'Semantic indexing complete. Ask me anything about your repository modules, functions, or control flows.' }
     ]);
@@ -10,21 +9,18 @@ export default function Chatbox({ onBackToIndexer }) {
 
     const messagesEndRef = useRef(null);
 
-    // 2. Auto-scroll utility: forces container window down when a new message block grows
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
-    // 3. Form Submission handler routine
     const handleQuerySubmit = async (e) => {
         e.preventDefault();
         if (!input.trim() || isStreaming) return;
 
         const userPrompt = input.trim();
-        setInput(''); // Instantly clear input line field just like ChatGPT/Gemini
+        setInput('');
         setIsStreaming(true);
 
-        // Append user prompt and open up an empty placeholder bubble for the upcoming assistant response
         setMessages((prev) => [
             ...prev,
             { role: 'user', content: userPrompt },
@@ -32,7 +28,6 @@ export default function Chatbox({ onBackToIndexer }) {
         ]);
 
         try {
-            // 4. Hook straight into your FastAPI backend stream endpoint loop
             const response = await fetch('http://localhost:8000/api/chat/stream', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -43,27 +38,47 @@ export default function Chatbox({ onBackToIndexer }) {
 
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
-            let accumulatedTokens = "";
 
-            // 5. Active chunk processing network stream reader execution loop
+            let accumulatedTokens = "";
+            let streamBuffer = ""; 
+
             while (true) {
                 const { value, done } = await reader.read();
                 if (done) break;
 
-                const rawChunk = decoder.decode(value, { stream: true });
-                const cleanToken = rawChunk.replace(/^data:\s*/, '').replace(/\n\n$/, '');
+                streamBuffer += decoder.decode(value, { stream: true });
 
-                accumulatedTokens += (accumulatedTokens ? ' ' : '') + cleanToken;
+                const lines = streamBuffer.split("\n\n");
 
-                // Dynamically update ONLY the very last assistant message item in your state list array
-                setMessages((prev) => {
-                    const updated = [...prev];
-                    updated[updated.length - 1] = {
-                        role: 'assistant',
-                        content: accumulatedTokens,
-                    };
-                    return updated;
-                });
+                streamBuffer = lines.pop() || "";
+
+                for (const line of lines) {
+                    const cleanLine = line.trim();
+                    if (cleanLine.startsWith("data: ")) {
+                        const jsonPayload = cleanLine.replace("data: ", "").trim();
+
+                        try {
+                            const parsed = JSON.parse(jsonPayload);
+
+                            if (parsed.token) {
+                                accumulatedTokens += parsed.token;
+
+                                setMessages((prev) => {
+                                    const updated = [...prev];
+                                    updated[updated.length - 1] = {
+                                        role: 'assistant',
+                                        content: accumulatedTokens,
+                                    };
+                                    return updated;
+                                });
+                            } else if (parsed.error) {
+                                console.error("Backend exception pipeline intercept:", parsed.error);
+                            }
+                        } catch (jsonParseError) {
+                            console.error("Failed parsing incoming frame chunk:", jsonPayload, jsonParseError);
+                        }
+                    }
+                }
             }
         } catch (error) {
             console.error("Streaming connection error:", error);
