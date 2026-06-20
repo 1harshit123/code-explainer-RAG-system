@@ -39,7 +39,7 @@ function App() {
           console.log("Session Creation Response:", sessionResponse);
 
           if (sessionResponse && sessionResponse.data && sessionResponse.data.session_id) {
-            setSessionId(sessionResponse.data.session_id);
+            setSessionID(sessionResponse.data.session_id);
             setStatusMessage(`Active Session Mountpoint: ID ${sessionResponse.data.session_id}`);
             setViewState('chat');
           } else {
