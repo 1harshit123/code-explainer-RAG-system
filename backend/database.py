@@ -1,7 +1,7 @@
 import os
 from typing import List, Optional
 from datetime import datetime
-from sqlmodel import Field, Relationship, SQLModel, create_engine, Session
+from sqlmodel import Field, Relationship, SQLModel, create_engine, Session, text
 from dotenv import load_dotenv
 
 # Locate and load the root .env file configuration
@@ -22,15 +22,16 @@ DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NA
 engine = create_engine(DATABASE_URL, echo=False)
 
 
-def checking_database() -> bool:
+def checking_database():
     
     try:
         with Session(engine) as session:
-            result = session.exec("SELECT 1")
-            if result == 1:
+            result = session.exec(text("SELECT 1")).first()
+            print("Result: ", result)
+            print("Type of results", type(result))
+            if result[0] == 1:
                 yield True
             else:
                 yield False
     except Exception as e:
-        print("Exceptional framework error")
-
+        print(f"❌ DATABASE CONNECTION ERROR DETAILS: {e}")

@@ -13,6 +13,7 @@ if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 from pipline.main import processing_repo
 from pipline.src.RAG.retrival import stream_query_pipeline
+from database import checking_database
 
 
 app = FastAPI()
@@ -78,6 +79,26 @@ async def stream_from_chatbox(payload: QueryPayload):
             "X-Accel-Buffering": "no" 
         }
     )
+
+@app.get("/api/chat/test")
+async def database_checking():
+    result = checking_database()
+    actual_value = next(result)
+
+    if actual_value:
+        return {
+            "Status": "Success",
+            "Comment": "Database is well connected"
+
+        }
+    else:
+        return {
+            "Status": "Failure",
+            "Comment": "Database is not connected",
+            "actual_value": {actual_value}
+
+        }
+
 
     
 
