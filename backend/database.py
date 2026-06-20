@@ -1,8 +1,8 @@
 import os
-from typing import List, Optional
 from datetime import datetime
 from sqlmodel import Field, Relationship, SQLModel, create_engine, Session, text
 from dotenv import load_dotenv
+from .model import *
 
 # Locate and load the root .env file configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -19,19 +19,14 @@ DB_NAME = os.getenv("DB_NAME", "coderag")
 # Format the PostgreSQL connection string
 DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-engine = create_engine(DATABASE_URL, echo=False)
+engine = create_engine(DATABASE_URL, echo=True)
 
-
-def checking_database():
-    
+def init_db():
+    """Initialising of the tables"""
     try:
-        with Session(engine) as session:
-            result = session.exec(text("SELECT 1")).first()
-            print("Result: ", result)
-            print("Type of results", type(result))
-            if result[0] == 1:
-                yield True
-            else:
-                yield False
+        SQLModel.metadata.create_all(engine)
+        print("Engine is running successfully and created the tables in the database")
     except Exception as e:
-        print(f"❌ DATABASE CONNECTION ERROR DETAILS: {e}")
+        print("Error: In creating in running the engine", {e})
+
+
