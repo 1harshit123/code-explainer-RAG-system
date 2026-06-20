@@ -4,6 +4,7 @@ export default function Chatbox({ onBackToIndexer }) {
     const [messages, setMessages] = useState([
         { role: 'assistant', content: 'Semantic indexing complete. Ask me anything about your repository modules, functions, or control flows.' }
     ]);
+    
     const [input, setInput] = useState('');
     const [isStreaming, setIsStreaming] = useState(false);
 
@@ -24,7 +25,7 @@ export default function Chatbox({ onBackToIndexer }) {
         setMessages((prev) => [
             ...prev,
             { role: 'user', content: userPrompt },
-            { role: 'assistant', content: '' }
+            { role: 'bot', content: '' }
         ]);
 
         try {
@@ -66,7 +67,7 @@ export default function Chatbox({ onBackToIndexer }) {
                                 setMessages((prev) => {
                                     const updated = [...prev];
                                     updated[updated.length - 1] = {
-                                        role: 'assistant',
+                                        role: 'bot',
                                         content: accumulatedTokens,
                                     };
                                     return updated;

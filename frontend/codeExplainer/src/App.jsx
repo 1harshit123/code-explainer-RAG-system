@@ -10,6 +10,7 @@ function App() {
   const [streamingText, setStreamingText] = useState("");
   const [statusMessage, setStatusMessage] = useState('System ready. Awaiting repository initialization...');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [sessionID, setSessionID] = useState(null);
 
   const handleInsert = async (e) => {
     e.preventDefault();
@@ -23,20 +24,37 @@ function App() {
     }
 
     setViewState('loading')
+    setIsProcessing(true);
 
-    try {
-      axios.post("http://localhost:8000/api/repo", {
-        repoLink: repoLink
-      }).then((response) => {
-        console.log(response)
-        if (response.data && response.data.Status === "Success"){
-          setViewState('chat')
-        } else{
-          throw new Error("Error in getting success response from backend")        }
-      })
-    } catch (error) {
-      console.error("Connection failed:", error);
-    }
+      axios.post("http://localhost:8000/api/repo", { repoLink: repoLink })
+        .then((repoResponse) => {
+          console.log("Repo Ingestion Response:", repoResponse);
+          if (repoResponse.data && repoResponse.data.Status === "Success") {
+            return axios.post("http://localhost:8000/api/chat/session", { repoLink: repoLink });
+          } else {
+            throw new Error("Error in getting success response from ingestion backend");
+          }
+        })
+        .then((sessionResponse) => {
+          console.log("Session Creation Response:", sessionResponse);
+
+          if (sessionResponse && sessionResponse.data && sessionResponse.data.session_id) {
+            setSessionId(sessionResponse.data.session_id);
+            setStatusMessage(`Active Session Mountpoint: ID ${sessionResponse.data.session_id}`);
+            setViewState('chat');
+          } else {
+            throw new Error("Failed to register session space within PostgreSQL context.");
+          }
+        })
+        .catch((error) => {
+          console.error("Connection flow failed:", error);
+          setStatusMessage("System core failure. Check terminal traceback.");
+          setViewState('idle');
+        })
+        .finally(() => {
+          setIsProcessing(false);
+        });
+    
    
   };
 
@@ -123,7 +141,7 @@ function App() {
               </div>
             </>)}
             {viewState === "chat" &&(
-              <Chatbox
+                <Chatbox sessionId={sessionId} onBackToIndexer={handleBackToIndexer}
               
               />
             )}
