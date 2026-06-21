@@ -1,6 +1,30 @@
 from datetime import datetime, timezone
 from sqlmodel import Field, Relationship, SQLModel
 
+
+class RepositoryCache(SQLModel, table=True):
+    __tablename__ = "repository_cache"
+    
+    id: int = Field(default=None, primary_key=True)
+    repo_link: str = Field(unique=True, index=True) 
+    vector_collection_name: str                     
+    last_indexed_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    
+    sessions: list["ChatSession"] = Relationship(back_populates="repo_cache")
+
+class User(SQLModel, table=True):
+    __tablename__ = "users"
+    
+    id: int = Field(default=None, primary_key=True)
+    email: str = Field(unique=True, index=True)
+    username: str
+    profile_pic:str | None = Field(default=None)
+    hashed_password: str | None = Field(default=None) # Optional for Google users
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+    sessions: list["ChatSession"] = Relationship(back_populates="user")
+
+
 class ChatSession(SQLModel, table=True):
     __tablename__ = "chat_sessions"
 

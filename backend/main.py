@@ -1,5 +1,6 @@
 import asyncio
 import sys
+import os
 from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,6 +13,23 @@ from model import ChatMessage, ChatSession
 from database import init_db, engine
 from contextlib import asynccontextmanager
 from sqlmodel import Session, select
+import jwt
+from datetime import datetime, timedelta, timezone
+from fastapi import Depends, HTTPException, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from google.oauth2 import id_token
+from google.auth.transport import requests
+from dotenv import load_dotenv
+
+GOOGLE_CLIENT_ID = os.getenv("CLIENT_ID")
+
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+
+load_dotenv()
+
+
+
+def 
 
 current_file = Path(__file__).resolve()
 
