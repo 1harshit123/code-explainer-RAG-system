@@ -1,5 +1,6 @@
 import asyncio
 import sys
+from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -7,22 +8,28 @@ from pydantic import BaseModel
 from fastapi.sse import EventSourceResponse
 import time, json
 from pathlib import Path   
-from .model import ChatMessage, ChatSession
-from .database import init_db, engine
-from contextlib import contextmanager
+from model import ChatMessage, ChatSession
+from database import init_db, engine
+from contextlib import asynccontextmanager
 from sqlmodel import Session, select
+
+current_file = Path(__file__).resolve()
+
+parent_dir = current_file.parent.parent
+
+if str(parent_dir) not in sys.path:
+    sys.path.insert(0, str(parent_dir))
+
 from pipline.src.RAG.retrival import stream_query_pipeline
-
-
-ROOT_DIR = str(Path(__file__).resolve().parent.parent)
-if ROOT_DIR not in sys.path:
-    sys.path.insert(0, ROOT_DIR)
 from pipline.main import processing_repo
-from pipline.src.RAG.retrival import stream_query_pipeline
-from database import checking_database
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()
+    yield 
 
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 
 
@@ -64,19 +71,13 @@ async def repo_vectorization(payload: ChatPayload):
             "repo" : payload.repoLink
         }
     
-@contextmanager
-async def lifespan(app: FastAPI):
-    init_db()
-    yield 
-
-app = FastAPI(lifespan=lifespan)
-
 
 @app.post("/api/chat/session") 
 async def storing_chat_session(payload: ChatPayload):
     try:
         with Session(engine) as session:
             chat_session = ChatSession(repo_link=payload.repoLink)
+            print(chat_session) # debuggin
             session.add(chat_session)
             session.commit()
             session.refresh(chat_session)
@@ -89,7 +90,9 @@ async def storing_chat_session(payload: ChatPayload):
 async def get_history(session_id: int):
     with Session(engine) as session:
         statement = select(ChatMessage).where(ChatMessage.session_id == session_id).order_by(ChatMessage.timestamp)
+        print(f"statement variable{statement}\n\n")
         records = session.exec(statement).all()
+        print(f"records variable{records}\n\n")
         return {
             "session_id": session_id,
             "raw_records": records,
@@ -101,6 +104,7 @@ async def get_history(session_id: int):
 async def stream_from_chatbox(payload: QueryPayload):
     with Session(engine) as session:
         user_entry = ChatMessage(session_id = payload.session_id, sender = "user", content=payload.message)
+        print(f"User entry from the streaming api{user_entry}\n\n")
         session.add(user_entry)
         session.commit()
         session.refresh(user_entry)
@@ -119,6 +123,7 @@ async def stream_from_chatbox(payload: QueryPayload):
                         sender="bot", 
                         content=full_response_text
                     )
+                    print(f"Bot entry vaiable from the inner loop of the streaming{bot_entry}\n\n")
                     session.add(bot_entry)
                     session.commit()
                 

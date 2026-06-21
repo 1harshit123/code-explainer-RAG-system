@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from sqlmodel import Field, Relationship, SQLModel, create_engine, Session, text
 from dotenv import load_dotenv
-from .model import *
+from model import *
 
 # Locate and load the root .env file configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

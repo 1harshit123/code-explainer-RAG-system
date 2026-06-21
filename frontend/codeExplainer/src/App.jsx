@@ -141,7 +141,7 @@ function App() {
               </div>
             </>)}
             {viewState === "chat" &&(
-                <Chatbox sessionId={sessionId} onBackToIndexer={handleBackToIndexer}
+                <Chatbox sessionId={sessionID} onBackToIndexer={handleBackToIndexer}
               
               />
             )}
