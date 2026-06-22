@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Chatbox from './component/Chatbox';
-import axios from "axios";   
+import axios from "axios";  
+import AuthPage from './component/AuthPage'; 
 
 import './App.css'
 
@@ -11,8 +12,30 @@ function App() {
   const [statusMessage, setStatusMessage] = useState('System ready. Awaiting repository initialization...');
   const [isProcessing, setIsProcessing] = useState(false);
   const [sessionID, setSessionID] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showAuthPage, setShowAuthPage] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if(token){
+      setIsAuthenticated(true);
+    }
+  }, [])
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+    setViewState('idle');
+    setSessionID(null);
+  };
+
 
   const handleInsert = async (e) => {
+
+    if (!isAuthenticated) {
+      setShowAuthModal(true);
+      return;
+    }
     e.preventDefault();
     if (!repoLink.trim()) return;
 
@@ -58,6 +81,7 @@ function App() {
    
   };
 
+
   return (
     <>
       <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans antialiased selection:bg-neutral-800 selection:text-white">
@@ -67,9 +91,24 @@ function App() {
             <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-xs font-mono tracking-wider uppercase text-neutral-400">codeRAG Core Engine v1.0</span>
           </div>
-          <div className="text-xs font-mono text-neutral-400 max-w-md truncate">
+          <div className="text-xs font-mono text-neutral-400 max-w-md">
             <span className="text-neutral-500">Status:</span> {statusMessage}
           </div>
+          {!isAuthenticated ? (
+            <button
+              onClick={() => setShowAuthPage(true)}
+              className="text-xs font-bold tracking-wide uppercase bg-emerald-500 text-neutral-950 px-5 py-2 rounded-md hover:bg-emerald-400 active:scale-95 transition-all shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+            >
+              Sign In / Register
+            </button>
+          ) : (
+            <button
+              onClick={handleLogout}
+              className="text-xs font-medium tracking-wide uppercase text-neutral-400 hover:text-white transition-colors"
+            >
+              Logout
+            </button>
+          )}
         </header>
 
         <main className="flex-1 grid grid-cols-12 overflow-hidden h-[calc(100vh-45px)]">
@@ -164,6 +203,34 @@ function App() {
                   </div>
               </>
             )}
+
+
+              <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${showAuthPage ? 'pointer-events-auto' : 'pointer-events-none'
+                }`}>
+
+                <div
+                  className={`absolute inset-0 transition-all duration-300 ease-out ${showAuthPage
+                      ? 'bg-black/40 backdrop-blur-md'
+                      : 'bg-black/0 backdrop-blur-none'
+                    }`}
+                  onClick={() => setShowAuthPage(false)}
+                />
+
+                <div
+                  className={`relative z-10 w-full max-w-sm transition-all duration-300 ease-out transform ${showAuthPage
+                      ? 'scale-100 translate-y-0 opacity-100'
+                      : 'scale-95 translate-y-4 opacity-0'
+                    }`}
+                >
+                  <AuthPage
+                    onLoginSuccess={() => {
+                      setIsAuthenticated(true);
+                      setShowAuthPage(false);
+                    }}
+                    onClose={() => setShowAuthPage(false)}
+                  />
+                </div>
+              </div>
             </div>
           </section>
         </main>
