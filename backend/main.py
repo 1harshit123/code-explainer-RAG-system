@@ -1,21 +1,24 @@
 import asyncio
 import sys
+import hashlib
 import os
 from pathlib import Path
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from fastapi.sse import EventSourceResponse
 import time, json
 from pathlib import Path   
-from model import ChatMessage, ChatSession
+from model import ChatMessage, ChatSession, User, RepositoryCache
 from database import init_db, engine
 from contextlib import asynccontextmanager
 from sqlmodel import Session, select
 from datetime import datetime, timedelta, timezone
 from typing import Annotated
 from dotenv import load_dotenv
+from auth import router as auth_router
+from auth import get_current_user
 
 
 current_file = Path(__file__).resolve()
@@ -35,6 +38,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+app.include_router(auth_router)
 
 
 
@@ -60,53 +64,76 @@ class QueryPayload(BaseModel):
     message: str
 
 @app.post("/api/repo")
-async def repo_vectorization(payload: ChatPayload):
-    print(f"Link: {payload.repoLink}")
+async def repo_vectorization(payload: ChatPayload, current_user: User = Depends(get_current_user)):
+    print(f"User {current_user.username} is requesting: {payload.repoLink}")
+    repoLink = payload.repoLink.strip()
 
-    repoLink = payload.repoLink
+    if not repoLink:
+        return {"Status": "Failed", "Reason": "Empty link"}
 
-    if(payload.repoLink):
+    with Session(engine) as session:
+        cache_record = session.exec(
+            select(RepositoryCache).where(RepositoryCache.repo_link == repoLink)
+        ).first()
+
+        if cache_record:
+            print("Cache Hit! Skipping ingestion.")
+            return {"Status": "Success", "repo": repoLink, "cached": True}
         try:
             processing_repo(repoLink)
-        except Exception as e:
-            print(f"[Backend]: error in processing repository.")
 
-        return {
-            "Status": "Success",
-            "repo" : payload.repoLink
-        }
+            collection_slug = f"repo_{hashlib.md5(repoLink.encode()).hexdigest()}"
+            new_cache = RepositoryCache(repo_link=repoLink, vector_collection_name=collection_slug)
+            session.add(new_cache)
+            session.commit()
+            
+            return {"Status": "Success", "repo": repoLink, "cached": False}
+            
+        except Exception as e:
+            print(f"[Backend Error]: {e}")
+            return {"Status": "Failed", "Reason": str(e)}
     
 
 @app.post("/api/chat/session") 
-async def storing_chat_session(payload: ChatPayload):
+async def storing_chat_session(payload: ChatPayload, current_user: User = Depends(get_current_user)):
+
     try:
         with Session(engine) as session:
-            chat_session = ChatSession(repo_link=payload.repoLink)
-            print(chat_session) # debuggin
+            cache_record = session.exec(select(RepositoryCache).where(RepositoryCache.repo_link == payload.repoLink)).first()
+            if not cache_record:
+                return {"status": "Error", "message": "Repo not indexed yet"}
+            chat_session = ChatSession(
+                user_id=current_user.id, 
+                repo_cache_id=cache_record.id
+            )
             session.add(chat_session)
             session.commit()
             session.refresh(chat_session)
+            
             return {"status": "Success", "session_id": chat_session.id}
 
     except Exception as e:
         print("Error while creating the chatsession", e)
 
 @app.get("/api/chat/history/{session_id}")
-async def get_history(session_id: int):
-    with Session(engine) as session:
+async def get_history(session_id: int,  current_user: User = Depends(get_current_user)):
+   with Session(engine) as session:
+        chat_session = session.get(ChatSession, session_id)
+        if not chat_session or chat_session.user_id != current_user.id:
+            return {"error": "Unauthorized access to this session"}
+        
         statement = select(ChatMessage).where(ChatMessage.session_id == session_id).order_by(ChatMessage.timestamp)
-        print(f"statement variable{statement}\n\n")
         records = session.exec(statement).all()
-        print(f"records variable{records}\n\n")
+        
         return {
             "session_id": session_id,
-            "raw_records": records,
+            "raw_records": [r.id for r in records],
             "all_messages": [{"sender": r.sender, "content": r.content} for r in records]
         }
  
     
 @app.post("/api/chat/stream")
-async def stream_from_chatbox(payload: QueryPayload):
+async def stream_from_chatbox(payload: QueryPayload, current_user: User = Depends(get_current_user)):
     with Session(engine) as session:
         user_entry = ChatMessage(session_id = payload.session_id, sender = "user", content=payload.message)
         print(f"User entry from the streaming api{user_entry}\n\n")

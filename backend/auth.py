@@ -5,8 +5,10 @@ from fastapi import APIRouter, HTTPException, status, Depends
 from pydantic import BaseModel
 from pwdlib import PasswordHash
 from dotenv import load_dotenv
-from fastapi import Depends
+from fastapi import Depends, Annotated
 from sqlmodel import Session, select, or_
+from fastapi.security import OAuth2PasswordBearer
+from jwt.exceptions import PyJWTError
 
 load_dotenv()
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
@@ -59,6 +61,36 @@ def adding_new_user(new_user, session: Session = Depends(get_session)):
     session.commit()
     session.refresh(new_user)
     return
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
+
+
+async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    
+    try:
+        payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[ALGORITHM])
+        
+        user_id_str: str = payload.get("sub")
+        if user_id_str is None:
+            raise credentials_exception
+            
+        user_id = int(user_id_str)
+        
+    except PyJWTError:
+        raise credentials_exception
+    
+    with Session(engine) as session:
+        user = session.get(User, user_id)
+        if user is None:
+            raise credentials_exception
+            
+        return user
+    
 
 
 @router.post("/register")

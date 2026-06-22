@@ -29,8 +29,15 @@ class ChatSession(SQLModel, table=True):
     __tablename__ = "chat_sessions"
 
     id: int = Field(default=None, primary_key=True)
-    repo_link: str = Field(index=True)
+
+    user_id: int = Field(foreign_key="users.id", index=True)
+    repo_cache_id: int = Field(foreign_key="repository_cache.id", index=True)
+    
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc)) # we are using default_factory because if we do not use that it gives the time when python server boots up not every time single row adds
+
+    user: User = Relationship(back_populates="sessions")
+    repo_cache: RepositoryCache = Relationship(back_populates="sessions")
+
     messages: list["ChatMessage"] = Relationship(
         back_populates="session", 
         sa_relationship_kwargs={"cascade": "all, delete-orphan"}
