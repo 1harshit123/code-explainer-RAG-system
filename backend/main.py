@@ -3,7 +3,7 @@ import sys
 import hashlib
 import os
 from pathlib import Path
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
@@ -80,7 +80,8 @@ async def repo_vectorization(payload: ChatPayload, current_user: User = Depends(
             print("Cache Hit! Skipping ingestion.")
             return {"Status": "Success", "repo": repoLink, "cached": True}
         try:
-            processing_repo(repoLink)
+            # processing_repo(repoLink) # Would work on single setup but can create issues when two or more users use it at the same time, 
+            await asyncio.to_thread(processing_repo, repoLink)
 
             collection_slug = f"repo_{hashlib.md5(repoLink.encode()).hexdigest()}"
             new_cache = RepositoryCache(repo_link=repoLink, vector_collection_name=collection_slug)
@@ -101,7 +102,7 @@ async def storing_chat_session(payload: ChatPayload, current_user: User = Depend
         with Session(engine) as session:
             cache_record = session.exec(select(RepositoryCache).where(RepositoryCache.repo_link == payload.repoLink)).first()
             if not cache_record:
-                return {"status": "Error", "message": "Repo not indexed yet"}
+                raise HTTPException(status_code=404, detail="Repo not indexed yet")
             chat_session = ChatSession(
                 user_id=current_user.id, 
                 repo_cache_id=cache_record.id
@@ -110,7 +111,7 @@ async def storing_chat_session(payload: ChatPayload, current_user: User = Depend
             session.commit()
             session.refresh(chat_session)
             
-            return {"status": "Success", "session_id": chat_session.id}
+            raise HTTPException(status_code=500, detail="Failed to create chat session")
 
     except Exception as e:
         print("Error while creating the chatsession", e)

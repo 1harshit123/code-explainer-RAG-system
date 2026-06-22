@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 from sqlmodel import Field, Relationship, SQLModel
+from typing import Literal
 
 
 class RepositoryCache(SQLModel, table=True):
@@ -48,7 +49,7 @@ class ChatMessage(SQLModel, table=True):
 
     id: int = Field(default=None, primary_key=True)
     session_id: int = Field(foreign_key="chat_sessions.id", index=True)
-    sender: str = Field(description="Must be 'user' or 'assistant'")
+    sender: str = Literal["user", "bot"]
     content: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
