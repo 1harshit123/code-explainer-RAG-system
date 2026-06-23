@@ -62,4 +62,4 @@ def chunking():
         print("\n── Sample chunk (embed_text field) ──")
         print(chunks[0]["embed_text"][:600])
 
-chunking()
+
