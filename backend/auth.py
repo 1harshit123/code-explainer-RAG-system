@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException, status, Depends
 from pydantic import BaseModel
 from pwdlib import PasswordHash
 from dotenv import load_dotenv
-from fastapi import Depends, Annotated
+from fastapi import Depends
 from sqlmodel import Session, select, or_
 from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import PyJWTError
@@ -23,7 +23,7 @@ router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 password_hash = PasswordHash.recommended()
 
 class RegisterPayload(BaseModel):
-    username: str
+    emailOrUsername: str
     email: str
     password: str
     confirmPassword: str
@@ -48,19 +48,13 @@ def get_session():
         yield session
 
 def search_user_in_database(
-        username: str,
-        email: str,
+        usernameOremail: str,
         session: Session = Depends(get_session)
 ):
-    existing_user = session.exec( select(User).where(or_(User.email == email, User.username == username))).first()
+    existing_user = session.exec( select(User).where(or_(User.email == usernameOremail, User.username == usernameOremail))).first() # I am herere
 
     return existing_user
 
-def adding_new_user(new_user, session: Session = Depends(get_session)):
-    session.add(new_user)
-    session.commit()
-    session.refresh(new_user)
-    return
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
 
@@ -94,28 +88,27 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
 
 
 @router.post("/register")
-async def register_user(payload: RegisterPayload):
+async def register_user(payload: RegisterPayload, session: Session = Depends(get_session)):
     if payload.password != payload.confirmPassword:
-        return HTTPException(status_code=400, detail = "Password doesn't match")
+        raise HTTPException(status_code=400, detail = "Password doesn't match")
     
     
     try:
-        existing_user = search_user_in_database(payload.emailOrUsername, payload.email)
+        existing_user = search_user_in_database(payload.emailOrUsername)
+        raise HTTPException(status_code=400, detail="Email or Username already taken.")
     except Exception as e:
         print("Error in finding the existing user by the use of session: ", e)
 
-    
 
-    if existing_user:
-        raise HTTPException(status_code=400, detail="Email or Username already taken.")
-    
     new_user = User(
         email = payload.email,
         username = payload.emailOrUsername,
         hashed_password = get_password_hash(payload.password)
     )
 
-    adding_new_user(new_user)
+    session.add(new_user)
+    session.commit()
+    session.refresh(new_user)
     
     token = create_access_token(new_user.id, new_user.email)
 
@@ -127,7 +120,7 @@ async def register_user(payload: RegisterPayload):
 
 @router.post("/login")
 async def login_user(payload: LoginPayload):
-    user = search_user_in_database(payload.emailOrUsername, payload.email)
+    user = search_user_in_database(payload.emailOrUsername)
 
     if not user or not verify_password(payload.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid credentials.")
