@@ -5,15 +5,20 @@ from fastapi import APIRouter, HTTPException, status, Depends
 from pydantic import BaseModel
 from pwdlib import PasswordHash
 from dotenv import load_dotenv
-from fastapi import Depends
+from fastapi import Depends, Header
 from sqlmodel import Session, select, or_
 from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import PyJWTError
 
-load_dotenv()
+
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
 GOOGLE_CLIENT_ID = os.getenv("CLIENT_ID")
+
+print(f"JWT_secret: {JWT_SECRET_KEY}")
+print(f"ALGORITHM: {ALGORITHM}")
+print(f"GOOGLE_CLIENT_ID: {GOOGLE_CLIENT_ID}")
+load_dotenv(override=True)
 
 from model import User 
 from database import engine 
@@ -53,13 +58,31 @@ def get_session():
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
 
 
-async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
+async def get_current_user(authorization: str = Header(None)) -> User:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    
+    if not authorization:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Missing Authorization header"
+        )
+
+    try:
+        scheme, token = authorization.split()
+        if scheme.lower() != "bearer":
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid auth scheme. Expected 'Bearer'"
+            )
+    except ValueError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid Authorization header format. Expected 'Bearer <token>'"
+        )
+
     try:
         payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[ALGORITHM])
         
@@ -71,12 +94,12 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
         
     except PyJWTError:
         raise credentials_exception
-    
+
     with Session(engine) as session:
         user = session.get(User, user_id)
         if user is None:
             raise credentials_exception
-            
+        
         return user
     
 

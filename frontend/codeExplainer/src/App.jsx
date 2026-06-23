@@ -5,6 +5,20 @@ import AuthPage from './component/AuthPage';
 
 import './App.css'
 
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 function App() {
   const [viewState, setViewState] = useState('idle')
   const [repoLink, setRepoLink] = useState('');
