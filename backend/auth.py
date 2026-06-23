@@ -47,13 +47,7 @@ def get_session():
     with Session(engine) as session:
         yield session
 
-def search_user_in_database(
-        usernameOremail: str,
-        session: Session = Depends(get_session)
-):
-    existing_user = session.exec( select(User).where(or_(User.email == usernameOremail, User.username == usernameOremail))).first() # I am herere
 
-    return existing_user
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
@@ -94,7 +88,7 @@ async def register_user(payload: RegisterPayload, session: Session = Depends(get
     
     
     try:
-        existing_user = search_user_in_database(payload.emailOrUsername)
+        existing_user = session.exec( select(User).where(or_(User.email == payload.emailOrUsername, User.username == payload.emailOrUsername))).first()
         raise HTTPException(status_code=400, detail="Email or Username already taken.")
     except Exception as e:
         print("Error in finding the existing user by the use of session: ", e)
@@ -119,8 +113,8 @@ async def register_user(payload: RegisterPayload, session: Session = Depends(get
     }
 
 @router.post("/login")
-async def login_user(payload: LoginPayload):
-    user = search_user_in_database(payload.emailOrUsername)
+async def login_user(payload: LoginPayload, session: Session = Depends(get_session)):
+    user = session.exec( select(User).where(or_(User.email == payload.emailOrUsername, User.username == payload.emailOrUsername))).first() 
 
     if not user or not verify_password(payload.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid credentials.")
