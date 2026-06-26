@@ -31,11 +31,30 @@ function App() {
 
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
-    if(token){
-      setIsAuthenticated(true);
-    }
-  }, [])
+    const checkAuth = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        setIsAuthenticated(false);
+        return;
+      }
+
+      try {
+        await axios.get("http://localhost:8000/api/auth/getuser", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setIsAuthenticated(true);
+      } catch (error) {
+        localStorage.removeItem("token");
+        setIsAuthenticated(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -43,6 +62,23 @@ function App() {
     setViewState('idle');
     setSessionID(null);
   };
+  const handleBackToIndexer = () => {
+    try {
+      if(sessionID){
+        axios.delete(`http://localhost:8000/api/chat/history/${sessionID}`)
+      }
+      
+    } catch (error) {
+      console.log("Failed to delete the session", error);
+    }
+
+    setSessionID(null);
+    setRepoLink("");
+    setViewState("idle");
+    setStatusMessage(
+      "System ready. Awaiting repository initialization..."
+    );
+  }
 
 
   const handleInsert = async (e) => {
@@ -75,6 +111,8 @@ function App() {
         })
         .then((sessionResponse) => {
           console.log("Session Creation Response:", sessionResponse);
+          console.log("Session response data", sessionResponse.data)
+          console.log("Session response data", sessionResponse.data.session_id)
 
           if (sessionResponse && sessionResponse.data && sessionResponse.data.session_id) {
             setSessionID(sessionResponse.data.session_id);
@@ -195,9 +233,7 @@ function App() {
               </div>
             </>)}
             {viewState === "chat" &&(
-                <Chatbox sessionId={sessionID} onBackToIndexer={handleBackToIndexer}
-              
-              />
+                <Chatbox key={sessionID} sessionId={sessionID} onBackToIndexer={handleBackToIndexer}/>
             )}
             {viewState === "loading" &&(
               <>

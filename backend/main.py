@@ -97,24 +97,30 @@ async def repo_vectorization(payload: ChatPayload, current_user: User = Depends(
 
 @app.post("/api/chat/session") 
 async def storing_chat_session(payload: ChatPayload, current_user: User = Depends(get_current_user)):
-
-    try:
         with Session(engine) as session:
             cache_record = session.exec(select(RepositoryCache).where(RepositoryCache.repo_link == payload.repoLink)).first()
             if not cache_record:
                 raise HTTPException(status_code=404, detail="Repo not indexed yet")
-            chat_session = ChatSession(
+            
+            try:
+                chat_session = ChatSession(
                 user_id=current_user.id, 
                 repo_cache_id=cache_record.id
             )
+            except Exception as e:
+                print("exception in creating the chat_session from current_user", e)
+
             session.add(chat_session)
             session.commit()
             session.refresh(chat_session)
-            
-            raise HTTPException(status_code=500, detail="Failed to create chat session")
 
-    except Exception as e:
-        print("Error while creating the chatsession", e)
+            if not chat_session.id:
+                raise HTTPException(status_code=500, detail="Failed to create chat session")
+            else:
+                return {
+                    "session_id": chat_session.id
+                }
+            
 
 @app.get("/api/chat/history/{session_id}")
 async def get_history(session_id: int,  current_user: User = Depends(get_current_user)):
@@ -136,6 +142,18 @@ async def get_history(session_id: int,  current_user: User = Depends(get_current
 @app.post("/api/chat/stream")
 async def stream_from_chatbox(payload: QueryPayload, current_user: User = Depends(get_current_user)):
     with Session(engine) as session:
+        chat_session = session.get(ChatSession, payload.session_id)
+        if not chat_session:
+            raise HTTPException(404, "Session not found")
+        
+        if chat_session.user_id != current_user.id:
+            raise HTTPException(403, 'Unauthorized')
+        cache = session.get(
+            RepositoryCache,
+            chat_session.repo_cache_id
+        )
+        collection_name = cache.vector_collection_name
+        
         user_entry = ChatMessage(session_id = payload.session_id, sender = "user", content=payload.message)
         print(f"User entry from the streaming api{user_entry}\n\n")
         session.add(user_entry)
@@ -143,9 +161,10 @@ async def stream_from_chatbox(payload: QueryPayload, current_user: User = Depend
         session.refresh(user_entry)
 
         async def steaming_from_pipeline():
+            
             full_response_text = ""
             try:
-                for token in stream_query_pipeline(payload.message):
+                for token in stream_query_pipeline(payload.message, collection_name):
                     full_response_text += token
                     yield f"data: {json.dumps({'token': token})}"
                     await asyncio.sleep(0.01)  # Important for the end of streaming event

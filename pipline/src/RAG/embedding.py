@@ -14,12 +14,13 @@ def chunk_embedding(chunk_path: str = CHUNK_PATH, vector_path: str = VECTOR_PATH
 
     if not os.path.exists(chunk_path):
         print(f"Chunk file not found: {chunk_path}")
-        print("Creating the vector_store directory: \n")
-        os.makedirs(vector_path, exist_ok=True)
+        
         return
     
     if not os.path.exists(vector_path):
         print(f"Vector store path not found: {vector_path}")
+        print("Creating the vector_store directory: \n")
+        os.makedirs(vector_path, exist_ok=True)
         return
     
     with open(chunk_path, "r", encoding="utf-8") as f:

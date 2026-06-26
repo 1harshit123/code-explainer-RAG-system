@@ -96,11 +96,11 @@ def analyze_codebase_query(user_query: str, raw_chroma_results: dict):
     print("\n--- Structural LLM JSON Extraction Output ---")
     print(json.dumps(result, indent=2, ensure_ascii=False))
 
-def stream_query_pipeline(user_query: str) -> Generator[str, None, None]:
+def stream_query_pipeline(user_query: str, collection_name: str) -> Generator[str, None, None]:
     """
     Function to handle the streamline SSE chat with the frontend.
     """
-    raw_results = getting_raw_search_results(user_query, VECTOR_PATH)
+    raw_results = getting_raw_search_results(user_query, VECTOR_PATH, collection_name)
     
     if not raw_results or not raw_results.get('documents') or not raw_results['documents'][0]:
         yield "Error: No relevant code contextual markers found in the active database index cluster."
@@ -138,7 +138,7 @@ Codebase Structural Report:
             "dependencies": ", ".join(structured_analysis.get("dependencies", [])),
             "user_query": user_query
         }):
-            if chunk.content:
+            if chunk.content: 
                 yield chunk.content
     except Exception as e:
         yield f"\n[Streaming Engine Crash Intercept]: {str(e)}"

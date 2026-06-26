@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-export default function Chatbox({ onBackToIndexer }) {
+export default function Chatbox({ sessionId, onBackToIndexer }) {
     const [messages, setMessages] = useState([
         { role: 'assistant', content: 'Semantic indexing complete. Ask me anything about your repository modules, functions, or control flows.' }
     ]);
@@ -32,7 +32,7 @@ export default function Chatbox({ onBackToIndexer }) {
             const response = await fetch('http://localhost:8000/api/chat/stream', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: userPrompt }),
+                body: JSON.stringify({ session_id: sessionId, message: userPrompt }),
             });
 
             if (!response.body) throw new Error("ReadableStream infrastructure error.");
