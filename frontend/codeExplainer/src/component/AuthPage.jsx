@@ -42,6 +42,14 @@ export default function AuthPage({ onLoginSuccess }) {
         setConfirmPassword("");
     };
 
+    const stateRefresher = () => {
+        setIsLogin(true)
+        setEmailOrUsername("")
+        setEmail("")
+        setPassword("")
+        setConfirmPassword("")
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
@@ -54,6 +62,7 @@ export default function AuthPage({ onLoginSuccess }) {
                     password: password,
                 });
                 localStorage.setItem("token", response.data.access_token);
+                stateRefresher();
                 onLoginSuccess();
             } else {
                 if (password !== confirmPassword) {
@@ -70,6 +79,7 @@ export default function AuthPage({ onLoginSuccess }) {
                     confirmPassword: confirmPassword
                 });
                 localStorage.setItem("token", response.data.access_token);
+                stateRefresher();
                 onLoginSuccess();
             }
         } catch (err) {
