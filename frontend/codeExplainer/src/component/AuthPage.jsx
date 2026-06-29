@@ -74,10 +74,14 @@ export default function AuthPage({ onLoginSuccess }) {
                 }
 
                 const data = await response.json();
-                console.log("data: ",data )
+                console.log("access_token =", data.access_token);
+                console.log("user =", data.user);
 
                 localStorage.setItem('token', data.access_token);
                 localStorage.setItem('user', JSON.stringify(data.user));
+
+                console.log("Stored token:", localStorage.getItem("token"));
+                console.log("Stored user:", localStorage.getItem("user"));
 
                 window.location.href = '/';
 
@@ -85,7 +89,7 @@ export default function AuthPage({ onLoginSuccess }) {
                 console.error('Google Auth Error:', err);
                 setError(err.message || 'Failed to authenticate with the server.');
             } finally {
-                setIsLoading(false);
+                setLoading(false);
             }
         },
         onError: (errorResponse) => {

@@ -117,14 +117,6 @@ async def google_authenticate(payload: GoogleAuthModel, session: Session = Depen
             }
         }
 
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
-
-@router.get("/getuser")
-def getUser(authorization: str) -> User:
-    return get_current_user(authorization=authorization)
-
-
 def get_current_user(authorization: str = Header(None)) -> User:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -168,8 +160,12 @@ def get_current_user(authorization: str = Header(None)) -> User:
             raise credentials_exception
         
         return user
-    
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
+
+@router.get("/getuser")
+def get_user(current_user: User = Depends(get_current_user)):
+    return current_user
 
 @router.post("/register")
 async def register_user(payload: RegisterPayload, session: Session = Depends(get_session)):
