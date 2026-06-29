@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useGoogleLogin } from '@react-oauth/google';
 
 const InputField = ({ type, placeholder, value, onChange }) => (
     <div className="relative group w-full">
@@ -49,6 +50,49 @@ export default function AuthPage({ onLoginSuccess }) {
         setPassword("")
         setConfirmPassword("")
     }
+    const handleOauth = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            console.log("Token response", tokenResponse)
+            setLoading(true);
+            setError(null);
+
+            try {
+                const googleAccessToken = tokenResponse.access_token;
+                console.log("Google access token", googleAccessToken)
+                const response = await fetch('http://127.0.0.1:8000/api/auth/google', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ token: googleAccessToken }),
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.js
+                // Send this token to your FastAPI backendon();
+                    throw new Error(errorData.detail || 'Backend authentication failed');
+                }
+
+                const data = await response.json();
+                console.log("data: ",data )
+
+                localStorage.setItem('token', data.access_token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+
+                window.location.href = '/';
+
+            } catch (err) {
+                console.error('Google Auth Error:', err);
+                setError(err.message || 'Failed to authenticate with the server.');
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        onError: (errorResponse) => {
+            console.error('Google Login Failed:', errorResponse);
+            setError('Google Sign-In was closed or failed to initialize.');
+        },
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -183,6 +227,7 @@ export default function AuthPage({ onLoginSuccess }) {
                     <button
                         type="button"
                         className="w-full flex items-center justify-center space-x-3 bg-neutral-900 border border-neutral-800 text-neutral-300 font-medium text-xs tracking-wide uppercase px-6 py-3.5 rounded-xl hover:bg-neutral-800 active:scale-95 transition-all duration-150"
+                        onClick={handleOauth}
                     >
                         <svg className="h-4 w-4" viewBox="0 0 24 24">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />

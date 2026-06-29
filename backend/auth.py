@@ -9,6 +9,9 @@ from fastapi import Depends, Header
 from sqlmodel import Session, select, or_
 from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import PyJWTError
+from google.oauth2 import id_token
+from google.auth.transport import requests
+import httpx
 
 
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
@@ -27,6 +30,40 @@ router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 
 password_hash = PasswordHash.recommended()
 
+
+
+def verify_google_token(token: str) -> dict | None:
+    """Verifies the Google Access Token by querying Google's tokeninfo endpoint."""
+    try:
+        response = httpx.get(
+            f"https://www.googleapis.com/oauth2/v3/userinfo",
+            headers={"Authorization": f"Bearer {token}"}
+        )
+        if response.status_code == 200:
+            return response.json()
+        return None
+    except Exception as e:
+        print(f"Token verification error: {e}")
+        return None
+
+def get_or_create_google_user(session: Session, user_info: dict) -> User:
+    """Finds an existing user by email or creates a new one."""
+    email = user_info.get("email")
+    statement = select(User).where(User.email == email)
+    user = session.exec(statement).first()
+    
+    if not user:
+        user = User(
+            email=email,
+            username=user_info.get("name"),       
+            profile_pic=user_info.get("picture")  
+        )
+        session.add(user)
+        session.commit()
+        session.refresh(user)
+        
+    return user
+
 class RegisterPayload(BaseModel):
     emailOrUsername: str
     email: str
@@ -36,6 +73,10 @@ class RegisterPayload(BaseModel):
 class LoginPayload(BaseModel):
     emailOrUsername: str
     password: str
+
+class GoogleAuthModel(BaseModel):
+    token: str
+
 
 def verify_password(plain_password, hashed_password):
     return password_hash.verify(plain_password, hashed_password)
@@ -52,7 +93,29 @@ def get_session():
     with Session(engine) as session:
         yield session
 
+@router.post("/google")
+async def google_authenticate(payload: GoogleAuthModel, session: Session = Depends(get_session)):
+    user_info = verify_google_token(payload.token)
+    
+    if not user_info:
+        raise HTTPException(
+            status_code=401, 
+            detail="Invalid or expired Google token"
+        )
+    user = get_or_create_google_user(session, user_info)
 
+    access_token = create_access_token(user.id, user.email)
+
+    return {
+            "access_token": access_token,
+            "token_type": "bearer",
+            "user": {
+                "id": user.id,
+                "username": user.username,
+                "email": user.email,
+                "profile_pic": user.profile_pic
+            }
+        }
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")

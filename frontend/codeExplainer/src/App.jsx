@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Chatbox from './component/Chatbox';
 import axios from "axios";  
 import AuthPage from './component/AuthPage'; 
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import './App.css'
 
@@ -130,8 +131,6 @@ function App() {
         .finally(() => {
           setIsProcessing(false);
         });
-    
-   
   };
 
 

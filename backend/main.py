@@ -63,6 +63,11 @@ class QueryPayload(BaseModel):
     session_id: int
     message: str
 
+
+
+
+
+
 @app.post("/api/repo")
 async def repo_vectorization(payload: ChatPayload, current_user: User = Depends(get_current_user)):
     print(f"User {current_user.username} is requesting: {payload.repoLink}")
