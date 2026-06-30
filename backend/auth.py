@@ -161,8 +161,6 @@ def get_current_user(authorization: str = Header(None)) -> User:
         
         return user
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
-
 @router.get("/getuser")
 def get_user(current_user: User = Depends(get_current_user)):
     return current_user
