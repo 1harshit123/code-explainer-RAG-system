@@ -4,7 +4,7 @@ from pipline.src.RAG.retrival import analyze_codebase_query
 import git
 
 
-def processing_repo(repoLink: str) -> bool:
+def processing_repo(repoLink: str, collection_slug: str) -> bool:
     if not repoLink or not repoLink.strip():
         print("[RAG Pipeline] Aborted: Received empty repository string.")
         return False
@@ -29,7 +29,7 @@ def processing_repo(repoLink: str) -> bool:
 
     # Execute Embedding Generation
     try:
-        chunk_embedding()
+        chunk_embedding(collection_slug)
         
     except Exception as e:
         print(f"[RAG Pipeline] Step 3 Failed: Error during embedding generation -> {e}")

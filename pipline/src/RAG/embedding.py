@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CHUNK_PATH = os.path.join(BASE_DIR, "../../chunks.json")
 VECTOR_PATH = os.path.join(BASE_DIR, "../../vector_store") 
 
-def chunk_embedding(chunk_path: str = CHUNK_PATH, vector_path: str = VECTOR_PATH):
+def chunk_embedding( collection_slug: str, chunk_path: str = CHUNK_PATH, vector_path: str = VECTOR_PATH):
     """Embeds the chunks using chromadb's inbuilt embedding function and saves the vector in vector store"""
 
     if not os.path.exists(chunk_path):
@@ -21,7 +21,6 @@ def chunk_embedding(chunk_path: str = CHUNK_PATH, vector_path: str = VECTOR_PATH
         print(f"Vector store path not found: {vector_path}")
         print("Creating the vector_store directory: \n")
         os.makedirs(vector_path, exist_ok=True)
-        return
     
     with open(chunk_path, "r", encoding="utf-8") as f:
         chunk_data = json.load(f)
@@ -31,11 +30,8 @@ def chunk_embedding(chunk_path: str = CHUNK_PATH, vector_path: str = VECTOR_PATH
     # 4. Grab Chroma's default internal embedding function (all-MiniLM-L6-v2)
     default_ef = embedding_functions.DefaultEmbeddingFunction()
 
-    # 5. Create or get your vector collection database table
-
-    
     collection = client.get_or_create_collection(
-        name="codebase_rag_collection",
+        name=collection_slug,
         embedding_function=default_ef,
         metadata={"hnsw:space": "cosine"} # Using cosine similarity for code matching
     )
@@ -80,7 +76,7 @@ def chunk_embedding(chunk_path: str = CHUNK_PATH, vector_path: str = VECTOR_PATH
     return collection
 
 
-def search_query(query_text: str, vector_path: str, top_k: int = 5):
+def search_query(collection_slug, query_text: str, vector_path: str, top_k: int = 5):
     """
     TASK REQUIREMENT: Operates directly on the stored vector_store folder path.
     Does NOT depend on the 'collection' return token from the embedding function.
@@ -95,7 +91,7 @@ def search_query(query_text: str, vector_path: str, top_k: int = 5):
     
     try:
         collection = client.get_collection(
-            name="codebase_rag_collection",
+            name=collection_slug,
             embedding_function=GLOBAL_EMBEDDING_ENGINE
         )
     except Exception as e:

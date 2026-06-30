@@ -3,7 +3,6 @@ import Chatbox from './component/Chatbox';
 import axios from "axios";  
 import AuthPage from './component/AuthPage'; 
 import { GoogleOAuthProvider } from '@react-oauth/google';
-
 import './App.css'
 
 axios.interceptors.request.use(
@@ -46,7 +45,6 @@ function App() {
             Authorization: `Bearer ${token}`,
           },
         });
-
         setIsAuthenticated(true);
       } catch (error) {
         localStorage.removeItem("token");

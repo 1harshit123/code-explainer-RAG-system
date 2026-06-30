@@ -28,6 +28,8 @@ parent_dir = current_file.parent.parent
 if str(parent_dir) not in sys.path:
     sys.path.insert(0, str(parent_dir))
 
+# Have to stream line this flow of getting the directory
+
 from pipline.src.RAG.retrival import stream_query_pipeline
 from pipline.main import processing_repo
 
@@ -35,6 +37,7 @@ from pipline.main import processing_repo
 async def lifespan(app: FastAPI):
     init_db()
     yield 
+
 
 
 app = FastAPI(lifespan=lifespan)
@@ -86,9 +89,8 @@ async def repo_vectorization(payload: ChatPayload, current_user: User = Depends(
             return {"Status": "Success", "repo": repoLink, "cached": True}
         try:
             # processing_repo(repoLink) # Would work on single setup but can create issues when two or more users use it at the same time, 
-            await asyncio.to_thread(processing_repo, repoLink)
-
             collection_slug = f"repo_{hashlib.md5(repoLink.encode()).hexdigest()}"
+            await asyncio.to_thread(processing_repo, repoLink, collection_slug)
             new_cache = RepositoryCache(repo_link=repoLink, vector_collection_name=collection_slug)
             session.add(new_cache)
             session.commit()

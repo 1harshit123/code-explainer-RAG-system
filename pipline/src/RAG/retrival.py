@@ -21,16 +21,22 @@ GROQ_KEY = os.getenv("GROQ_API_KEY")
 
 os.environ["GROQ_API_KEY"] = GROQ_KEY
 
-def getting_raw_search_results(query:str, vector_path:str):
-    """This function will give the raw vector chunks closest to the query"""
+class ChromaService:
+    def __init__(self):
+        self.client = chromadb.PersistentClient(path=VECTOR_PATH)
 
-    client = chromadb.PersistentClient(path=vector_path)
+    def get_collection(self, collection_name):
+        return self.client.get_or_create_collection(
+            name=collection_name,
+            embedding_function=EMBEDDING_ENGINE,
+        )
+
+def getting_raw_search_results(query:str, vector_path:str, collection_name: str):
+    """This function will give the raw vector chunks closest to the query"""
     
     try:
-        collection = client.get_collection(
-            name="codebase_rag_collection",
-            embedding_function=EMBEDDING_ENGINE
-        )
+        service = ChromaService()
+        collection = service.get_collection(collection_name=collection_name)
     except Exception as e:
         print(f"Search Error: Could not find indexed collection on disk. Details: {e}")
         return None
