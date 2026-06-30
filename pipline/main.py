@@ -21,7 +21,7 @@ def processing_repo(repoLink: str, collection_slug: str) -> bool:
     
     # Chunking
     try:
-        chunking()
+        chunks = chunking()
         
     except Exception as e:
         print(f"[RAG Pipeline] Step 2 Failed: Error during chunking execution -> {e}")
@@ -29,7 +29,7 @@ def processing_repo(repoLink: str, collection_slug: str) -> bool:
 
     # Execute Embedding Generation
     try:
-        chunk_embedding(collection_slug)
+        chunk_embedding(collection_slug, chunks)
         
     except Exception as e:
         print(f"[RAG Pipeline] Step 3 Failed: Error during embedding generation -> {e}")

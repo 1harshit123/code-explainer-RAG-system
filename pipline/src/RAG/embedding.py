@@ -6,14 +6,13 @@ import json
 GLOBAL_EMBEDDING_ENGINE = embedding_functions.DefaultEmbeddingFunction()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CHUNK_PATH = os.path.join(BASE_DIR, "../../chunks.json")
 VECTOR_PATH = os.path.join(BASE_DIR, "../../vector_store") 
 
-def chunk_embedding( collection_slug: str, chunk_path: str = CHUNK_PATH, vector_path: str = VECTOR_PATH):
+def chunk_embedding( collection_slug: str, chunks: dict, vector_path: str = VECTOR_PATH):
     """Embeds the chunks using chromadb's inbuilt embedding function and saves the vector in vector store"""
 
-    if not os.path.exists(chunk_path):
-        print(f"Chunk file not found: {chunk_path}")
+    if not chunks:
+        print(f"Could not found Chunks")
         
         return
     
@@ -21,10 +20,7 @@ def chunk_embedding( collection_slug: str, chunk_path: str = CHUNK_PATH, vector_
         print(f"Vector store path not found: {vector_path}")
         print("Creating the vector_store directory: \n")
         os.makedirs(vector_path, exist_ok=True)
-    
-    with open(chunk_path, "r", encoding="utf-8") as f:
-        chunk_data = json.load(f)
-    
+
     client = chromadb.PersistentClient(path=vector_path)
     
     # 4. Grab Chroma's default internal embedding function (all-MiniLM-L6-v2)
@@ -46,10 +42,10 @@ def chunk_embedding( collection_slug: str, chunk_path: str = CHUNK_PATH, vector_
     documents = []
     metadatas = []
 
-    for chunk in chunk_data:
+    for chunk in chunks:
         ids.append(chunk["id"])
         
-        # This is the actual string content that gets converted into numerical vector arrays
+        # This is the actual string content2 that gets converted into numerical vector arrays
         documents.append(chunk["embed_text"])
         
         # Flatten lists into simple comma-separated strings so Chroma can index the metadata

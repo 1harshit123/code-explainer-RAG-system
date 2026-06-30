@@ -11,6 +11,10 @@ PIPELINE_ABS_DIR = THIS_FILE_ABS_PATH.parent.parent
 
 local_repo_path = Path(__file__).parent.parent / "notebook"
 
+import shutil
+
+
+
 def cloning_repo(repo_url: str, local_path: str = local_repo_path) -> git.Repo:
     try:
         print("Attempting to clone using 'master' branch...")
@@ -34,32 +38,24 @@ def cloning_repo(repo_url: str, local_path: str = local_repo_path) -> git.Repo:
 
 
 def chunking():
-    import sys
-    import shutil
-    repo_path = local_repo_path
-
-    print(f"Processing repo: {repo_path}")
-    chunks = process_repo(repo_path)
+    print(f"Processing repo: {local_repo_path}")
+    chunks = process_repo(local_repo_path) # returning in the last
     print(f"Extracted {len(chunks)} chunks")
 
-    out_path = PIPELINE_ABS_DIR / "chunks.json"
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(chunks, f, indent=2, ensure_ascii=False)
-
-    print(f"Saved to {out_path}")
 
     try:
-        print(f"Cleaning up: Deleting {repo_path} folder...")
-        shutil.rmtree(repo_path)
+        print(f"Cleaning up: Deleting {local_repo_path} folder...")
+        shutil.rmtree(local_repo_path)
         print("Folder successfully deleted.")
     except Exception as e:
-        print(f"Warning: Could not delete folder {repo_path}: {e}")
+        print(f"Warning: Could not delete folder {local_repo_path}: {e}")
 
-
-
-    # quick preview
     if chunks:
         print("\n── Sample chunk (embed_text field) ──")
         print(chunks[0]["embed_text"][:600])
+
+    return chunks
+
+    
 
 
