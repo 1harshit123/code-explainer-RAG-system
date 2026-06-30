@@ -28,10 +28,14 @@ export default function Chatbox({ sessionId, onBackToIndexer }) {
             { role: 'bot', content: '' }
         ]);
 
+        const jwt = localStorage.getItem("token")
+
         try {
             const response = await fetch('http://localhost:8000/api/chat/stream', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwt}`
+                 },
                 body: JSON.stringify({ session_id: sessionId, message: userPrompt }),
             });
 
