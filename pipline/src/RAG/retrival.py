@@ -10,6 +10,7 @@ from langchain_core.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 from typing import Generator
+from pprint import pprint
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VECTOR_PATH = os.path.abspath(os.path.join(BASE_DIR, "../../vector_store"))
@@ -26,7 +27,7 @@ class ChromaService:
         self.client = chromadb.PersistentClient(path=VECTOR_PATH)
 
     def get_collection(self, collection_name):
-        return self.client.get_or_create_collection(
+        return self.client.get_collection(
             name=collection_name,
             embedding_function=EMBEDDING_ENGINE,
         )
@@ -37,6 +38,9 @@ def getting_raw_search_results(query:str, vector_path:str, collection_name: str)
     try:
         service = ChromaService()
         collection = service.get_collection(collection_name=collection_name)
+        print("------ The name of collection-------")
+        print(collection.name)
+        print(f"Collection count: {collection.count()}")
     except Exception as e:
         print(f"Search Error: Could not find indexed collection on disk. Details: {e}")
         return None
@@ -46,6 +50,8 @@ def getting_raw_search_results(query:str, vector_path:str, collection_name: str)
         query_texts=[query],
         n_results=5
     )
+    print("------ The main last result return -------")
+    print(results)
     return results
 
 
@@ -107,6 +113,8 @@ def stream_query_pipeline(user_query: str, collection_name: str) -> Generator[st
     Function to handle the streamline SSE chat with the frontend.
     """
     raw_results = getting_raw_search_results(user_query, VECTOR_PATH, collection_name)
+    print("----- Printing raw results from the vector store -----")
+    print(json.dumps(raw_results, indent=2, ensure_ascii=False))
     
     if not raw_results or not raw_results.get('documents') or not raw_results['documents'][0]:
         yield "Error: No relevant code contextual markers found in the active database index cluster."

@@ -11,7 +11,7 @@ class RepositoryCache(SQLModel, table=True):
     vector_collection_name: str                     
     last_indexed_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     
-    sessions: list["ChatSession"] = Relationship(back_populates="repo_cache")
+    sessions: list["ChatSession"] = Relationship(back_populates="repo_cache", cascade_delete=True)
 
 class User(SQLModel, table=True):
     __tablename__ = "users"
@@ -32,7 +32,7 @@ class ChatSession(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
 
     user_id: int = Field(foreign_key="users.id", index=True)
-    repo_cache_id: int = Field(foreign_key="repository_cache.id", index=True)
+    repo_cache_id: int = Field(foreign_key="repository_cache.id", index=True, ondelete="CASCADE") # Ensures that if a repository cache is deleted, associated chat sessions are also removed
     
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc)) # we are using default_factory because if we do not use that it gives the time when python server boots up not every time single row adds
 

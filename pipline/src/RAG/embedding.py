@@ -10,6 +10,8 @@ VECTOR_PATH = os.path.join(BASE_DIR, "../../vector_store")
 
 def chunk_embedding( collection_slug: str, chunks: dict, vector_path: str = VECTOR_PATH):
     """Embeds the chunks using chromadb's inbuilt embedding function and saves the vector in vector store"""
+    print("------ Printing the length of chunks received for the chunk_embedding function-------")
+    print(f"Length of chunks: {len(chunks)}")
 
     if not chunks:
         print(f"Could not found Chunks")
@@ -107,40 +109,8 @@ if __name__ == "__main__":
     CHUNK_PATH = os.path.join(BASE_DIR, "../../chunks.json")
     VECTOR_PATH = os.path.join(BASE_DIR, "../../vector_store")    
 
-    chunk_embedding(CHUNK_PATH, VECTOR_PATH)
-
-
-    query_text = "How does the function 'foo' work in the codebase?"   
-
-    search_results = search_query(query_text, VECTOR_PATH, top_k=5)
-
-    if search_results and 'ids' in search_results and search_results['ids'][0]:
-        print("\n" + "="*80)
-        print(f" VECTOR STORE RETRIEVAL MATCHES FOR: '{query_text}'")
-        print("="*80)
-
-        # Unpack the parallel arrays safely using standard indexing positioning
-        match_ids = search_results['ids'][0]
-        match_docs = search_results['documents'][0]
-        match_meta = search_results['metadatas'][0]
-        match_dist = search_results['distances'][0]
-
-        # Iterate through items side-by-side using zip
-        for rank, (id_, doc, meta, distance) in enumerate(zip(match_ids, match_docs, match_meta, match_dist), 1):
-            print(f"\n[RANK {rank}] MATCH ID: {id_}")
-            print(f"  Filepath : {meta.get('filepath')}")
-            print(f"  Component: {meta.get('type').upper()} | Class: {meta.get('parent_class')}")
-            print(f"  Range    : Lines {meta.get('start_line')} to {meta.get('end_line')}")
-            print(f"  Distance : {distance:.4f} (Cosine Closeness)")
-            print(f"  " + "-"*40)
-            
-            # Print the implementation block indented for visual alignment
-            print("  SOURCE IMPLEMENTATION EXTRACTION:")
-            indented_source = "\n".join(f"    {line}" for line in doc.splitlines())
-            print(indented_source)
-            print("\n" + "_"*80)
-    else:
-        print("\nWarning: No structural matches returned from vector store.")
+    client = chromadb.PersistentClient(path=VECTOR_PATH)
+    print(f"collection list: {client.list_collections()}")
 
 
 
